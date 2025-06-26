@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{asset('public/css/menus.css')}}">
+    <link rel="icon"
+      href="{{ asset('public/images/tlogo.ico') }}"
+      type="image/x-icon"
+      src="" /> 
+            {% block style %}
+            {% endblock %}  
+            {% block scripts %}
+            {% endblock %} 
+            {% block title %}  
+            {% endblock %}
+            {% block meta %}
+            {% endblock %}
+            
+    </head>
+    <body >
+       
+        
+       <div id="content" style="margin:auto; postion:absolute;">
+            {% block content %}  
+            {% endblock %}
+       </div>
+        
+
+    </body>
+</html>

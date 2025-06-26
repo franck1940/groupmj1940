@@ -1,0 +1,26 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendUserRight.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+	<div id="allUseright">
+
+		<h2>{{value}}</h2>
+
+		{% for x in userRights %}
+
+			<div id="rightDetails">
+				<h3>{{x.title}}
+				</h3><br>
+				<h5>{{x.abb}}
+				</5><br>
+				<p>{{x.desc}}
+				</p><br>
+			</diV>
+			<br>
+
+		{% endfor %}
+
+	</div>
+{% endblock %}

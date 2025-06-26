@@ -1,0 +1,28 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendUserRight.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+	<div id="updateuserrightgui">
+		<h2>{{value}}</h2>
+		<form action="/backendmanagement/userrightmanagement/update" method="post" id="updateUR">
+			<label for="righttitle">choose title to be updated:</label><br>
+			<select name="selectedtitle" id="selectedtitle">
+				<option value=""></option>
+				{% for x in userRights %}
+					<option value="{{x.title}}" {{ x.title == slvalue ? selectedtitle:''}} >{{x.title}}
+					</option>
+				{% endfor %}
+			</select>
+			<button  id="checkRights" onclick="selectSearchData()"><i class="fa fa-search"></i></button><br><br>
+			<label for="title">Right title:</label><br>
+			<input type="text" id="title" name="title" value="{{title}}"><br><br>
+			<label for="abbreviation">Abbreviation:</label><br>
+			<input type="text" id="abbreviation" name="abbreviation" value="{{abbr}}"><br><br>
+			<label for="description">Description:</label><br>
+			<textarea id="description" name="description" rows="10" cols="70" value="{{desc}}"/>{{desc}}</textarea><br><br>
+		<input type="submit" id="userrightsubmit" value="Update right">
+	</form>
+	<h4 style="{{cssResponse}}">{{response}}</h4>
+</div>{% endblock %}

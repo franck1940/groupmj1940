@@ -1,0 +1,42 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendUserRight.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+	<div id="userrightmggui">
+		<h2>{{value}}</h2>
+		<form action="/backendmanagement/userrightmanagement/insertright" method="post" id="insertuserright">
+			<label for="loginnames">choose loginname:</label><br>
+			<select name="loginname" id="loginname">
+				<option value=""></option>
+				{% for item in loginnames %}
+					<option value="{{item.id}}"  {{ (item.id == selected)?'selected':'' }}>{{item.loginname}}</option>
+				{% endfor %}
+			</select>
+			<button id="checkRights" onclick="checkUserCurrentRight()"><i class="fa fa-search"></i></button><br><br>
+
+			<h2>
+				Select rights</h2>
+
+			{% for item in  userRights.selected %}
+				<input type="checkbox" id="{{item.abbreviation}}" name="{{item.abbreviation}}" value="{{item.abbreviation}}" checked>
+				<label for="{{item.rightTitle}}">
+					{{item.rightTitle}}</label>
+				<br>
+			{% endfor %}
+
+			{% for item in  userRights.deselected %}
+				<input type="checkbox" id="{{item.abbreviation}}" name="{{item.abbreviation}}" value="{{item.abbreviation}}">
+				<label for="{{item.rightTitle}}">
+					{{item.rightTitle}}</label>
+				<br>
+			{% endfor %}
+
+
+			<br><br>
+			<input type="submit" id="insertright" value="Insert data">
+		</form>
+		<h4 style="{{cssResponse}}">{{response}}</h4>
+	</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+.navbar {
+  margin: auto;
+  width: 100%;
+  background-color: #333;
+}
+
+.navbar a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.subnav {
+  float: left;
+  background-color: #333;
+}
+
+.subnavbtn {
+  font-size: 18px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.subnav {
+  position: relative;
+  display: inline-block;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  margin-left: 0px;
+  z-index: 1;
+}
+
+.subnav-content a {
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000;
+  padding: 12px 16px;
+  display: block;
+}
+
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+  border: 1px solid #333;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+.menucontainer {
+  margin: auto;
+  padding: 12px 20px;
+}
+
+.menucontainer input[type="file"],
+.menucontainer input[type="text"],
+.menucontainer textarea {
+  color: rgb(22, 22, 70);
+  margin-left: 15px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 2% 5%;
+  width: 60%;
+  border: 1px ridge #ddd;
+  font-size: 14px;
+}
+.menucontainer input[type="submit"],
+.menucontainer h4,
+.menucontainer select,
+.menucontainer button {
+  margin-left: 15px;
+  padding: 2% 5%;
+  width: 40%;
+   height: auto;
+}
+.menucontainer label,
+.menucontainer h2 {
+  margin-left: 15px;
+}
+
+#leftcontainer {
+  border: 0px solid #000;
+  width: 40%;
+  height: 100%;
+  /* margin: 1%; */
+  float: left;
+  word-break: break-all;
+  /* padding: auto; */
+}
+/* #leftcontainer form{
+  margin: 10%;
+} */
+#rightcontainer {
+  border: 0px solid #000;
+  width: 50%;
+  height: 100%;
+  float: right;
+  overflow: auto;
+ 
+}
+#divider {
+  position: absolute;
+  margin-left: 40%;
+  height: 100%;
+  border-left: 2px solid #590f0f;
+   padding: auto;
+}
+#menucontainerparent {
+  position: relative;
+  padding: 10px;
+}
+.menucontainer {
+  height: 700px;
+}
+
+.arrow {
+  font-size: 17px;
+}

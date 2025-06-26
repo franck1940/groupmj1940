@@ -1,0 +1,70 @@
+#userrightgui,
+#logindatainsertgui {
+  padding: 5px;
+  color: rgb(22, 22, 70);
+}
+
+#userrightgui input[type="text"],
+#updateuserrightgui input[type="text"],
+#userrightmggui select,
+#updateuserrightgui select {
+  color: rgb(22, 22, 70);
+  margin-left: 15px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 12px 20px;
+  width: 40%;
+  border: 2px ridge #ddd;
+  font-size: 14px;
+}
+
+#userrightgui textarea,
+#updateuserrightgui textarea {
+  padding: 12px 20px;
+  margin-left: 15px;
+  border: 2px ridge #ddd;
+  font-size: 14px;
+}
+
+#userrightgui label,
+#updateuserrightgui label,
+#userrightmggui label {
+  margin-left: 15px;
+}
+
+#userrightgui input[type="submit"],
+#updateuserrightgui input[type="submit"],
+#userrightmggui input[type="submit"],
+#userrightmggui button,
+#updateuserrightgui button {
+  margin-left: 15px;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+}
+#userrightgui {
+  display: inline-block;
+}
+#userrightgui h2,
+#allUseright h2,
+#updateuserrightgui h2,
+#userrightmggui h2 {
+  padding: 12px 20px;
+  margin-left: 0px;
+}
+
+#userrightmggui input[type="checkbox"] {
+  padding: 12px 20px;
+  margin-left: 15px;
+}
+
+#rightDetails {
+  padding: 12px 20px;
+  margin-left: 15px;
+  border: 2px ridge rgb(212, 189, 161);
+  background-color: rgb(212, 189, 161);
+  width: 30%;
+  font-size: 15px;
+}
+#rightDetails h3 {
+  text-decoration: underline;
+}

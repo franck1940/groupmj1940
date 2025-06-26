@@ -1,0 +1,43 @@
+{% include '@backend/backendbase.html.twig' %}
+{% block title %}
+	<title>Login</title>
+{% endblock %}
+
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/login.css')}}">
+{% endblock %}
+{% block contentitle %}{% endblock %}
+{% block content %}
+	<div class="loginpage">
+		{# <img id="imagelogo" src="{{ asset('public/images/logognj.png') }}" style="width:100%; height:100%; position: relative; border: 1px solid #fff;"/> #}
+		{# <img id="imagelogo" src="{{ asset('public/images/loginbgimg.jpg') }}" style="width:100%; height:100%; position: relative; border: 1px solid #fff;"/> #}
+		<br>
+		<br>
+		<form method="post" id="login" action={{ path('app_login') }}>
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+
+			{% if app.user %}
+				<div class="mb-3">
+					You are logged in as
+					{{ app.user.userIdentifier }},
+					<a href="{{ path('app_logout') }}">Logout</a>
+				</div>
+			{% endif %}
+			<label for="loginname">Email:</label>
+			<input type="text" id="email" name="email" id="inputEmail" class="form-control" placeholder="example@test.com" autocomplete="email" required autofocus><br><br>
+			<label for="password">Password:</label>
+            <input type="password" id="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required> <br><br>
+            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="_remember_me"> Remember me </input>
+        </label>
+    </div> <br>
+
+			<input type="submit" id="submit" value="Sign in">
+		</form>
+	</div>
+{% endblock %}

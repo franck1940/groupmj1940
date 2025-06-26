@@ -1,0 +1,32 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block scripts %}
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+{% endblock %}
+{% block backendcontentright %}
+<div id="resetPasswordContainer">
+ <form action="/backendmanagement/logindatamanagement/saveNewPassword" method="post">
+            <h2>
+				{{ value }}
+			</h2>
+ 		<label for="userlogin">choose user:</label><br>
+			<select name="userlogin" id="userlogin" onchange="searchUserEmail('getemail','userlogin','email')">
+				<option value=""></option>
+				{% for item in users %}
+					<option value="{{item.id}}">{{item.firstname}}:{{item.lastname}}</option>
+				{% endfor %}
+			</select><br><br>
+	
+	<label for="loginEmail">Login email:</label><br>
+	<input type="text" id="email" name="email" value="" readonly><br><br>
+
+    <label for="password">Default password:</label><br>
+    <input type="text" id="password" name="password" value="groupnj1940" readonly><br><br>
+	<input type="hidden" id="action" name="action" value="{{lgf}}">
+
+    <input type="submit" value="{{action}}"><br><br><br><br>
+ </form>
+ <h4 style="{{cssResponse}}">{{response}}</h4>
+</div>
+{% endblock %}

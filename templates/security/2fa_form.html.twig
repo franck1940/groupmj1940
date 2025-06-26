@@ -1,0 +1,54 @@
+{% block style %}
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="{{asset('public/css/2fa.css')}}">
+	    
+
+{% endblock %}
+{% block body %}
+<div class="container" style="font-size:22px;color: #191970;margin: auto; border:0px ridge #ddd; padding: 10%; width: 50%; height: auto; border-radius: 2%; #fff;">
+{# <div style="margin-left:10%;"><img src="{{ asset('public/images/logognj.png') }}" style="width:50%; height:40%; position: relative; border: 0px solid #ddd;"></div><br><br><br><br> #}
+    
+    <div class="row">
+        <div class="login-form bg-light mt-4 p-4" style="margin-left:20%;">
+            
+           <!-- <h1 class="h3 mb-3 font-weight-normal">Two Factor Authentication</h1>-->
+            <h5>
+                Opens your authenticator app and <br> types in the TOTP number <br> and presses on login button.
+            </h5>
+            {% if authenticationError %}
+            <p>{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}</p>
+            {% endif %}
+            {# Let the user select the authentication method #}
+            <!--<p>{{ "Choose provider"|trans({}, 'SchebTwoFactorBundle') }}:
+                {% for provider in availableTwoFactorProviders %}
+                    <a href="{{ path("2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
+                {% endfor %}
+            </p>-->
+            {# Display current two-factor provider #}
+              <!--<p class="label"><label for="_auth_code">{{ "Type the number of the "|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}:</label></p>-->
+            <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post">
+                <p class="widget">
+                    <input
+                        id="_auth_code"
+                        type="text"
+                        name="{{ authCodeParameterName }}"
+                        autocomplete="one-time-code"
+                        autofocus
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                    style="border: 1px solid #000; width:25%; height:5%"/><br><br>
+                </p>
+                {% if displayTrustedOption %}
+                    <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label></p>
+                {% endif %}
+                {% if isCsrfProtectionEnabled %}
+                    <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+                {% endif %}
+                <p class="submit"><input type="submit" value="{{ "login"|trans({}, 'SchebTwoFactorBundle') }}" style="font-size:25px;border: 2px solid #ddd; width:20%; height:5%; padding:1% 3.7%;"/></p>
+            </form>
+            {# The logout link gives the user a way out if they can't complete two-factor authentication #}
+            <a href="{{ logoutPath }}" style=" text-decoration: none; font-size:25px">&#10229;{{ "Back"|trans({}, 'SchebTwoFactorBundle') }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

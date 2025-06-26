@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome to GROUP NJ 1940{% endblock %}
+		</title>
+		{% block scripts %}{% endblock %}
+		{% block style %}{% endblock %}
+		<link rel="icon"
+      href="{{ asset('public/images/tlogo.ico') }}"
+      type="image/x-icon"
+      src="" />
+			</head>
+		<body>
+			{% block image %}{% endblock %}
+			{% block contents %}{% endblock %}
+
+		
+
+     <button style="border: 1px solid #ddd; background-color: #ddd; text-decoration: none; padding: 12px 20px;"><a href="/login"  style="text-decoration: none;">Login</a></button>
+		</body>
+	</html>

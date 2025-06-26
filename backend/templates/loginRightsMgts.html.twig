@@ -1,0 +1,34 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendlogindata.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+{% endblock %}
+{% block backendcontentright %}
+	<div id="logindatainsertgui">
+		<h2>{{value}}</h2>
+		<form action="/backendmanagement/logindatamanagement/insertrights" method="post" id="insertlgdata">
+			<label for="userlogin">choose user:</label><br>
+			<select name="userlogin" id="userlogin" onchange="getUserRights('loginRights','userlogin')">
+				<option value=""></option>
+				{% for item in users %}
+					<option value="{{item.id}}">{{item.firstname}}:{{item.lastname}}[{{item.email}}]</option>
+				{% endfor %}
+			</select><br><br>			
+
+			<h2>Select rights</h2>
+
+			{% for item in  userRights %}
+				<input type="checkbox" id="{{item.abbreviation}}" name="{{item.abbreviation}}" value="{{item.abbreviation}}" >
+				<label for="{{item.rightTitle}}">
+					{{item.rightTitle}}</label>
+				<br>
+			{% endfor %}
+			<input type="submit" id="insertlogindata" value="Insert rights">
+		</form><br><br>
+		<h4 style="{{cssResponse}}">{{response}}</h4><br><br><br><br>
+	</div>
+{% endblock %}

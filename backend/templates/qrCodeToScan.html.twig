@@ -1,0 +1,19 @@
+{% extends '@backend/backendbase.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block scripts %}
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+<h3 style="margin-left:15%;padding: 12px 20px;"> Installs an authenticator-app in you mobile phone and scans this qr-code with it, in order to generate TOPT number</h3>
+<br><br><br>
+	<div style="border: 0px solid #ddd; width:50%; height:30%; margin:auto; padding: 12px 20px;">
+		<img src="{{ path('app_qr_code') }}" alt="2fa QR Code" style="border: 1px solid #ddd; width:20%; height:20%;"><br><br>
+        <button style="border: 1px solid #ddd; width:20%; height:5%; padding: 12px 20px;">
+            <a href="/backendmanagement" style="text-decoration: none;">OK Done</a>
+        </button>
+    </div>
+	
+{% endblock %}

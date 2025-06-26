@@ -1,0 +1,37 @@
+#logindatainsertgui {
+  padding: 5px;
+  color: rgb(22, 22, 70);
+}
+
+#logindatainsertgui input[type="text"],
+#logindatainsertgui input[type="password"],
+#logindatainsertgui select {
+  color: rgb(22, 22, 70);
+  margin-left: 15px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 12px 20px;
+  width: 40%;
+  border: 2px ridge #ddd;
+  font-size: 14px;
+}
+
+#logindatainsertgui label {
+  margin-left: 15px;
+}
+
+#logindatainsertgui input[type="submit"],
+#logindatainsertgui input[type="checkbox"] {
+  margin-left: 15px;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+}
+
+#logindatainsertgui h2 {
+  padding: 12px 20px;
+}
+#logindatainsertgui button {
+  margin-left: 15px;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+}

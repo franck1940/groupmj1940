@@ -1,0 +1,39 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/menus.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+	<div class="menucontainer" id="menucontainerparent">
+		<div id="leftcontainer">
+			<h2>
+				{{ value }}
+			</h2>
+			<form action="/backendmanagement/menumanagement/docreateRtmenu" method="POST">
+				<label for="meunuName">Menu name:</label><br>
+				<input type="text" id="rootMenuName" name="rootMenuName" required oninput="checkInputValue()"/><br><br>
+				<input type="submit" value="Create root menu"/><br><br>
+			</form>
+			<h4 style="{{cssResponse}}" id="formaction">{{response}}</h4>
+		</div>
+		<div id="divider"></div>
+		<div id="rightcontainer">
+			<script>
+				showOnlyRtMenuStructure('mgrp', 'rightcontainer')
+			</script>
+		</div>
+	</div>
+	<script>
+	function checkInputValue()
+	{
+		const x = $("#rootMenuName").val();
+		$("[type=submit]").attr('disabled',true);
+
+		if(x.trim())
+		{
+			$("[type=submit]").attr('disabled',false);
+		}
+	}
+	</script>
+
+{% endblock %}

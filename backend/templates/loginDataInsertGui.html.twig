@@ -1,0 +1,25 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendlogindata.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+<div id="logindatainsertgui">
+		<h2>{{value}}</h2>
+		<form action="/backendmanagement/logindatamanagement/insert" method="post" id="insertlgdata">
+			<label for="userlogin">choose user:</label><br>
+			<select name="userlogin" id="userlogin" >
+				<option value=""></option>
+                {% for item in users %}
+                <option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.firstname}}:{{item.lastname}}</option>
+                {% endfor %}
+			</select><button  id="checklogin" onclick="getUserEmailAndStdPw()"><i class="fa fa-search"></i></button><br><br>
+			<label for="loginname">Login name:</label><br>
+			<input type="text" id="loginname" name="loginname"  value={{email}}><br><br>
+			<label for="loginpasswort">Passwort:</label><br>
+			<input type="password" id="loginpasswort" name="loginpasswort" value={{pw}}><br><br>
+		<input type="submit" id="insertlogindata" value="Insert data">
+	</form>
+	<h4 style="{{cssResponse}}">{{response}}</h4>
+</div>
+{% endblock %}

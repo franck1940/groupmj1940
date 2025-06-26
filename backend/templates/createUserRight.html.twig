@@ -1,0 +1,21 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendUserRight.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+	<div id="userrightgui">
+		<h2 id="userrightguititle">
+			{{value}}</h2>
+		<form action="/backendmanagement/userrightmanagement/create" method="post">
+			<label for="righttitle">Right title:</label><br>
+			<input type="text" id="righttitle" name="righttitle"><br><br>
+			<label for="abbreviation">Abbreviation:</label><br>
+			<input type="text" id="abbreviation" name="abbreviation"><br><br>
+			<label for="abbreviation">Description:</label><br>
+			<textarea id="description" name="description" rows="10" cols="70"/></textarea><br><br>
+				<input type="submit" id="userrightsunmit" value="Insert new right">
+			</form>
+            <h4 style="{{cssResponse}}">{{response}}</h4>
+		</div>
+	{% endblock %}

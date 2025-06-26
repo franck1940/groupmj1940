@@ -1,0 +1,90 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block backendcontentright %}
+	<div id="usertinsertcontainer"  required >
+	<div id="contentLft"  required >
+		<h2>
+			{{ value }}
+		</h2>
+		<form action="/backendmanagement/usermanagement/saveNewprofile" method="post" id="insertuser"  enctype="multipart/form-data" >
+			<table>
+				<tr>
+					<td>Gender:</td>
+					<td>
+						<select name="gender" id="gender"  required >
+							<option value="" disabled selected></option>
+							<option value="male"  required >Male</option>
+							<option value="female"  required >Female</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Title:</td>
+					<td>
+						<select name="title" id="title"  required >
+							<option value="" disabled selected></option>
+							<option value="dr"  required >Dr.</option>
+							<option value="profdr"  required >Prof. Dr.</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Firstname:</td>
+					<td>
+						<input type="text" maxlength="100" id="firstname" name="firstname"  required >
+					</td>
+				</tr>
+				<tr>
+					<td>Lastname:</td>
+					<td><input type="text" maxlength="100" id="lastname" name="lastname" for="lastname"  required ></td>
+				</tr>
+				<tr>
+					<td>Birthday:</td>
+					<td><input type="date" maxlength="20" id="birthday" name="birthday"  required ></td>
+				</tr>
+				<tr>
+					<td>E-Mail:</td>
+					<td><input type="email" maxlength="100" id="email" name="email"  required ></td>
+				</tr>
+				<tr>
+					<td>Phone number:</td>
+					<td><input type="text" maxlength="100" id="phonenumber" name="phonenumber" placeholder="12323400809" pattern="[0-9]{4}[0-9]{5}[0-9]{3}"  required ></td>
+				</tr>
+				<tr>
+					<td>Street name:</td>
+					<td><input type="text" maxlength="100" id="streetname" name="streetname"  required ></td>
+				</tr>
+				<tr>
+					<td>House number:</td>
+					<td><input type="text" maxlength="100" id="housenumber" name="housenumber"  required ></td>
+				</tr>
+
+				<tr>
+					<td>Zipcode:</td>
+					<td><input type="text" maxlength="5" id="zipcode" name="zipcode"  required ></td>
+				</tr>
+				<tr>
+					<td>City:</td>
+					<td><input type="text" maxlength="20" id="city" name="city"  required ></td>
+				</tr>
+				<tr>
+					<td>Country:</td>
+					<td><input type="text" maxlength="20" id="country" name="country"  required ></td>
+				</tr>
+				<tr>
+					<td>Picture:</td>
+					<td><input type="file" id="picture" name="picture"  value="" accept=".jpg, .jpeg, .png" > 
+					<input type="hidden" name="action" value="insertNewUser"/></td>
+				</tr>
+				<tr>
+					<td><input type="submit" id="insertuser" value="Do insert" style="color:rgb(27, 27, 159); "  required ></td>
+				</tr>
+
+			</table>
+		</form>
+		<h4 style="{{cssResponse}}"  required >{{response}}</h4>
+		</div>
+		<div id="divider"  required ></div>
+		<div id="contentRgt" style="font-size:20px;"  required >
+		</div>
+	</div>
+{% endblock %}

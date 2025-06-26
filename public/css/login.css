@@ -1,0 +1,56 @@
+/*.loginpage {
+    border: 2px solid #000;
+    background: #1d86a0ec;
+    border-radius: 10px;
+    width: 80%;
+    height: 90px;
+}*/
+
+.loginpage {
+     padding: 10%; 
+    border: 1px solid #ddd;
+    border-radius: 0%;
+    width: auto;
+    height:auto;
+    /* margin: auto; */
+    /* background-color:  #fefcfc; */
+    background-image: url("/public/images/loginbgimg.jpg");
+    color: rgb(12, 12, 174);
+    /* background-color: #77756f; */
+    background-repeat: no-repeat;
+     background-size: 100% 100%;
+}
+
+#loginformtitle {
+    margin-left: 5%;
+    padding: 12px 20px;
+}
+
+form#login {
+    /* background-color:#ddd; */
+    height: 35%;
+    width:  30%;
+    border-radius: 2%;
+    padding:10%;
+    margin-left: 5%;
+    border: 0px solid #77756f;
+    /* background-image: url("/public/images/loginbgimg.jpg");  */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+input#email , input#password, input#submit{
+    border: 1px ridge rgb(176, 174, 174);
+    border-radius: 5px;
+    width: 50%;
+    height: 15%;
+    margin-left: auto;
+    padding: 12px 20px;
+}
+
+
+
+label {
+    margin-right: 50%;
+}
+

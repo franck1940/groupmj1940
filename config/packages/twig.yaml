@@ -1,0 +1,11 @@
+twig:
+    paths:
+        'backend/templates': 'backend'
+        'frontend/templates': 'frontend'
+        'security/templates': 'security'
+        
+    file_name_pattern: '*.twig'
+
+when@test:
+    twig:
+        strict_variables: true

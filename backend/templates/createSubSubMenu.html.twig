@@ -1,0 +1,56 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/menus.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+{% block backendcontentright %}
+	<div class="menucontainer" id="menucontainerparent">
+		<div id="leftcontainer">
+			<h2>
+				{{ value }}
+			</h2>
+			<form action="/backendmanagement/menumanagement/createasbsbmenu" method="POST" id="rootsbsbmenu">
+				<label for="rootmenu">Choose a root menu:</label><br>
+				<select name="rootmenu" id="rootmenu" onchange="getSbOptionData('mgrp','submenu','rootmenu','rightcontainer')">
+				<option value=""></option>
+				{% for item in rootmenus %}
+						<option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.title}}</option>
+				{% endfor %}
+				</select><!--<button onclick="getRtOptionData('mgrp','rootmenu')">load data</button>-->
+				<br><br>
+				<label for="submenu">Choose a sub menu:</label><br>
+				<select name="submenu" id="submenu" onchange="showMenuSbSbMenuStructure('mgrp','rootmenu','submenu','rightcontainer')">
+					<option value=""></option>
+					{% for item in submenus %}
+						<option value="{{item.id}}" {{ 	(item.id == subselected)?'selected':'' }}>{{item.title}}</option>
+				   {% endfor %}
+				</select><br><br>
+				<label for="subsubmenuTitle">Enter new sub sub menu:</label><br>
+				<input type="text" id="subsubmenuTitle" name="subsubmenuTitle" oninput="isSelectedSubMenu()" required/><br><br>
+				<input type="submit" value="Create sub sub menu" id="sbsbSend" disabled/><br><br>
+			</form>
+			<h4 style="{{cssResponse}}" id="formaction">{{response}}</h4>
+		</div>
+
+		<div id="divider"> </div>
+
+		<div id="rightcontainer">
+			<script>
+			showMenuSbSbMenuStructure('mgrp','rootmenu','submenu','rightcontainer')
+			</script>
+			
+		</div>
+	</div>
+	<script>
+		function isSelectedSubMenu() {
+				const val1 = document.getElementById("submenu").value;
+				const val2 = document.getElementById("subsubmenuTitle").value;
+				document.getElementById("sbsbSend").disabled = true;
+
+				if (val1 && val2.trim()) {
+				document.getElementById("subsubmenuTitle").disabled = false;
+				document.getElementById("sbsbSend").disabled = false;
+				}
+				}
+	</script>
+{% endblock %}

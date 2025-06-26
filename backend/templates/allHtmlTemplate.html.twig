@@ -1,0 +1,51 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+{% block scripts %}
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{% endblock %}
+{% block backendcontentright %}
+	<div id="createHtmlTplContainer">
+		<h2>
+			{{ value }}
+		</h2>
+		{% for item in htmlTpls %}
+        <hr>
+			<div id={{'htmlData'~item.id}} style="margin-left:20px; display:{{(htmlupdate == item.id)? 'none':'inline-block'}};">
+				<div style="font-size: 20px; color:#000;">Html title name:</div>
+				{{item.templateName}}
+				<br>
+				<div style="font-size: 20px; color:#000;">Description design form:</div>
+				{{item.description}}
+				<br>
+				<div style="font-size: 20px; color:#000;">For backend or frontend:</div>
+				{{item.FrontOrBackend}}
+				<br><br>
+				<img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" onclick="reworkHtml('{{'htmlData'~ item.id}}','{{'createHtmlTpl'~ item.id}}')" style="cursor: pointer;"/>
+				<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" onclick="deleteHtml({{'htmlData'~ item.id}})" style="cursor: pointer;"/><br><br>
+			</div>
+			<div id={{'createHtmlTpl'~ item.id}} style="display:{{(htmlupdate == item.id)?'':'none'}};">
+				<form id={{'createHtmlTpl'~ item.id}} action="/backendmanagement/htmltemplatemanagement/all" method="POST">
+					<label for="texttitle">Html title name:</label><br>
+					<input id="htmlTitle" name="htmlTitle" value="{{item.templateName}}"/><br><br>
+					<label for="description">Description design form:</label><br>
+					<textarea name="description" id="description" rows="10" cols="50">{{item.description}}</textarea><br><br>
+					<label for="forBackendOrFrontend">For backend or frontend:</label><br>
+					<input id="forBackendOrFrontend" name="forBackendOrFrontend" value="{{item.FrontOrBackend}}"/><br><br>
+                    <input type="hidden" name="htmlUpdateFromList" value="{{item.id}}"/>
+					<input type="submit" value="Send design"/><br><br>
+				</form>
+				<div sytle="background-color:#ddd; margin-left:20px;">
+					<p style="font-size:36px; color:#00008B; margin-left:20px;font-size:20px;cursor: pointer;"  onclick="reworkCancel('{{'htmlData'~ item.id}}','{{'createHtmlTpl'~ item.id}}')"> &#10229; Back</p>
+				</div><br>
+                <h4 id="sbmessage" style="{{cssResponse}}">{{response}}</h4>
+			</div>
+			<br><br>
+			 
+		{% endfor %}
+	</div>
+
+{% endblock %}

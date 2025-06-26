@@ -1,0 +1,68 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block scripts %}
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+{% endblock %}
+{% block backendcontentright %}
+	<div id="allusers">
+		<h2>
+			{{ value }}
+		</h2>
+		<form action="/backendmanagement/usermanagement/delete" id="checkallusers" method="POST">
+			<table id="allUserTable">
+
+				<thead>
+					{% for head in headers %}
+						<th>
+							<span onclick="sortTable('allUserTable')">{{ head}}</span></th>
+					{% endfor %}
+					<!--<th>
+																<input type="checkbox" onclick="checkAll()" name="checkallusers" id="checkall">
+																<label for="selectall">Select/Deselect all</label>
+														    </input>
+														</th>-->
+					<th>
+						Delete
+						{# <p onclick="deleteAll()"/> #}
+					</th>
+				</thead>
+
+				<tbody>
+
+					{% for user in users %}
+						<tr id="{{'row'~ user.id}}">
+
+							<td>
+								{{ user.firstname}}
+							</td>
+							<td>
+								{{ user.lastname}}
+							</td>
+							<td>
+								{{ user.email}}
+							</td>
+							<td>
+								{{ user.phoneNumber}}
+							</td>
+							<td>
+								{{ user.streetName}}
+							</td>
+							<td>
+								{{ user.houseNumber}}
+							</td>
+							<td>
+								<img width="24px" height="24px" src="{{(user.picture)? asset('public/uploads/' ~ user.picture):''}}"/>
+							</td>
+							<td>
+								<p onclick="deleteUser('deleteuser','{{user.email}}','{{user.id}}')" style="cursor: pointer;"/>
+								<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" style="cursor: pointer;"/><br><br>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</form>
+	</div>
+		
+{% endblock %}

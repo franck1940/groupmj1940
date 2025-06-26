@@ -1,0 +1,39 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+	<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.1.0/ckeditor5.css" />
+{% endblock %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+{% endblock %}
+
+{% block backendcontentright %}
+<div id="createHtmlTplContainer">
+		<h2>
+			{{ value }}
+		</h2>
+    <form id="createHtmlTpl" action="/backendmanagement/htmltemplatemanagement"  method="POST">
+        <label for="currentHtmlTpl">Available:</label><br>
+                <select name="availableHtlmTpl" id="availableHtlmTpl" onchange="searchHtml()">
+                    <option value=""></option>
+                    {% for item in htmlTpls %}
+                        <option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.templateName}}</option>
+                    {% endfor %}
+                </select>
+                <!--<button  id="searchtpl" onclick="searchHtml()"><i class="fa fa-search"></i></button>--><br><br><br>
+		<label for="texttitle">Html title name:</label><br>
+        <input id="htmlTitle" name="htmlTitle" value="{{(selectedHtml)? selectedHtml.templateName:''}}" /><br><br>
+        <label for="description">Description design form:</label><br>
+		<textarea name="description" id="description" rows="10" cols="50">{{(selectedHtml)? selectedHtml.description:''}}</textarea><br><br>
+        <label for="forBackendOrFrontend">For backend or frontend:</label><br>
+        <select name="forBackendOrFrontend" id="forBackendOrFrontend">
+         <option value=""></option>
+         <option value="F" {{(selectedHtml)? ((selectedHtml.FrontOrBackend == 'F')? 'selected':''):''}}>Frontend</option>
+          <option value="B" {{(selectedHtml)? ((selectedHtml.FrontOrBackend == 'B')? 'selected':''):''}}>Backend</option>
+        </select><br><br><br>
+		<input type="submit" value="Send design"/><br><br>
+    </form>
+    <h4 style="{{cssResponse}}">{{response}}</h4>
+</div>
+{% endblock %}

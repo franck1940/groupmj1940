@@ -1,0 +1,129 @@
+{% extends '@backend/backendbase.html.twig' %}
+{% block title %}
+	<title>Backend management</title>
+{% endblock %}
+{% block scripts %}
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/MenuMgActions.js') }}"></script>
+{% endblock %}
+{% block meta %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+{% endblock %}
+
+{% block content %}
+	<div id="contentparent">
+
+		<div id="parentContentContainer">
+			<div id="contentContainerLft">
+				<div id="logoContainer">
+					<div id="backendlogo"><img id="imagelogo" src="{{ asset('public/images/logognj.png') }}" alt="logo">
+					</div>
+				</div>
+
+
+				<div id="backendContentMenusTop" class="navbar">
+					<div class="subnav">
+						<button class="subnavbtn">Menu management
+							<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="subnav-content">
+							<a href="/backendmanagement/menumanagement/rootmenucreategui">Create root menu</a>
+							<a href="/backendmanagement/menumanagement/creatertsbgui">Create root sub menu</a>
+							<a href="/backendmanagement/menumanagement/createsbsbmengui">Create menu of sub menu</a>
+						</div>
+					</div>
+					<div class="subnav">
+						<button class="subnavbtn">Page management
+							<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="subnav-content">
+							<a href="/backendmanagement/pagecontentmanagement/pgcontentGui">Create menu content</a>
+							<a href="#">Show all page</a>
+							{# <a href="#">creat contents</a> #}
+							{# <a href="#">update page contents</a> #}
+						</div>
+					</div>
+					<div class="subnav">
+						<button class="subnavbtn">Login data management<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="subnav-content">
+							<a href="/backendmanagement/logindatamanagement/showLoginRightMgt">Login permission management</a>
+							<a href="/backendmanagement/logindatamanagement/all">All login</a>
+							<a href="/backendmanagement/logindatamanagement/resetLoginPasswordGui?lgf=r">Reset password</a>
+							<a href="/backendmanagement/logindatamanagement/resetLoginPasswordGui?lgf=i">Insert login user</a>
+						</div>
+					</div>
+
+					<div class="subnav">
+						<button class="subnavbtn">User right management<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="subnav-content">
+							<a href="/backendmanagement/userrightmanagement">Create user right</a>
+							<!--<a href="/backendmanagement/userrightmanagement/insertright">Insert user right</a>-->
+							<!--<a href="/backendmanagement/userrightmanagement/insertright">Show login right</a>-->
+							<a href="/backendmanagement/userrightmanagement/all">Show all rights</a>
+							<a href="/backendmanagement/userrightmanagement/update">update rights</a>
+						</div>
+					</div>
+
+					<div class="subnav">
+						<button class="subnavbtn">User management<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="subnav-content">
+							<a href="/backendmanagement/usermanagement/insertUserGui">Insert new user</a>
+							<a href="/backendmanagement/usermanagement/all">All user</a>
+							<a href="/backendmanagement/usermanagement/updateAnyProfileGui">Update user</a>
+							<a href="/backendmanagement/usermanagement/updateUserGui">My profile: [{{app.user.userIdentifier}}]</a>
+						</div>
+					</div>
+
+					<div class="subnav">
+						<button class="subnavbtn">Template Design<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="subnav-content">
+							<a href="/backendmanagement/htmltemplatemanagement">Insert template</a>
+							<a href="/backendmanagement/htmltemplatemanagement/all">Show all template</a>
+							
+						</div>
+					</div>
+					<!--<div class="subnav">
+																					
+																					<button class="subnavbtn"><a href="{{ path('app_logout') }}">Logout [{{ app.user.userIdentifier }}]</a></button>
+																				</div>-->
+				</div>
+
+				<div id="backendContentCenter">
+					{% block backendcontentright %}{% endblock %}
+				</div>
+
+				<div id="contentfooter">
+
+					<div id="leftfooterContainer"></div>
+					<div id="rightfooterContainer">
+					</div>
+				</div>
+			</div>
+			<div id="contentContainerRgt">
+			          <div style="border:1px solid #000; background-color:#fff; ">
+						<img src="/public/uploads/{{(app.user.users.picture)? app.user.users.picture:'tlogo.jpg'}}" width="100%" height="100%" />
+					</div>
+					<div style="border:1px ridge #fff; margin-top:5%; padding:12px 20px;word-break: break-all;">
+					{{ app.user.users.firstname }},{{ app.user.users.lastname }}<br> {{ app.user.users.email }} 
+
+					</div>
+					<div style="border:1px solid #000; margin-top:2%;">
+						<button>
+							<a href="{{ path('app_logout') }}">Logout 
+							</a>
+							
+						</button>
+					</div>
+			</div>
+		</div>
+	<div>
+			{% endblock %}

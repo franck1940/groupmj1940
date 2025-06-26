@@ -1,0 +1,52 @@
+.textLftImgRgt{
+    border:0px ridge #000;
+    position:relative;
+    width:90%;
+    height: 800px;
+    margin: auto;
+    margin-left:5%;
+     margin-top:5%;
+}
+
+.ctIamge{
+    border:1px ridge #ddd;
+     margin-top:5%;
+     width: 10%;
+     height: 50%;
+    float: right;
+    margin-right:7%; 
+}
+
+#ctTitle
+{
+    margin-top:5%;
+     margin-left:5%; 
+    float: left;
+    border:1px ridge #190a81;
+    width:65%;
+    height: 50%;
+}
+#ctTitleSrd
+{
+    position: relative;
+    border:0px solid #be2828;
+    height: 40%;
+    width:100%;
+    /* margin-right: 5%; */
+    /* padding: 2% 2%;
+    
+     width:70%;
+    height: 10%;
+    margin-top:3%;
+     margin-left:5%; */
+}
+
+#ctText
+{
+    margin-top:2%;
+    margin-left:5%;
+    border:1px solid #c7ab0e;
+    width:90%;
+    height: 500px;
+     margin-bottom:5%;
+}
