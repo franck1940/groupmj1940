@@ -12,17 +12,6 @@ function checkAll() {
     // document.getElementById("checkall").value=val;
 }
 
-function reworkHtml(divId, formId) {
-    document.getElementById(formId).style.display = "";
-    document.getElementById(divId).style.display = "none";
-    document.getElementById("sbmessage").innerHTML = "";
-
-}
-
-function reworkCancel(divId, formId) {
-    document.getElementById(formId).style.display = "none";
-    document.getElementById(divId).style.display = "inline-block";
-}
 
 function checkallLogins() {
 
@@ -84,13 +73,6 @@ function callRootSubMenu() {
 
 }
 
-function searchHtml() {
-    const val = document.getElementById("availableHtlmTpl").value;
-    $("#createHtmlTpl").append('<input type="hidden" name="searchHtml" value="' + val + '" />');
-    if (val) {
-        document.getElementById("createHtmlTpl").submit();
-    }
-}
 
 function deleteAll() {
 

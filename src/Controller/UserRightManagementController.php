@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserRightManagementController extends AbstractController
 {
-    #[Route("/backendmanagement/userrightmanagement")]
+    #[Route("/backendmanagement/userrightmanagement/createUserRightGui")]
     public function showInsertUserRightGui(Request $request, EntityManagerInterface $entityManager): Response
     {
         $x = (object)$this->getUser();

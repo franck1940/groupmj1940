@@ -249,6 +249,7 @@ class LoginDataManagementController extends AbstractController
         $cssResponse = "color:red;";
         $response = "ERROR: Reset user password failed";
         $userLoginServices = new UserLoginServices($entityManager);
+        $usersServices = new UserServices($entityManager);
         $password = $request->request->get("password");
         $action = $request->request->get("action");
         $email = $request->request->get("email");
@@ -269,9 +270,11 @@ class LoginDataManagementController extends AbstractController
 
             if (strcmp($action, "i") == 0) {
                 $login = new User();
+                $user = $usersServices->findUserByEmail($email);
                 $login->setPassword($pwdHash);
                 $login->setRoles(["ROLE_USER"]);
                 $login->setEmail($email);
+                 $login->setUsers($user[0]);
                 $rslt = $userLoginServices->insertUser($login);
             }
 

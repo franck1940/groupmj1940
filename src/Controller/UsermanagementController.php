@@ -375,6 +375,7 @@ class UsermanagementController extends AbstractController
 
                 if ($loginUser) {
                     $entityManager->remove($loginUser);
+                     $entityManager->flush();
                 }
                 $userServices->deleteUser($userId);
             }

@@ -63,8 +63,14 @@
   border: 2px ridge rgb(212, 189, 161);
   background-color: rgb(212, 189, 161);
   width: 30%;
+  
   font-size: 15px;
+  overflow: hidden;
+word-break: break-all;
 }
 #rightDetails h3 {
   text-decoration: underline;
+}
+#allUseright{
+  display: inline-block;
 }

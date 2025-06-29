@@ -5,7 +5,9 @@
 {% endblock %}
 {% block scripts %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+    <script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/htmlActions.js') }}"></script>
+
 {% endblock %}
 
 {% block backendcontentright %}
@@ -13,9 +15,9 @@
 		<h2>
 			{{ value }}
 		</h2>
-    <form id="createHtmlTpl" action="/backendmanagement/htmltemplatemanagement"  method="POST">
-        <label for="currentHtmlTpl">Available:</label><br>
-                <select name="availableHtlmTpl" id="availableHtlmTpl" onchange="searchHtml()">
+    <form id="createHtmlTpl" action="/backendmanagement/htmltemplatemanagement/inserthtmlTemplate"  method="POST">
+        <label for="currentHtmlTpl">Available templates:</label><br>
+                <select name="availableHtlmTpl" id="availableHtlmTpl" onchange="searchHtml('availableHtlmTpl','htmlTplById','htmlTitle','forBackendOrFrontend','description')">
                     <option value=""></option>
                     {% for item in htmlTpls %}
                         <option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.templateName}}</option>
@@ -35,5 +37,5 @@
 		<input type="submit" value="Send design"/><br><br>
     </form>
     <h4 style="{{cssResponse}}">{{response}}</h4>
-</div>
+</div><br><br><br>
 {% endblock %}

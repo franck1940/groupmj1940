@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\services\userhistoryonlineservice\UserHistoryOnlineServices;
 use App\services\userloginservice\UserLoginServices;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
@@ -39,8 +41,18 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(): void
+    public function logout(EntityManagerInterface $entityManager): void
     {
+        //  $userHistoryOnlineServices = new UserHistoryOnlineServices($entityManager);
+        //   if ($this->getUser()) {
+        //    $user = $this->getUser();
+        //    $userHtryOnline=  $userHistoryOnlineServices->findUserHistoryOnlineByUser($user)[0];
+        //    if( $userHtryOnline)
+        //    {
+        //     $userHtryOnline->setCheckoutDate(new DateTime(date("Y-m-d")));
+        //     $userHistoryOnlineServices->insertUserHistoryOnline($userHtryOnline);
+        //    }
+        //   }
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 

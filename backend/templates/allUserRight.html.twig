@@ -4,13 +4,17 @@
 	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
 {% endblock %}
 {% block backendcontentright %}
-	<div id="allUseright">
+	<div id="allUseright" style="position:relative;">
 
 		<h2>{{value}}</h2>
 
-		{% for x in userRights %}
+		{% for index ,x in userRights %}
 
-			<div id="rightDetails">
+			<div id='{{"rightDetails" ~ index}}' style=' padding: 12px 20px;
+					  margin-left: 15px;
+					  border: 2px ridge rgb(212, 189, 161);
+					  background-color: rgb(212, 189, 161);
+					  width: 30%; float:{{(index < 3)? "left;":"right;"}}'>
 				<h3>{{x.title}}
 				</h3><br>
 				<h5>{{x.abb}}

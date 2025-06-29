@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\UserHistoryOnline;
 use App\Entity\Users;
+use App\services\userhistoryonlineservice\UserHistoryOnlineServices;
 use App\services\userservice\UserServices;
 use DateTime;
 use Doctrine\DBAL\Types\DateType;
@@ -23,14 +25,21 @@ class BackendController extends AbstractController
     }
 
     #[Route(path: "/backendmanagement",  name: 'app_backendmanagement')]
-    public function showBackendManagement(): Response
+    public function showBackendManagement(EntityManagerInterface $entityManager): Response
     {
+        $userHistoryOnlineServices = new UserHistoryOnlineServices($entityManager);
+        $userHistoryOnline = new UserHistoryOnline();
         $user = (object) $this->getUser();
         $verifyPw =  password_verify("groupnj1940", $user->getPassword());
 
         if ($verifyPw) {
             return $this->render('@backend/changePassword.html.twig', ["value" => "Change password"]);
         }
+        //$userHtryOnline = $userHistoryOnlineServices->findUserHistoryOnlineByUser($user);
+        $userHistoryOnline->setPerson($user);
+        $userHistoryOnline->setStartDate(new DateTime(date("Y-m-d")));
+        $userHistoryOnlineServices->insertUserHistoryOnline($userHistoryOnline);
+
 
         return $this->render('@backend/backendmanagement.html.twig', ["value" => "Welcome to groupnj backend management <br> Enter your credentials", "roles" => $user->getRoles()]);
     }

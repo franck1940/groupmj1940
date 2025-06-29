@@ -46,7 +46,7 @@
   border: 2px solid #7a7474;
   width: 95%;
   height: 90%;
-  border-radius: 5px;
+  border-radius: 0px;
   background-color: #87cefa;
   color: rgb(27, 27, 159);
   margin-left: 2%;
@@ -149,8 +149,8 @@ a {
   height: 20%;
 }
 
-#usertinsertcontainer input[type="text"],
-#usertinsertcontainer select,
+
+
 .userprofile input[type="text"],
 .userprofile input[type="date"],
 .userprofile input[type="email"],
@@ -159,8 +159,8 @@ a {
 #changePasswordgui input[type="text"],
 #changePasswordgui input[type="password"] {
   box-sizing: border-box;
-  border-radius: 4px;
-  width: 60%;
+  /* border-radius: 4px; */
+  width: 70%;
   padding: 12px 20px;
   border: 1px ridge #000;
   height: 5%;
@@ -173,6 +173,11 @@ a {
   height: 10%;
   padding: 12px 20px;
 }
+#usertinsertcontainer input[type="text"],
+#usertinsertcontainer input[type="email"],
+#usertinsertcontainer input[type="date"],
+#usertinsertcontainer input[type="file"],
+#usertinsertcontainer select,
 #updatecontainer input[type="text"],
 #updatecontainer input[type="email"],
 #updatecontainer input[type="date"],
@@ -238,6 +243,9 @@ a {
 #contenteditor{
   width:70%;
 }
+#createHtmlTplContainer{
+  margin-left: 10%;
+}
 #createHtmlTplContainer h2,
 #usertinsertcontainer h2,
 #createHtmlTplContainer label,
@@ -296,27 +304,34 @@ tr:nth-child(odd) {
   width: 24px;
   height: 24px;
   background-color: rgb(223, 238, 52);
+   background-repeat: no-repeat;
 }
 
 #allusers p {
   background-image: url("/images/icons8-trash-24.png");
   width: 24px;
   height: 24px;
+  background-repeat: no-repeat;
 }
 #leftfooterContainer {
-  width: 80%;
+  width: 100%;
   float: left;
   height: inherit;
   background-color: #000;
+  /* border-bottom-left-radius: 2%; */
+  border: 2px solid #000;
 }
 
 #rightfooterContainer {
-  width: 18.85%;
+  width: 0%;
   float: right;
   height: inherit;
-  border: 1px solid #ddd;
-  background-color: rgb(130, 128, 128);
+  border: 2px solid #000;
+  background-color:#000;
   color: #fff;
+ 
+  /* border-bottom-right-radius: 2%; */
+
 }
 #contentContainerRgt button {
   width: 100%;
@@ -330,6 +345,7 @@ tr:nth-child(odd) {
   border-left: 2px solid #000;
   /* background-color:#87CEFA ; */
   margin-bottom: 10px;
+   /* margin-top: -2%; */
 }
 
 #updatecontainer,
@@ -338,7 +354,7 @@ tr:nth-child(odd) {
   padding: 10px;
   border: 0px solid #c82020;
   width: auto;
-  height: 1050px;
+  height: auto;
 }
 #contentLft {
   width: 40%;

@@ -30,6 +30,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\OneToOne(targetEntity: Users::class, inversedBy: 'user', fetch: 'EXTRA_LAZY')]
     private ?Users $users = null;
 
+    #[ORM\OneToMany(targetEntity: UserHistoryOnline::class, mappedBy: 'person')]
+    private ?Collection $userOnline = null;
+
+    #[ORM\OneToMany(targetEntity: Activities::class, mappedBy: 'user')]
+    private ?Collection $activities = null;
+
+    #[ORM\OneToMany(targetEntity: GlobalSharing::class, mappedBy: 'user')]
+    private ?Collection $globalsharing = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -51,6 +60,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function __construct()
     {
         $this->userRight = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+        $this->userOnline = new ArrayCollection();
+        $this->globalsharing = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +201,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setTotpSecret(?string $totpSecret): self
     {
         $this->totpSecret = $totpSecret;
+        return $this;
+    }
+
+    /**
+     * Get the value of userOnline
+     */
+    public function getUserOnline(): ?UserHistoryOnline
+    {
+        return $this->userOnline;
+    }
+
+    /**
+     * Set the value of userOnline
+     *
+     * @return  self
+     */
+    public function setUserOnline(?UserHistoryOnline $userOnline): static
+    {
+        $this->userOnline = $userOnline;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of activities
+     */
+    public function getActivities(): ?Collection
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Set the value of activities
+     *
+     * @return  self
+     */
+    public function setActivities(?Collection $activities)
+    {
+        $this->activities = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of globalsharing
+     */
+    public function getGlobalsharing()
+    {
+        return $this->globalsharing;
+    }
+
+    /**
+     * Set the value of globalsharing
+     *
+     * @return  self
+     */
+    public function setGlobalsharing($globalsharing)
+    {
+        $this->globalsharing = $globalsharing;
+
         return $this;
     }
 }

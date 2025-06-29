@@ -4,7 +4,8 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% endblock %}
 {% block scripts %}
-	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/htmlActions.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 {% endblock %}
 {% block backendcontentright %}
@@ -13,30 +14,31 @@
 			{{ value }}
 		</h2>
 		{% for item in htmlTpls %}
-        <hr>
+        <hr style=" border:1px solid #000; width:40%; margin-left:0%;">
 			<div id={{'htmlData'~item.id}} style="margin-left:20px; display:{{(htmlupdate == item.id)? 'none':'inline-block'}};">
-				<div style="font-size: 20px; color:#000;">Html title name:</div>
+				<div style="font-size: 20px; color:#000;"><h3>Html title name:</h3></div>
 				{{item.templateName}}
 				<br>
-				<div style="font-size: 20px; color:#000;">Description design form:</div>
+				<div style="font-size: 20px; color:#000;"><h3>Description design form:</h3></div>
 				{{item.description}}
 				<br>
-				<div style="font-size: 20px; color:#000;">For backend or frontend:</div>
+				<div style="font-size: 20px; color:#000;"><h3>For backend or frontend:</h3></div>
 				{{item.FrontOrBackend}}
 				<br><br>
 				<img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" onclick="reworkHtml('{{'htmlData'~ item.id}}','{{'createHtmlTpl'~ item.id}}')" style="cursor: pointer;"/>
-				<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" onclick="deleteHtml({{'htmlData'~ item.id}})" style="cursor: pointer;"/><br><br>
+				<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" onclick="deleteHtml({{item.id}},'{{item.templateName}}','deleteHtmlTemplate')" style="cursor: pointer;"/><br><br>
 			</div>
 			<div id={{'createHtmlTpl'~ item.id}} style="display:{{(htmlupdate == item.id)?'':'none'}};">
-				<form id={{'createHtmlTpl'~ item.id}} action="/backendmanagement/htmltemplatemanagement/all" method="POST">
+				<form id={{'createHtmlTpl'~ item.id}} action="/backendmanagement/htmltemplatemanagement/inserthtmlTemplate" method="POST">
 					<label for="texttitle">Html title name:</label><br>
 					<input id="htmlTitle" name="htmlTitle" value="{{item.templateName}}"/><br><br>
 					<label for="description">Description design form:</label><br>
 					<textarea name="description" id="description" rows="10" cols="50">{{item.description}}</textarea><br><br>
 					<label for="forBackendOrFrontend">For backend or frontend:</label><br>
 					<input id="forBackendOrFrontend" name="forBackendOrFrontend" value="{{item.FrontOrBackend}}"/><br><br>
-                    <input type="hidden" name="htmlUpdateFromList" value="{{item.id}}"/>
-					<input type="submit" value="Send design"/><br><br>
+                    <input type="hidden" name="availableHtlmTpl" value="{{item.id}}"/>
+					<input type="hidden" name="updateHtmlTpl" value="{{item.id}}"/>
+					<input type="submit" value="Do update"/><br><br>
 				</form>
 				<div sytle="background-color:#ddd; margin-left:20px;">
 					<p style="font-size:36px; color:#00008B; margin-left:20px;font-size:20px;cursor: pointer;"  onclick="reworkCancel('{{'htmlData'~ item.id}}','{{'createHtmlTpl'~ item.id}}')"> &#10229; Back</p>

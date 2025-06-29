@@ -114,8 +114,7 @@
   position: absolute;
   margin-left: 40%;
   height: 100%;
-  border-left: 2px solid #590f0f;
-   padding: auto;
+  border-left: 2px solid #000;
 }
 #menucontainerparent {
   position: relative;
