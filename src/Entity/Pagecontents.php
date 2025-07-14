@@ -15,7 +15,7 @@ class Pagecontents
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\Column(length: 512, nullable: true)]
+    #[ORM\Column(length: 2048 , nullable: true)]
     private ?string $contentText = null;
 
     #[ORM\Column(length: 100, nullable: true)]

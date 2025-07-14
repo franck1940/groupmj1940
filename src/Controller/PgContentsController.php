@@ -67,10 +67,7 @@ class PgContentsController extends AbstractController
             $response =  $response . "[Contents missing]";
             $isContentsFilled = false;
         }
-        // if (!$menuId) {
-        //     $response =  $response . "[menuId missing]";
-        //     $isContentsFilled = false;
-        // }
+
         if (isset($_FILES["picture"]["name"]) &&  $image) {
             $target_file = $target_dir . basename($_FILES["picture"]["name"]);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -81,7 +78,7 @@ class PgContentsController extends AbstractController
             }
             if (file_exists($target_file)) {
                 $response = $response . "[Sorry, file already exists.]";
-                $isContentsFilled = true;
+                //  $isContentsFilled = true;
             }
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                 $response = $response . ":[Sorry, only JPG, JPEG, PNG & GIF files are allowed.]";
@@ -111,11 +108,15 @@ class PgContentsController extends AbstractController
             $pageContents->setCreateDate(new DateTime(date("Y-m-d")));
             $htmlTplateServices = new HtmlTemplateServices($entityManager);
             $htmltpl = ($pgTemplate) ? ((empty($action)) ? $htmlTplateServices->findHtmlTemplateById($pgTemplate) : $htmlTplateServices->findHtmlTemplateByName($pgTemplate)[0]) : null;
-
-            if ($htmltpl)
+            $result = false;
+            if ($htmltpl) {
                 $pageContents->setContentTemplate($htmltpl);
 
-            $result = $pgctServices->insertPgContents($pageContents);
+                $result = $pgctServices->insertPgContents($pageContents);
+            } else {
+                $response = $response . "[Template missing]";
+                $cssResponse = "color:red";
+            }
 
             if ($result) {
                 $response = "Insert contents succcessful";

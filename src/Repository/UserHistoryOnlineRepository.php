@@ -2,18 +2,18 @@
 
 namespace App\Repository;
 
-use App\Entity\UserOnline;
+use App\Entity\UserHistoryOnline;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<UserOnline>
  */
-class UserOnlineRepository extends ServiceEntityRepository
+class UserHistoryOnlineRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserOnline::class);
+        parent::__construct($registry, UserHistoryOnline::class);
     }
 
 //    /**

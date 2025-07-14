@@ -11,7 +11,7 @@
     <div class="row">
         <div class="login-form bg-light mt-4 p-4" style="margin-left:20%;">
             
-           <!-- <h1 class="h3 mb-3 font-weight-normal">Two Factor Authentication</h1>-->
+           {# <!-- <h1 class="h3 mb-3 font-weight-normal">Two Factor Authentication</h1>--> #}
             <h5>
                 Opens your authenticator app and <br> types in the TOTP number <br> and presses on login button.
             </h5>
@@ -19,13 +19,13 @@
             <p>{{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}</p>
             {% endif %}
             {# Let the user select the authentication method #}
-            <!--<p>{{ "Choose provider"|trans({}, 'SchebTwoFactorBundle') }}:
+            {# <!--<p>{{ "Choose provider"|trans({}, 'SchebTwoFactorBundle') }}:
                 {% for provider in availableTwoFactorProviders %}
                     <a href="{{ path("2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
                 {% endfor %}
-            </p>-->
+            </p>--> #}
             {# Display current two-factor provider #}
-              <!--<p class="label"><label for="_auth_code">{{ "Type the number of the "|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}:</label></p>-->
+              {# <!--<p class="label"><label for="_auth_code">{{ "Type the number of the "|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}:</label></p>--> #}
             <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post">
                 <p class="widget">
                     <input

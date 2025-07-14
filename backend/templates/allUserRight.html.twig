@@ -4,27 +4,47 @@
 	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
 {% endblock %}
 {% block backendcontentright %}
-	<div id="allUseright" style="position:relative;">
+	<div id="allUseright" style="position:relative;font-size:12px;">
 
 		<h2>{{value}}</h2>
 
 		{% for index ,x in userRights %}
-
-			<div id='{{"rightDetails" ~ index}}' style=' padding: 12px 20px;
-					  margin-left: 15px;
-					  border: 2px ridge rgb(212, 189, 161);
-					  background-color: rgb(212, 189, 161);
-					  width: 30%; float:{{(index < 3)? "left;":"right;"}}'>
-				<h3>{{x.title}}
-				</h3><br>
-				<h5>{{x.abb}}
-				</5><br>
-				<p>{{x.desc}}
-				</p><br>
-			</diV>
-			<br>
-
+			
+			{% if index <3 %}
+				
+				<div id='{{"rightDetails" ~ index}}' style='padding: 12px 20px;word-break: break-all; 
+																											margin-left:0.5%;
+																											margin-top:0.5%;
+																											border: 2px ridge #000;
+																											background-color: #fff;
+																											width: 25%; height:300px; float:left; overflow:auto;'>
+					<h3>Titel:</h3><span style="margin-left: 10px;">{{x.title}}</span>
+					<h3>Abbreviation:</h3><span style="margin-left:10px;"> {{x.abb}}</span>
+					<h3>Description:</h3><p><span style="margin-left:10px;">{{x.desc}}</span>
+					</p><p>{{index}}</p><br><br>
+					<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" onclick="deleteRight({{x.id}},'{{x.title}}','deleterightbyid')" style="cursor: pointer;"/><br><br>
+					
+				</div>
+			{% endif %}
 		{% endfor %}
-
+     
+		{% for index ,x in userRights %}
+			
+			{% if index >=3 %}
+				
+				<div id='{{"rightDetails" ~ index}}' style=' padding: 12px 20px;word-break: break-all;overflow:auto;
+																											margin-left:0.5%;
+																											margin-top:0.5%;
+																											border: 2px ridge #000;
+																											background-color: #fff;
+																											width: 25%; height:300px; float:left;'>
+					<h3>Titel:</h3><span style="margin-left: 10px;">{{x.title}}</span>
+					<h3>Abbreviation:</h3><span style="margin-left:10px;"> {{x.abb}}</span>
+					<h3>Description:</h3><p><span style="margin-left:10px;">{{x.desc}}</span>
+					</p><p>{{index}}</p>
+					<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" onclick="deleteRight({{x.id}},'{{x.title}}','deleterightbyid')" style="cursor: pointer;"/><br><br>
+				</div><br><br>
+			{% endif %}
+		{% endfor %}
 	</div>
 {% endblock %}

@@ -15,7 +15,7 @@
 #parentContentContainer {
   margin: auto;
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
 }
 #contentContainerLft {
   border: 0px solid #871313;
@@ -27,8 +27,8 @@
 #contentContainerRgt {
   margin: auto;
   float: right;
-  border: 1px solid #131111;
-  width: 10%;
+  border: 0px solid #131111;
+  width: 7%;
   height: auto;
   margin-right: 5%;
   position: sticky;
@@ -38,29 +38,29 @@
   width: 95%;
   height: 50px;
   margin-left: 2%;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   position: relative;
 }
 
 #backendContentCenter {
-  border: 2px solid #7a7474;
+  border: 1px solid #7a7474;
   width: 95%;
   height: 90%;
   border-radius: 0px;
   background-color: #87cefa;
   color: rgb(27, 27, 159);
   margin-left: 2%;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 #contentfooter {
   border: 1px solid #333131;
   width: 95%;
-  height: 100px;
+  height: 150px;
   margin-left: 2%;
-  border-radius: 5px;
+  border-radius: 0px;
   background-color: #fff;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 #changePasswordgui form,
@@ -149,8 +149,6 @@ a {
   height: 20%;
 }
 
-
-
 .userprofile input[type="text"],
 .userprofile input[type="date"],
 .userprofile input[type="email"],
@@ -165,8 +163,8 @@ a {
   border: 1px ridge #000;
   height: 5%;
 }
-.userprofile input{
- margin-left: 5%;
+.userprofile input {
+  margin-left: 5%;
 }
 #updatecontainer select {
   width: 15%;
@@ -181,7 +179,10 @@ a {
 #updatecontainer input[type="text"],
 #updatecontainer input[type="email"],
 #updatecontainer input[type="date"],
-#updatecontainer input[type="file"] {
+#updatecontainer input[type="file"],
+#pagecontainer input[type="text"],
+#pagecontainer input[type="file"],
+#pagecontainer select {
   width: 70%;
   height: 10%;
   padding: 12px 20px;
@@ -230,20 +231,22 @@ a {
   padding: 12px 20px;
   width: 20%;
 }
-#createHtmlTplContainer textarea {
+#createHtmlTplContainer textarea,
+#pagecontainer textarea {
   margin-left: 1%;
   font-size: 14px;
   padding: 12px 20px;
 }
-.userprofile label {
+.userprofile label,
+#pagecontainer label {
   margin-left: 0%;
   font-size: 17px;
   width: 20%;
 }
-#contenteditor{
-  width:70%;
+#contenteditor {
+  width: 70%;
 }
-#createHtmlTplContainer{
+#createHtmlTplContainer {
   margin-left: 10%;
 }
 #createHtmlTplContainer h2,
@@ -304,7 +307,7 @@ tr:nth-child(odd) {
   width: 24px;
   height: 24px;
   background-color: rgb(223, 238, 52);
-   background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 
 #allusers p {
@@ -327,11 +330,10 @@ tr:nth-child(odd) {
   float: right;
   height: inherit;
   border: 2px solid #000;
-  background-color:#000;
+  background-color: #000;
   color: #fff;
- 
-  /* border-bottom-right-radius: 2%; */
 
+  /* border-bottom-right-radius: 2%; */
 }
 #contentContainerRgt button {
   width: 100%;
@@ -340,54 +342,82 @@ tr:nth-child(odd) {
 
 #divider {
   position: absolute;
-  margin-left: 35%;
-  height: inherit;
+  margin-left: 40%;
+  height: 100%;
   border-left: 2px solid #000;
+  width: 0.5%;
+
   /* background-color:#87CEFA ; */
-  margin-bottom: 10px;
-   /* margin-top: -2%; */
+  /* margin-bottom: 100%; */
+  /* margin-top: 5%; */
+  /* bottom: 15%; */
+
+  overflow: hidden;
 }
 
 #updatecontainer,
+#pagecontainer,
 #usertinsertcontainer {
   position: relative;
   padding: 10px;
-  border: 0px solid #c82020;
+  border: 1px solid #000;
   width: auto;
   height: auto;
+  overflow: hidden;
 }
 #contentLft {
   width: 40%;
   height: 100%;
-  border: 0px solid #8e1919;
+  border: 0px solid #2c0a0a;
   margin-left: 1%;
   /* margin: auto; */
   float: left;
+  overflow: hidden;
 }
 #contentRgt {
-  border: 0px solid #dd4848;
+  border: 0px solid #230808;
   width: 50%;
   height: 100%;
   float: right;
+  overflow: hidden;
 }
 
 #resetPasswordContainer {
   margin-left: 20%;
 }
 
-#resetPasswordContainer input[type="text"]
-{
+#resetPasswordContainer input[type="text"] {
   width: 40%;
   height: 10%;
   padding: 12px 20px;
 }
-#resetPasswordContainer select, #resetPasswordContainer input[type="submit"]
-{
+#resetPasswordContainer select,
+#resetPasswordContainer input[type="submit"],
+#pagecontainer input[type="submit"] {
   width: 20%;
   height: 10%;
   padding: 12px 20px;
 }
-#resetPasswordContainer h4
-{
+#resetPasswordContainer h4 {
   margin-left: 0%;
+}
+
+#contentTitle {
+  width: 50%;
+  height: 0%;
+  padding: 2% 5%;
+  border: 2px ridge #000;
+  background-color: #fff;
+  margin-bottom: 1%;
+  font-size: 25px;
+  font-weight: 900;
+}
+#contentDetails{
+  width: 85%;
+  height: auto;
+  padding: 2% 5%;
+  border: 2px ridge #000;
+  background-color: #fff;
+  margin-bottom: 3%;
+  font-size: 20px;
 }

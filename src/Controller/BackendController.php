@@ -10,6 +10,7 @@ use DateTime;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\EntityManagerInterface;
 use PhpParser\Node\Expr\Cast;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,9 +26,10 @@ class BackendController extends AbstractController
     }
 
     #[Route(path: "/backendmanagement",  name: 'app_backendmanagement')]
-    public function showBackendManagement(EntityManagerInterface $entityManager): Response
+    public function showBackendManagement(EntityManagerInterface $entityManager, LoggerInterface $logger): Response
     {
         $userHistoryOnlineServices = new UserHistoryOnlineServices($entityManager);
+
         $userHistoryOnline = new UserHistoryOnline();
         $user = (object) $this->getUser();
         $verifyPw =  password_verify("groupnj1940", $user->getPassword());
@@ -36,10 +38,16 @@ class BackendController extends AbstractController
             return $this->render('@backend/changePassword.html.twig', ["value" => "Change password"]);
         }
         //$userHtryOnline = $userHistoryOnlineServices->findUserHistoryOnlineByUser($user);
-        $userHistoryOnline->setPerson($user);
-        $userHistoryOnline->setStartDate(new DateTime(date("Y-m-d")));
-        $userHistoryOnlineServices->insertUserHistoryOnline($userHistoryOnline);
 
+        $userHistoryOnline->setPerson($user);
+        $userHistoryOnline->setStartDate(new DateTime(date("Y-m-d H:i:s")));
+        $userAlreadyOnline = $userHistoryOnlineServices->findUserHistoryOnlineByUser($user);
+        
+        if (empty($userAlreadyOnline))
+        {
+            $userHistoryOnlineServices->insertUserHistoryOnline($userHistoryOnline);
+        }
+       
 
         return $this->render('@backend/backendmanagement.html.twig', ["value" => "Welcome to groupnj backend management <br> Enter your credentials", "roles" => $user->getRoles()]);
     }

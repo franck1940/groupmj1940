@@ -17,6 +17,7 @@ use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Totp\TotpAuthenticatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -27,11 +28,10 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-      
-         if ($this->getUser()) {
-            
-             return $this->redirectToRoute('app_backendmanagement');
-         }
+
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_backendmanagement');
+        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -41,79 +41,92 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(EntityManagerInterface $entityManager): void
+    public function logout(EntityManagerInterface $entityManager, AuthenticationUtils $authenticationUtils): Response
     {
-        //  $userHistoryOnlineServices = new UserHistoryOnlineServices($entityManager);
-        //   if ($this->getUser()) {
-        //    $user = $this->getUser();
-        //    $userHtryOnline=  $userHistoryOnlineServices->findUserHistoryOnlineByUser($user)[0];
-        //    if( $userHtryOnline)
-        //    {
-        //     $userHtryOnline->setCheckoutDate(new DateTime(date("Y-m-d")));
-        //     $userHistoryOnlineServices->insertUserHistoryOnline($userHtryOnline);
-        //    }
-        //   }
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+       // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+   
+    die("OK");
     }
 
-     /**
+    /**
      * @Route("/authentication/2fa/enable", name="app_2fa_enable")
 
      */
-    #[Route(path:"/authentication/2fa/enable", name:"app_2fa_enable")]
+    #[Route(path: "/authentication/2fa/enable", name: "app_2fa_enable")]
     #[IsGranted("ROLE_USER")]
     public function enable2fa(TotpAuthenticatorInterface $totpAuthenticator, EntityManagerInterface $entityManager)
     {
-        
+
         $user = (object) $this->getUser();
         if (!$user->isTotpAuthenticationEnabled()) {
             $user->setTotpSecret($totpAuthenticator->generateSecret());
             $entityManager->flush();
         }
-          dd($totpAuthenticator->getQRContent($user));
+        dd($totpAuthenticator->getQRContent($user));
     }
 
-    #[Route(path:"/authentication/2fa/qr-code", name:"app_qr_code")]
+    #[Route(path: "/authentication/2fa/qr-code", name: "app_qr_code")]
     #[IsGranted("ROLE_USER")]
-   public function displayGoogleAuthenticatorQrCode(TotpAuthenticatorInterface $totpAuthenticator,EntityManagerInterface $entityManager)
+    public function displayGoogleAuthenticatorQrCode(TotpAuthenticatorInterface $totpAuthenticator, EntityManagerInterface $entityManager)
     {
         $writer = new PngWriter();
-        $userServices= new UserLoginServices($entityManager);
-        $user =(object) $this->getUser();
+        $userServices = new UserLoginServices($entityManager);
+        $user = (object) $this->getUser();
         $x = $userServices->findUserById($user->getId());
         $qrCodeContent = $totpAuthenticator->getQRContent($x);
-        $qrCode = new QrCode($qrCodeContent,
-        encoding: new Encoding('UTF-8'),
-        errorCorrectionLevel: ErrorCorrectionLevel::Low,
-        size: 300,
-        margin: 10,
-        roundBlockSizeMode: RoundBlockSizeMode::Margin,
-        foregroundColor: new Color(0, 0, 0),
-        backgroundColor: new Color(255, 255, 255)
-     );
-          // dd( $qrCode);    
+        $qrCode = new QrCode(
+            $qrCodeContent,
+            encoding: new Encoding('UTF-8'),
+            errorCorrectionLevel: ErrorCorrectionLevel::Low,
+            size: 300,
+            margin: 10,
+            roundBlockSizeMode: RoundBlockSizeMode::Margin,
+            foregroundColor: new Color(0, 0, 0),
+            backgroundColor: new Color(255, 255, 255)
+        );
+        // dd( $qrCode);    
         $logo = new Logo(
-                path:'../public/images/tlogo.jpg',
-                resizeToWidth: 50,
-                punchoutBackground: true
-            );
-            // Create generic label
-            $label = new Label(
-                text: '',
-                textColor: new Color(255, 0, 0)
-            );
+            path: '../public/images/tlogo.jpg',
+            resizeToWidth: 50,
+            punchoutBackground: true
+        );
+        // Create generic label
+        $label = new Label(
+            text: '',
+            textColor: new Color(255, 0, 0)
+        );
 
-            $result = $writer->write($qrCode, $logo, $label);
-            // Validate the result
-            $writer->validateResult($result,$qrCodeContent);
-        
+        $result = $writer->write($qrCode, $logo, $label);
+        // Validate the result
+        $writer->validateResult($result, $qrCodeContent);
 
-            header('Content-Type: '.$result->getMimeType());
-            echo $result->getString();
-            
-            $response = new Response(  $result->getString(), 200, ['Content-Type' => 'image/png']);
-            
+
+        header('Content-Type: ' . $result->getMimeType());
+        echo $result->getString();
+
+        $response = new Response($result->getString(), 200, ['Content-Type' => 'image/png']);
+
         return $response;
     }
 
+    #[Route(path: "/handlingLogout", name: "app_handling_logout")]
+    public function handlingAfterLogou(EntityManagerInterface $entityManager, Security $security)
+    {
+        $userHistoryOnlineServices = new UserHistoryOnlineServices($entityManager);
+        if ($this->getUser()) {
+            $user = $this->getUser();
+            $userHtryOnline =  $userHistoryOnlineServices->findUserHistoryOnlineByUser($user);
+            if ($userHtryOnline) {
+                foreach ($userHtryOnline as $x) {
+                    $d = $x->getStartDate();
+                    $checkoutDate = $x->getCheckoutDate();
+                    if (empty($checkoutDate) && $d) {
+                        $x->setCheckoutDate(new DateTime(date("Y-m-d H:i:s")));
+                        $userHistoryOnlineServices->insertUserHistoryOnline($x);
+                    }
+                }
+            }
+        }
+        return $this->redirectToRoute("app_logout");
+    }
 }

@@ -6,23 +6,24 @@
 {% block backendcontentright %}
 	<div id="updateuserrightgui">
 		<h2>{{value}}</h2>
-		<form action="/backendmanagement/userrightmanagement/update" method="post" id="updateUR">
+		<h4 style="{{cssResponse}}">{{response}}</h4>
+		<form action="/backendmanagement/userrightmanagement/create" method="post" id="updateUR">
 			<label for="righttitle">choose title to be updated:</label><br>
-			<select name="selectedtitle" id="selectedtitle">
+			<select name="selectedtitle" id="selectedtitle" onchange="searchRight('selectedtitle','getrightbyid','righttitle','abbreviation','description')">
 				<option value=""></option>
 				{% for x in userRights %}
-					<option value="{{x.title}}" {{ x.title == slvalue ? selectedtitle:''}} >{{x.title}}
+					<option value="{{x.id}}">{{x.rightTitle}}
 					</option>
 				{% endfor %}
-			</select>
-			<button  id="checkRights" onclick="selectSearchData()"><i class="fa fa-search"></i></button><br><br>
+			</select><br><br>
 			<label for="title">Right title:</label><br>
-			<input type="text" id="title" name="title" value="{{title}}"><br><br>
+			<input type="text" id="righttitle" name="righttitle" value=""><br><br>
 			<label for="abbreviation">Abbreviation:</label><br>
-			<input type="text" id="abbreviation" name="abbreviation" value="{{abbr}}"><br><br>
+			<input type="text" id="abbreviation" name="abbreviation" value=""><br><br>
 			<label for="description">Description:</label><br>
-			<textarea id="description" name="description" rows="10" cols="70" value="{{desc}}"/>{{desc}}</textarea><br><br>
+			<textarea id="description" name="description" rows="10" cols="70" value=""></textarea><br><br>
+			<input type="hidden" id="action" name="action" value="update">
 		<input type="submit" id="userrightsubmit" value="Update right">
 	</form>
-	<h4 style="{{cssResponse}}">{{response}}</h4>
+	
 </div>{% endblock %}

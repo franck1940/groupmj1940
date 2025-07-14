@@ -14,8 +14,9 @@
 			{{ value }}
 		</h2>
 		{% for item in htmlTpls %}
-        <hr style=" border:1px solid #000; width:40%; margin-left:0%;">
-			<div id={{'htmlData'~item.id}} style="margin-left:20px; display:{{(htmlupdate == item.id)? 'none':'inline-block'}};">
+        <hr style=" border:2px solid #000; width:60%; margin-left:0%;">
+			<div id={{'htmlData'~item.id}} style="margin-left:0px; display:{{(htmlupdate == item.id)? 'none':'inline-block'}}; background-color:#fff; width:60%; border:2px solid #000; overflow:auto;">
+				<div id style="margin-left:25px;">
 				<div style="font-size: 20px; color:#000;"><h3>Html title name:</h3></div>
 				{{item.templateName}}
 				<br>
@@ -27,6 +28,7 @@
 				<br><br>
 				<img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" onclick="reworkHtml('{{'htmlData'~ item.id}}','{{'createHtmlTpl'~ item.id}}')" style="cursor: pointer;"/>
 				<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" onclick="deleteHtml({{item.id}},'{{item.templateName}}','deleteHtmlTemplate')" style="cursor: pointer;"/><br><br>
+			</div>
 			</div>
 			<div id={{'createHtmlTpl'~ item.id}} style="display:{{(htmlupdate == item.id)?'':'none'}};">
 				<form id={{'createHtmlTpl'~ item.id}} action="/backendmanagement/htmltemplatemanagement/inserthtmlTemplate" method="POST">

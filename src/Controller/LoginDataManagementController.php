@@ -2,13 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Logindata;
 use App\Entity\User;
-use App\Entity\UserRightManagement;
-use App\Entity\UserRights;
-use App\services\logindataservice\LoginDataServices;
 use App\services\userloginservice\UserLoginServices;
-use App\services\userrightmanagement\UserRightMgServices;
 use App\services\userrightservice\UserRightServices;
 use App\services\userservice\UserServices;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,6 +13,8 @@ use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Totp\TotpAuthenticatorInte
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LoginDataManagementController extends AbstractController
@@ -47,7 +44,6 @@ class LoginDataManagementController extends AbstractController
         $loginUser = ($userId) ? $userLoginServices->findUserByEmail($user->getEmail()) : null;
 
         if ($user) {
-
 
             $arr = [];
             $rslt = false;
@@ -212,7 +208,6 @@ class LoginDataManagementController extends AbstractController
         $lgUser = [];
         $nolgUser = [];
         $action = "";
-        $linkval = "";
         if ($insertOrRestLogin) {
             foreach ($users as $x) {
                 $k = $userLoginServices->findUserByEmail($x->getEmail());
@@ -244,7 +239,7 @@ class LoginDataManagementController extends AbstractController
     }
 
     #[Route(path: "/backendmanagement/logindatamanagement/saveNewPassword", name: "saveNewPassword", methods: ["POST"])]
-    public function saveResetPassword(EntityManagerInterface $entityManager, Request $request): Response
+    public function saveResetPassword(MailerInterface $mailer, EntityManagerInterface $entityManager, Request $request): Response
     {
         $cssResponse = "color:red;";
         $response = "ERROR: Reset user password failed";
@@ -253,6 +248,14 @@ class LoginDataManagementController extends AbstractController
         $password = $request->request->get("password");
         $action = $request->request->get("action");
         $email = $request->request->get("email");
+        $sendEmailMessage = new Email();
+
+        $sendEmailMessage->from('franck@nngf-rch.com')
+            ->to($email)
+            ->subject('Welcome to group nj 1940!');
+            
+        $host= $request->server->get('HTTP_HOST').'/login';
+
         if ($email && $password) {
             $existEmail = $userLoginServices->findUserByEmail($email);
             $pwdHash = password_hash($password, PASSWORD_DEFAULT);
@@ -260,8 +263,11 @@ class LoginDataManagementController extends AbstractController
             if ($existEmail) {
 
                 $existEmail->setPassword($pwdHash);
-                 $existEmail->setTotpSecret(null);
+                $existEmail->setTotpSecret(null);
                 $rslt = $userLoginServices->insertUser($existEmail);
+                $user = $existEmail->getUsers();
+                $sendEmailMessage->text("Welcome - {$user->getFirstName()}! - your password has been successful reset , clicks on the following to login: http://$host  ");
+                $mailer->send($sendEmailMessage);
                 if ($rslt) {
                     $cssResponse = "color:green;";
                     $response = "Password reset successful";
@@ -270,12 +276,14 @@ class LoginDataManagementController extends AbstractController
 
             if (strcmp($action, "i") == 0) {
                 $login = new User();
-                $user = $usersServices->findUserByEmail($email);
+                $user = $usersServices->findUserByEmail($email)[0];
                 $login->setPassword($pwdHash);
                 $login->setRoles(["ROLE_USER"]);
                 $login->setEmail($email);
-                 $login->setUsers($user[0]);
+                $login->setUsers($user);
                 $rslt = $userLoginServices->insertUser($login);
+                $sendEmailMessage->text("Welcome - {$user->getFirstName()}! - as memeber of group nj backend user, clicks on the following to login: $host  ");
+                $mailer->send($sendEmailMessage);
             }
 
             if ($rslt) {

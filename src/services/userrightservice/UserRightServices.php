@@ -29,14 +29,13 @@ class UserRightServices implements IuserRightServices
 
         return true;
     }
-    public function deleteUserRight(UserRights $userRights): bool
+    public function deleteUserRight(int $id): bool
     {
-        $id = $userRights->getId();
 
         $tData = $this->findUserRightById($id);
 
         if (!$tData) {
-            throw new Exception('No product found for id ' . $id);
+            throw new Exception('No right found for id ' . $id);
         }
 
         try {

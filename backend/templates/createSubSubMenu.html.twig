@@ -11,7 +11,7 @@
 			</h2>
 			<form action="/backendmanagement/menumanagement/createasbsbmenu" method="POST" id="rootsbsbmenu">
 				<label for="rootmenu">Choose a root menu:</label><br>
-				<select name="rootmenu" id="rootmenu" onchange="getSbOptionData('mgrp','submenu','rootmenu','rightcontainer')">
+				<select name="rootmenu" id="rootmenu" onchange="getSbOptionData('mgrp','submenu','rootmenu','menuDetailsContent')">
 				<option value=""></option>
 				{% for item in rootmenus %}
 						<option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.title}}</option>
@@ -19,7 +19,7 @@
 				</select><!--<button onclick="getRtOptionData('mgrp','rootmenu')">load data</button>-->
 				<br><br>
 				<label for="submenu">Choose a sub menu:</label><br>
-				<select name="submenu" id="submenu" onchange="showMenuSbSbMenuStructure('mgrp','rootmenu','submenu','rightcontainer')">
+				<select name="submenu" id="submenu" onchange="showMenuSbSbMenuStructure('mgrp','rootmenu','submenu','menuDetailsContent')">
 					<option value=""></option>
 					{% for item in submenus %}
 						<option value="{{item.id}}" {{ 	(item.id == subselected)?'selected':'' }}>{{item.title}}</option>
@@ -35,10 +35,14 @@
 		<div id="divider"> </div>
 
 		<div id="rightcontainer">
+			<div id="menuDetailsTitle">
+				Menu details
+			</div>
+			<div id="menuDetailsContent">
 			<script>
-			showMenuSbSbMenuStructure('mgrp','rootmenu','submenu','rightcontainer')
+			showMenuSbSbMenuStructure('mgrp','rootmenu','submenu','menuDetailsContent')
 			</script>
-			
+			</div>
 		</div>
 	</div>
 	<script>

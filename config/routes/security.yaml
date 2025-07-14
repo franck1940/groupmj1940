@@ -1,3 +1,8 @@
-_security_logout:
-    resource: security.route_loader.logout
-    type: service
+# _security_logout:
+#     resource: security.route_loader.logout
+#     type: service
+app_logout:
+    path:
+        en: /logout
+        fr: /deconnexion
+    methods: GET

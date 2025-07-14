@@ -65,7 +65,7 @@ class UsermanagementController extends AbstractController
         $selectedUser = $request->request->get("selectedUser");
 
         $actionSender = $request->request->get("action");
-        $file = $_FILES["picture"]["name"];
+        $file =isset($_FILES["picture"]["name"])? $_FILES["picture"]["name"]:null;
 
         $target_dir = "uploads/";
 
@@ -79,7 +79,7 @@ class UsermanagementController extends AbstractController
             }
             if (file_exists($target_file)) {
                 $response = $response . "[Sorry, file already exists.]";
-                $uploadProfile = 1;
+                //$uploadProfile = 1;
             }
             if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                 $response = $response . ":[Sorry, only JPG, JPEG, PNG & GIF files are allowed.]";

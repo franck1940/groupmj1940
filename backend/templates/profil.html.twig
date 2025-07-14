@@ -3,6 +3,10 @@
 	<link rel="stylesheet" href="{{asset('public/css/menus.css')}}">
 	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
 {% endblock %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+{% endblock %}
 {% block title %}
 	<title>User profil</title>
 {% endblock %}
@@ -13,10 +17,12 @@
 			<h2>
 				{{ value }}
 			</h2>
+			<p id="error_message"/>
+			<h4 style="{{cssResponse}}">{{response}}</h4>
 			<form action="/backendmanagement/usermanagement/saveNewprofile" method="post" id="updateuser" enctype="multipart/form-data">
-               
 
-				<label for="Gender" >Gender:</label><br>
+
+				<label for="Gender">Gender:</label><br>
 				<input type="text" maxlength="20" id="gender" name="gender" value="{{ (users)? users.gender: "" }}" readonly="true" style="background-color:#ddd;">
 				<span onclick="enableDisable('gender')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
@@ -28,19 +34,18 @@
 
 				<label for="Firstname">Firstname:</label><br>
 
-				<input type="text" maxlength="100" id="firstname" size="100" name="firstname" value="{{ (users)? users.firstname: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="100" id="firstname" size="100" name="firstname" value="{{ (users)? users.firstname: "" }}" pattern="[a-zA-Z ]*" readonly="true" style="background-color:#ddd;">
 				<span onclick="enableDisable('firstname')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 				<label for="Lastname">Lastname:</label><br>
-				<input type="text" maxlength="100" id="lastname" size="100" name="lastname" for="lastname" value="{{ (users)? users.lastname: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="100" id="lastname" size="100" name="lastname" for="lastname" value="{{ (users)? users.lastname: "" }}" pattern="[a-zA-Z ]*" readonly="true" style="background-color:#ddd;">
 
 				<span onclick="enableDisable('lastname')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 
 				<label for="Birthday">Birthday:</label><br>
-				<input type="date" maxlength="20" id="birthday" name="birthday" value="{{ (users)? users.birthday| date("Y-m-d", false): "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="date" maxlength="20" id="birthday" name="birthday" value="{{ (users)? users.birthday| date("Y-m-d", false): "" }}" pattern="10-10-1980" readonly="true" style="background-color:#ddd;" required>
 				<span onclick="enableDisable('birthday')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
-
 
 				<label for="Mail">Mail:</label><br>
 				<input type="email" maxlength="100" id="email" name="email" value="{{ (users)? users.email: "" }}" readonly="true" style="background-color:#ddd;">
@@ -48,30 +53,30 @@
 
 
 				<label for="Phonenumber">Phone number:</label><br>
-				<input type="text" maxlength="100" id="phonenumber" name="phonenumber" placeholder="12323400809" pattern="[0-9]{4}[0-9]{5}[0-9]{3}" value="{{ (users)? users.phonenumber: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="100" id="phonenumber" name="phonenumber" placeholder="12323400809" pattern="[0-9]*" value="{{ (users)? users.phonenumber: "" }}" readonly="true" style="background-color:#ddd;">
 				<span onclick="enableDisable('phonenumber')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 
 				<label for="Streetname">Street name:</label><br>
-				<input type="text" maxlength="100" id="streetname" name="streetname" value="{{ (users)? users.streetname: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="100" id="streetname" name="streetname" value="{{ (users)? users.streetname: "" }}" readonly="true" pattern="[a-zA-Z ]*" style="background-color:#ddd;">
 				<span onclick="enableDisable('streetname')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 
 				<label for="Housenumber">House number:</label><br>
-				<input type="text" maxlength="100" id="housenumber" name="housenumber" value="{{ (users)? users.housenumber: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" pattern="[0-9]*" maxlength="100" id="housenumber" name="housenumber" value="{{ (users)? users.housenumber: "" }}" readonly="true" style="background-color:#ddd;">
 				<span onclick="enableDisable('housenumber')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 
 				<label for="Zipcode">Zipcode:</label><br>
-				<input type="text" maxlength="5" id="zipcode" name="zipcode" value="{{ (users)? users.zipcode: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="5" pattern="[0-9]*" id="zipcode" name="zipcode" value="{{ (users)? users.zipcode: "" }}" readonly="true" style="background-color:#ddd;">
 				<span onclick="enableDisable('zipcode')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 				<label for="City">City:</label><br>
-				<input type="text" maxlength="100" id="city" name="city" value="{{ (users)? users.city: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="100" id="city" name="city" value="{{ (users)? users.city: "" }}" readonly="true" pattern="[a-zA-Z ]*" style="background-color:#ddd;">
 				<span onclick="enableDisable('city')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 				<label for="Country">Country:</label><br>
-				<input type="text" maxlength="20" id="country" name="country" value="{{ (users)? users.country: "" }}" readonly="true" style="background-color:#ddd;">
+				<input type="text" maxlength="20" id="country" name="country" value="{{ (users)? users.country: "" }}" readonly="true" pattern="[a-zA-Z ]*" style="background-color:#ddd;">
 				<span onclick="enableDisable('country')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br>
 
 
@@ -80,17 +85,14 @@
 				<input type="file" id="picture" name="picture" value="" disabled="true" accept=".jpg, .jpeg, .png">
 				<span onclick="enableDisable('picture')"><img src="{{ asset('public/images/pencil.ico') }}" width="24px" height="24px" style="cursor: pointer;"></span><br><br>
 
-                <input type="hidden" name="action" value="updateMyProfile"/>
-				<input type="submit" id="updateUserprofile" value="Update profil" style="color:rgb(27, 27, 159); cursor: pointer;" />
-
-
+				<input type="hidden" name="action" value="updateMyProfile"/>
+				<input type="submit" id="updateUserprofile" value="Update profil" style="color:rgb(27, 27, 159); cursor: pointer;"/>
 			</form>
-			<h4 style="{{cssResponse}}">{{response}}</h4>
 		</div>
 		<div id="divider"></div>
 		<div id="contentRgt" style="font-size:20px;">
 			<br><br>
-			<div>
+			
 
 				<span><img id="pictureimg" width="100px" height="100px" src="{{ (users)? asset('public/uploads/' ~ (users.picture)): ''}}"/>
 
@@ -107,7 +109,7 @@
 					{{ (users)? users.city: "" }}
 					{{ (users)? users.country: "" }}</span><br>
 
-			</div>
+			
 		</div>
 	</div>
 

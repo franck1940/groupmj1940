@@ -38,7 +38,7 @@ class UserHistoryOnlineServices implements IUserHistoryOnlineServices
     }
     public function findUserHistoryOnlineByStartDate(DateTime $date): array
     {
-        return $this->entitymanager->getRepository(UserHistoryOnline::class)->findBy(["startDate" => $date]);
+        return $this->entitymanager->getRepository(UserHistoryOnline::class)->findBy(["startDate" => $date,"checkoutDate"=>null]);
     }
     public function findUserHistoryOnlineByCheckoutDate(DateTime $checkoutDate): array
     {
@@ -46,7 +46,7 @@ class UserHistoryOnlineServices implements IUserHistoryOnlineServices
     }
     public function findUserHistoryOnlineByUser(User $user): array
     {
-        return $this->entitymanager->getRepository(UserHistoryOnline::class)->findBy(["user" => $user]);
+        return $this->entitymanager->getRepository(UserHistoryOnline::class)->findBy(["person" => $user, "checkoutDate"=>null]);
     }
     public function findAllUserHistoryOnline(): array
     {

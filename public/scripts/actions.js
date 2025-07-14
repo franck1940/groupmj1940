@@ -85,15 +85,29 @@ function deleteAll() {
     }
 }
 
-function selectSearchData() {
+function searchRight(selectCompId, url, fieldOdtitle, fieldOdAbbr, fieldOdDesc) {
 
-    const val = document.getElementById("selectedtitle").value;
-
-    $("#updateUR").append('<input type="hidden" name="sendbyfunc" value="' + val + '" />');
-    if (val) {
-        document.getElementById("updateUR").submit();
+    const value = $("#" + selectCompId).find(":selected").val();
+    if (value) {
+        doPostOneData(url, value, " searchRight()").then(function (data) {
+            var obj = JSON.parse(data);
+            console.log(obj);
+            $("#" + fieldOdtitle).val(obj.rightTitle);
+            $("#" + fieldOdAbbr).val(obj.abbreviation);
+            $("#" + fieldOdDesc).val(obj.description);
+        });
     }
+}
 
+function deleteRight(rightId,rightTitle, url) {
+    if(confirm("Do you really want to delete this rights["+rightTitle+"] "))
+    {
+         doPostOneData(url, rightId, " deteleRight()").then(function (data) {
+            console.log(data);
+            alert(data);
+            location.reload();
+         });
+    }
 }
 
 

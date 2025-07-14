@@ -18,23 +18,28 @@
 			</h2>
 			<form action="creatertsb" method="POST" id="creatRootSubMenu">
 				<label for="rootmenu">Choose root menu:</label><br>
-				<select name="rootmenu" id="rootmenu" onchange="showMenuRtSbMenuStructure('mgrp','rootmenu','rightcontainer')">
+				<select name="rootmenu" id="rootmenu" onchange="showMenuRtSbMenuStructure('mgrp','rootmenu','menuDetailsContent')">
 					<option value=""></option>
 					{% for item in rootmenus %}
 						<option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.title}}</option>
 					{% endfor %}
 				</select><!--<button onclick="showMenuRtSbMenuStructure('rtsbm','rootmenu','rightcontainer')">Sub menu structure</button>--><br><br>
 				<label for="submenuTitle">Enter new sub menu:</label><br>
-				<input type="text" id="submenuTitle" name="submenuTitle" oninput="chooseRootMenu()" required /><br><br>
+				<input type="text" id="submenuTitle" name="submenuTitle" oninput="chooseRootMenu()" required/><br><br>
 				<input type="submit" value="Create sub menu" id="sendSubMenu" disabled/><br><br>
 			</form>
 			<h4 style="{{cssResponse}}" id="formaction">{{response}}</h4>
 		</div>
 		<div id="divider"></div>
 		<div id="rightcontainer">
-		 <script>
-		 	showMenuRtSbMenuStructure('mgrp','rootmenu','rightcontainer')
-		 </script>
+			<div id="menuDetailsTitle">
+				Menu details
+			</div>
+			<div id="menuDetailsContent">
+				<script>
+					showMenuRtSbMenuStructure('mgrp', 'rootmenu', 'menuDetailsContent')
+				</script>
+			</div>
 		</div>
 	</div>
 

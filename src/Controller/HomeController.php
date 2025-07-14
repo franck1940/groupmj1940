@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/')]
+    #[Route(path:'/', name:"app_home")]
     public function showHome(): Response
     {
         return $this->render('@frontend/home.html.twig', []);

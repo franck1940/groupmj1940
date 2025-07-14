@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserOnlineRepository;
+use App\Repository\UserHistoryOnlineRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UserOnlineRepository::class)]
+#[ORM\Entity(repositoryClass: UserHistoryOnlineRepository::class)]
 class UserHistoryOnline
 {
     #[ORM\Id]
@@ -14,8 +14,8 @@ class UserHistoryOnline
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy:'userOnline')]
-     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userOnline')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $person = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

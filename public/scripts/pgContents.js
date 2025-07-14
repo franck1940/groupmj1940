@@ -6,10 +6,10 @@ function showContentsOfMenu(menuId, url, displayContainer) {
         doPostOneData(url, value, "showContentsOfMenu()").then(function (data) {
             $("#" + displayContainer).empty();
             var obj = JSON.parse(data);
-            console.log(obj);
+           // console.log(obj);
             $.each(obj, (index, val) => {
                 const viewTemplate = val.templates.templateName;
-                // console.log(val.templates.templateName);
+                 console.log(viewTemplate);
                 if (viewTemplate == 'ImgRightTextLeft')
                     imgRghtTextLft(displayContainer, index, 'insertPgContent', val);
                 if (viewTemplate == 'TextUpImgDown')
@@ -49,7 +49,7 @@ function imgRghtTextLft(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='submit' value='Update content'/><br><br>");
     $("#fCtUpdate" + index).append("<p style='font-size:36px; color:#00008B; margin-left:20px;font-size:20px;cursor: pointer;'  onclick=cancelFom('fCtUpdate" + index + "','divEl" + index + "','ctViewMonitoring" + index + "')> &#10229; Back</p><br><br>");
 
-    $("#" + baseContainerId).append("<div id='ctViewMonitoring" + index + "' />");
+    $("#divEl" + index + "L").append("<div id='ctViewMonitoring" + index + "' />");
     $("#ctViewMonitoring" + index).append("<img src='/public/images/pencil.ico' width='24px' height='24px' onclick=reworkContent('fCtUpdate" + index + "','divEl" + index + "','ctViewMonitoring" + index + "') style='cursor: pointer;'/>")
     $("#ctViewMonitoring" + index).append("<img src='/public/images/icons8-trash-24.png' width='24px' height='24px' onclick=deleteContent(" + json.id + ",'deleteContent','" + (json.title).replace(/\s/g, '') + "') style='cursor: pointer;'/><br><br>");
     $("#" + baseContainerId).append("<hr  style='border:1px solid #000; width:60%;margin-top:1%;'>");
