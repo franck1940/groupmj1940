@@ -3,10 +3,9 @@
 	<link rel="stylesheet" href="{{asset('public/css/menus.css')}}">
 	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
 {% endblock %}
-{% block scripts %}
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
-	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/MenuMgActions.js') }}"></script>
+{% block scripts %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	 <script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
+	 <script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/MenuMgActions.js') }}"></script>
 
 {% endblock %}
 {% block backendcontentright %}
@@ -28,38 +27,41 @@
 				<input type="text" id="submenuTitle" name="submenuTitle" oninput="chooseRootMenu()" required/><br><br>
 				<input type="submit" value="Create sub menu" id="sendSubMenu" disabled/><br><br>
 			</form>
+			<a href="/backendmanagement/menumanagement" style="margin-left:15px; text-decoration: none; font-size:20px">
+				&#10229; Back</a>
 			<h4 style="{{cssResponse}}" id="formaction">{{response}}</h4>
+
 		</div>
 		<div id="divider"></div>
 		<div id="rightcontainer">
 			<div id="menuDetailsTitle">
 				Menu details
 			</div>
-			<div id="menuDetailsContent">
-				<script>
-					showMenuRtSbMenuStructure('mgrp', 'rootmenu', 'menuDetailsContent')
-				</script>
+			<div
+				id="menuDetailsContent"> <script>
+										showMenuRtSbMenuStructure('mgrp', 'rootmenu', 'menuDetailsContent')
+									</script>
 			</div>
 		</div>
 	</div>
 
-	<script>
-
-		function chooseRootMenu() {
-const val1 = document.getElementById("rootmenu").value;
-const val2 = document.getElementById("submenuTitle").value;
-document.getElementById("sendSubMenu").disabled = true;
-if (val1 && val2.trim()) {
-document.getElementById("sendSubMenu").disabled = false;
-}
-}
-
-function getRootSubMenu() {
-const id = document.getElementById("rootmenu").value;
-$("#creatRootSubMenu").append('<input type="hidden" name="selectedRootMenu" value="' + id + '" />');
-if (id) {
-document.getElementById("creatRootSubMenu").submit();
-}
-}
-	</script>
+	 <script>
+	
+			function chooseRootMenu() {
+	const val1 = document.getElementById("rootmenu").value;
+	const val2 = document.getElementById("submenuTitle").value;
+	document.getElementById("sendSubMenu").disabled = true;
+	if (val1 && val2.trim()) {
+	document.getElementById("sendSubMenu").disabled = false;
+	}
+	}
+	
+	function getRootSubMenu() {
+	const id = document.getElementById("rootmenu").value;
+	$("#creatRootSubMenu").append('<input type="hidden" name="selectedRootMenu" value="' + id + '" />');
+	if (id) {
+	document.getElementById("creatRootSubMenu").submit();
+	}
+	}
+		</script>
 {% endblock %}

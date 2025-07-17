@@ -17,6 +17,7 @@
   position: relative;
   overflow: hidden;
 }
+
 #contentContainerLft {
   border: 0px solid #871313;
   width: 84.5%;
@@ -33,6 +34,7 @@
   margin-right: 5%;
   position: sticky;
 }
+
 #backendContentMenusTop {
   background-color: #000;
   width: 95%;
@@ -73,6 +75,7 @@
   margin: auto;
   color: rgb(24, 24, 162);
 }
+
 #changePasswordgui {
   border: 1px ridge #fff;
   width: 30%;
@@ -93,6 +96,7 @@
   border-radius: 5px;
   padding: 10px;
 }
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -102,6 +106,7 @@ ul {
 a {
   text-decoration: none;
 }
+
 #logoContainer {
   border: 0px solid hwb(0 44% 13%);
   width: 95%;
@@ -122,28 +127,34 @@ a {
   animation-duration: 10s;
   animation-direction: reverse;
 }
+
 @keyframes example {
   0% {
     left: 0px;
     top: 0px;
   }
+
   25% {
     left: -35%;
     right: 0%;
   }
+
   50% {
     left: -20%;
     right: -20%;
   }
+
   75% {
     left: 40%;
     right: 40%;
   }
+
   100% {
     left: 0%;
     right: 0%;
   }
 }
+
 #backendlogo img {
   width: 50%;
   height: 20%;
@@ -163,14 +174,17 @@ a {
   border: 1px ridge #000;
   height: 5%;
 }
+
 .userprofile input {
   margin-left: 5%;
 }
+
 #updatecontainer select {
   width: 15%;
   height: 10%;
   padding: 12px 20px;
 }
+
 #usertinsertcontainer input[type="text"],
 #usertinsertcontainer input[type="email"],
 #usertinsertcontainer input[type="date"],
@@ -195,6 +209,7 @@ a {
   background-color: #ddd;
   padding: 12px 20px;
 }
+
 .userprofile select {
   padding: 12px 20px;
   margin-left: 14%;
@@ -202,24 +217,29 @@ a {
   font-size: 14px;
   width: 20%;
 }
+
 #createHtmlTplContainer button,
 #updatecontainer button,
 .userprofile button {
   padding: 12px 10px;
   margin-left: 5px;
 }
+
 #updatecontainer table,
 #updatecontainer h2 {
   margin-left: 5%;
   overflow: auto;
 }
+
 #updatecontainer button {
   margin-left: 1%;
 }
+
 #updatecontainer select {
   margin-left: 1%;
   width: 20%;
 }
+
 #updatecontainer label {
   margin-left: 5%;
 }
@@ -231,24 +251,29 @@ a {
   padding: 12px 20px;
   width: 20%;
 }
+
 #createHtmlTplContainer textarea,
 #pagecontainer textarea {
   margin-left: 1%;
   font-size: 14px;
   padding: 12px 20px;
 }
+
 .userprofile label,
 #pagecontainer label {
   margin-left: 0%;
   font-size: 17px;
   width: 20%;
 }
+
 #contenteditor {
   width: 70%;
 }
+
 #createHtmlTplContainer {
   margin-left: 10%;
 }
+
 #createHtmlTplContainer h2,
 #usertinsertcontainer h2,
 #createHtmlTplContainer label,
@@ -267,6 +292,7 @@ a {
   overflow-wrap: break-word;
   padding: 12px 20px;
 }
+
 #allusers table {
   font-size: 14px;
   border: 1px solid #282626;
@@ -290,17 +316,21 @@ a {
   box-sizing: border-box;
   font-size: 16px;
 }
-tr:nth-child(odd) {
-}
+
+tr:nth-child(odd) {}
+
 #allusers h2 {
   padding: 12px 20px;
 }
+
 #allusers tr {
   background-color: #fff;
 }
+
 #allusers tr:hover {
   background-color: #ddd;
 }
+
 #allusers p:hover {
   border: 3px solid rgb(223, 238, 52);
   background-image: url("/images/icons8-trash-24.png");
@@ -316,6 +346,7 @@ tr:nth-child(odd) {
   height: 24px;
   background-repeat: no-repeat;
 }
+
 #leftfooterContainer {
   width: 100%;
   float: left;
@@ -335,6 +366,7 @@ tr:nth-child(odd) {
 
   /* border-bottom-right-radius: 2%; */
 }
+
 #contentContainerRgt button {
   width: 100%;
   height: 100%;
@@ -365,6 +397,7 @@ tr:nth-child(odd) {
   height: auto;
   overflow: hidden;
 }
+
 #contentLft {
   width: 40%;
   height: 100%;
@@ -374,6 +407,7 @@ tr:nth-child(odd) {
   float: left;
   overflow: hidden;
 }
+
 #contentRgt {
   border: 0px solid #230808;
   width: 50%;
@@ -391,6 +425,7 @@ tr:nth-child(odd) {
   height: 10%;
   padding: 12px 20px;
 }
+
 #resetPasswordContainer select,
 #resetPasswordContainer input[type="submit"],
 #pagecontainer input[type="submit"] {
@@ -398,6 +433,7 @@ tr:nth-child(odd) {
   height: 10%;
   padding: 12px 20px;
 }
+
 #resetPasswordContainer h4 {
   margin-left: 0%;
 }
@@ -412,7 +448,8 @@ tr:nth-child(odd) {
   font-size: 25px;
   font-weight: 900;
 }
-#contentDetails{
+
+#contentDetails {
   width: 85%;
   height: auto;
   padding: 2% 5%;
@@ -420,4 +457,29 @@ tr:nth-child(odd) {
   background-color: #fff;
   margin-bottom: 3%;
   font-size: 20px;
+}
+
+.dashboard {
+  float: left;
+  margin: 2%;
+  padding: 2% 2%;
+  border: 1px solid #000;
+  width: 20%;
+  height: 100px;
+  background-color: #fff;
+  font-size: 20pX;
+}
+
+.dashboard img {
+  width: 60px;
+  height: 60px;
+}
+
+.containerDashboard h2 {
+  margin-left: 10%;
+}
+.containerDashboard {
+  display: inline-block;
+  width: 70%;
+  height: auto;
 }

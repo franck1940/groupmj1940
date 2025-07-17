@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\UserHistoryOnline;
@@ -7,9 +6,7 @@ use App\Entity\Users;
 use App\services\userhistoryonlineservice\UserHistoryOnlineServices;
 use App\services\userservice\UserServices;
 use DateTime;
-use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpParser\Node\Expr\Cast;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,14 +22,14 @@ class BackendController extends AbstractController
         return $this->render('@backend/login.html.twig', ["value" => "Welcome to - GROUP NJ -"]);
     }
 
-    #[Route(path: "/backendmanagement",  name: 'app_backendmanagement')]
+    #[Route(path: "/backendmanagement", name: 'app_backendmanagement')]
     public function showBackendManagement(EntityManagerInterface $entityManager, LoggerInterface $logger): Response
     {
         $userHistoryOnlineServices = new UserHistoryOnlineServices($entityManager);
 
         $userHistoryOnline = new UserHistoryOnline();
-        $user = (object) $this->getUser();
-        $verifyPw =  password_verify("groupnj1940", $user->getPassword());
+        $user              = (object) $this->getUser();
+        $verifyPw          = password_verify("groupnj1940", $user->getPassword());
 
         if ($verifyPw) {
             return $this->render('@backend/changePassword.html.twig', ["value" => "Change password"]);
@@ -42,53 +39,51 @@ class BackendController extends AbstractController
         $userHistoryOnline->setPerson($user);
         $userHistoryOnline->setStartDate(new DateTime(date("Y-m-d H:i:s")));
         $userAlreadyOnline = $userHistoryOnlineServices->findUserHistoryOnlineByUser($user);
-        
-        if (empty($userAlreadyOnline))
-        {
+
+        if (empty($userAlreadyOnline)) {
             $userHistoryOnlineServices->insertUserHistoryOnline($userHistoryOnline);
         }
-       
 
         return $this->render('@backend/backendmanagement.html.twig', ["value" => "Welcome to groupnj backend management <br> Enter your credentials", "roles" => $user->getRoles()]);
     }
 
     #[Route(path: "/backendmanagement/logindatamanagement")]
-    function fromLogindatamanagementTobackend()
+    public function fromLogindatamanagementTobackend()
     {
         return $this->redirectToRoute('app_backendmanagement');
     }
 
-
     #[Route(path: "/backendmanagement/usermanagement")]
-    function fromUsermanagementTobackend()
+    public function fromUsermanagementTobackend()
     {
         return $this->redirectToRoute('app_backendmanagement');
     }
 
     #[Route(path: "/backendmanagement/userrightmanagement")]
-    function fromUserrightmanagementTobackend()
+    public function fromUserrightmanagementTobackend()
     {
         return $this->redirectToRoute('app_backendmanagement');
     }
 
     #[Route(path: "/backendmanagement/pagecontentmanagement")]
-    function fromPagecontentmanagementTobackend()
+    public function fromPagecontentmanagementTobackend()
     {
         return $this->redirectToRoute('app_backendmanagement');
     }
 
     #[Route(path: "/backendmanagement/menumanagement")]
-    function fromMenumanagementTobackend()
+    public function fromMenumanagementTobackend()
     {
-        return $this->redirectToRoute('app_backendmanagement');
+        return $this->render('@backend/menuMgtDashboard.html.twig', ["value" => "Menu dashboard"]);
+         
+        //return $this->redirectToRoute('app_backendmanagement');
     }
 
     #[Route(path: "/backendmanagement/htmltemplatemanagement")]
-    function fromHtmltemplatemanagementTobackend()
+    public function fromHtmltemplatemanagementTobackend()
     {
         return $this->redirectToRoute('app_backendmanagement');
     }
-
 
     #[Route("/backendmanagement/userinsertpage")]
     public function showBackendInsertUserPage(): Response
@@ -97,21 +92,18 @@ class BackendController extends AbstractController
         return $this->render('@backend/insertNewUser.html.twig', ["value" => "Insert new user"]);
     }
 
-
-
-
     #[Route("/backendmanagement/insertnewuser", methods: ['POST'])]
-    public function  insertUsertNewUser(Request $request, EntityManagerInterface $entityManager): Response
+    public function insertUsertNewUser(Request $request, EntityManagerInterface $entityManager): Response
     {
 
-        $user = new Users();
-        $cssResponse = "";
-        $response = "";
+        $user         = new Users();
+        $cssResponse  = "";
+        $response     = "";
         $userServices = new UserServices($entityManager);
         $user->setLastname($request->request->get("lastname"));
         $user->setFirstname($request->request->get("firstname"));
         $user->setStreetName($request->request->get("streetname"));
-        $user->setHouseNumber((int)($request->request->get("housenumber")));
+        $user->setHouseNumber((int) ($request->request->get("housenumber")));
         $user->setZipcode($request->request->get("zipcode"));
         $user->setPhoneNumber($request->request->get("phonenumber"));
         $user->setBirthday(new DateTime($request->request->get("birthday")));
@@ -123,14 +115,12 @@ class BackendController extends AbstractController
         $rslt = $userServices->insertUser($user);
         if ($rslt) {
             $cssResponse = "color:green;";
-            $response = "update successful";
+            $response    = "update successful";
         }
         return $this->render('@backend/insertNewUser.html.twig', ["value" => "Insert new user", "result" => $rslt, "cssResponse" => $cssResponse, "response" => $response]);
     }
 
-
-
-
     #[Route("/backendmanagement/inserttemplate", methods: ['POST'])]
-    public function insertTemplate($entityManager) {}
+    public function insertTemplate($entityManager)
+    {}
 }

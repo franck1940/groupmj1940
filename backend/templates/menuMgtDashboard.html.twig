@@ -1,0 +1,28 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block backendcontentright %}
+	<div id="menuDashboard" class="containerDashboard">
+		<h2>
+			{{ value }}
+		</h2>
+		<a href='/backendmanagement/menumanagement/rootmenucreategui'>
+			<div class='dashboard'>
+				<img src="/public/images/menuEditImg.png">
+				Create root menu
+			</div>
+		</a>
+		<a href='/backendmanagement/menumanagement/creatertsbgui'>
+			<div class='dashboard'>
+				<img src="/public/images/menuEditImg.png">
+				create sub Menu of root menu
+			</div>
+		</a>
+		<a href='/backendmanagement/menumanagement/createsbsbmengui'>
+			<div class='dashboard'>
+				<img src="/public/images/menuEditImg.png">
+				create menu of root sub menu
+			</div>
+		</a>
+		<a href="/backendmanagement" style="margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back</a>
+
+	</div>
+{% endblock %}

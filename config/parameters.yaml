@@ -1,5 +1,5 @@
 parameters:
     database_host:     localhost
     database_name:     dbgroupnj
-    database_user:     root
-    database_password: groupnj1940....
+    database_user:     admin
+    database_password: groupnj1940
