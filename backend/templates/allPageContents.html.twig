@@ -1,0 +1,49 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block backendcontentright %}
+	<div id="allusers">
+		<h2>
+			{{ value }}
+		</h2>
+		{# <form action="/backendmanagement/logindatamanagement/all" id="allLogins" method="POST"> #}
+		<table>
+
+			<thead>
+				{% for head in headers %}
+					<th>{{ head}}</th>
+				{% endfor %}
+				<!--<th><input type="checkbox" onclick="checkallLogins()" name="selectAllLogins" id="selectAllLogins"/>
+				                    <label for="selectall">Select/Deselect all</label><br>
+				                    </th>
+									<th><p onclick="deleteAllLogins()"/></th>-->
+			</thead>
+
+			<tbody>
+
+				{% for cts in contents %}
+					<tr>
+						<td>
+							{{cts.menu.title}}
+						</td>
+						<td>
+							{{cts.title}}
+						</td>
+						<td>
+							{{cts.contentText}}
+						</td>
+						<td>
+							<img src="{{ asset('public/contentimages/' ~ cts.picture )}}" width="40px" height="40px"/>
+						</td>
+						<td>
+							<p onclick="deleteContent('deleteuser','{{cts.id}}','{{cts.id}}')" style="cursor: pointer;"/>
+							<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" style="cursor: pointer;"/>
+
+						</td>
+					</tr>
+
+				{% endfor %}
+			</tbody>
+		</table><br><br>
+		{# </form> #}
+    		<a href="/backendmanagement/pagecontentmanagement" style="margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back to content Dashboard</a>
+	</div>
+{% endblock %}

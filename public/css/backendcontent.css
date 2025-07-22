@@ -471,8 +471,8 @@ tr:nth-child(odd) {}
 }
 
 .dashboard img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 
 .containerDashboard h2 {
@@ -480,6 +480,6 @@ tr:nth-child(odd) {}
 }
 .containerDashboard {
   display: inline-block;
-  width: 70%;
+  width: 80%;
   height: auto;
 }

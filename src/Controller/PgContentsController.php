@@ -24,12 +24,12 @@ class PgContentsController extends AbstractController
         $allmenus = "";
         $selecetMenu = "";
         $menuServices = new MenuServices($entityManager);
-        $htmlTplServices =  new HtmlTemplateServices($entityManager);
+        $htmlTplServices = new HtmlTemplateServices($entityManager);
         $allmenus = $menuServices->findAllMenus();
         $alltemplates = $htmlTplServices->findAllHtmlTemplate();
         return $this->render('@backend/createPageContents.html.twig', [
             "value" => "Create contents",
-            "cssResponse" =>  $cssResponse,
+            "cssResponse" => $cssResponse,
             "response" => $response,
             "allmenus" => $allmenus,
             "selected" => $selecetMenu,
@@ -51,24 +51,24 @@ class PgContentsController extends AbstractController
         $pgctServices = new PageContentsServices($entityManager);
         $menuServices = new MenuServices($entityManager);
         $pgTemplate = $request->request->get("htmlTemplates");
-        $action =  $request->request->get("action");
+        $action = $request->request->get("action");
 
         $isContentsFilled = true;
 
         if (!$menuId) {
-            $response =  $response . "[targeted menu missing]";
+            $response = $response . "[targeted menu missing]";
             $isContentsFilled = false;
         }
         if (!$pageTitle) {
-            $response =  $response . "[Title missing]";
+            $response = $response . "[Title missing]";
             $isContentsFilled = false;
         }
         if (!$contents) {
-            $response =  $response . "[Contents missing]";
+            $response = $response . "[Contents missing]";
             $isContentsFilled = false;
         }
 
-        if (isset($_FILES["picture"]["name"]) &&  $image) {
+        if (isset($_FILES["picture"]["name"]) && $image) {
             $target_file = $target_dir . basename($_FILES["picture"]["name"]);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $checkPictutre = getimagesize($_FILES["picture"]["tmp_name"]);
@@ -126,7 +126,7 @@ class PgContentsController extends AbstractController
 
 
         return $this->redirectToRoute("pgcontentGui", [
-            "cssResponse" =>  $cssResponse,
+            "cssResponse" => $cssResponse,
             "response" => $response
         ]);
     }
@@ -142,7 +142,7 @@ class PgContentsController extends AbstractController
         if ($menuId) {
             $contents = $pgctServices->findContentsByMenuId($menuId);
             foreach ($contents as $value) {
-                $menu =  $value->getMenu();
+                $menu = $value->getMenu();
                 $html = $value->getContentTemplate();
                 array_push($rslt, array(
                     "id" => $value->getId(),
@@ -158,7 +158,20 @@ class PgContentsController extends AbstractController
         $json = json_encode($rslt);
         return new Response($json, 200, []);
     }
+    #[Route(path: "/backendmanagement/pagecontentmanagement/all")]
+    public function showAllContents(EntityManagerInterface $entityManager)
+    {
+        $pgctServices = new PageContentsServices($entityManager);
+        //$menuServices = new MenuServices($entityManager);
+        //$contents =[];
+        $cts = $pgctServices->findAllContents();
+        $header = array("Menu title", "Content title", "Content text", "template", "picture");
+        //  foreach ($cts as $pgct) {
+        //     $arr = array($pgct->getMenu()->getTitle(), $pgct->getTitle(),
 
+        //  }
+        return $this->render('@backend/allPageContents.html.twig', ["value" => "All contents", "headers" => $header, "contents" => $cts]);
+    }
 
 
     #[Route(path: "/backendmanagement/pagecontentmanagement/deleteContent", name: "deleteContent", methods: ["POST"])]

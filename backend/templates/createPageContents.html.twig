@@ -17,6 +17,7 @@
 			<h2>
 				{{ value }}
 			</h2>
+			<h4 style="{{cssResponse}}">{{response}}</h4>
 			<form action="/backendmanagement/pagecontentmanagement/insertPgContent" method="POST" enctype="multipart/form-data">
 				<label for="menuContent">Root name:</label><br>
 				<select name="allmenu" id="allmenu" onchange="showContentsOfMenu('allmenu','contentOfaMenu','contentDetails')">
@@ -39,8 +40,9 @@
 				<label for="contenteditor">Description:</label><br>
 				<textarea name="contenteditor" id="contenteditor" rows="10" cols="70"></textarea><br>
 				<input type="submit" value="Create content"/><br><br>
-			</form>
-			<h4 style="{{cssResponse}}">{{response}}</h4>
+			</form><br><br><br>
+    		<a href="/backendmanagement/pagecontentmanagement" style="margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back to content dashboard</a>
+
 		</div><br>
 		<div id="divider"></div>
 		<div id="contentRgt">

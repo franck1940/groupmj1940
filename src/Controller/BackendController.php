@@ -68,7 +68,8 @@ class BackendController extends AbstractController
     #[Route(path: "/backendmanagement/pagecontentmanagement")]
     public function fromPagecontentmanagementTobackend()
     {
-        return $this->redirectToRoute('app_backendmanagement');
+        //return $this->redirectToRoute('app_backendmanagement');
+        return $this->render('@backend/pageContentMgtDashboard.html.twig', ["value" => "Page content dashboard"]);
     }
 
     #[Route(path: "/backendmanagement/menumanagement")]
