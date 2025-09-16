@@ -18,7 +18,6 @@ class BackendController extends AbstractController
     //#[Route("/login")]
     public function showLoginPage(): Response
     {
-
         return $this->render('@backend/login.html.twig', ["value" => "Welcome to - GROUP NJ -"]);
     }
 
@@ -34,7 +33,6 @@ class BackendController extends AbstractController
         if ($verifyPw) {
             return $this->render('@backend/changePassword.html.twig', ["value" => "Change password"]);
         }
-        //$userHtryOnline = $userHistoryOnlineServices->findUserHistoryOnlineByUser($user);
 
         $userHistoryOnline->setPerson($user);
         $userHistoryOnline->setStartDate(new DateTime(date("Y-m-d H:i:s")));

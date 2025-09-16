@@ -20,6 +20,9 @@ class Menu
     #[ORM\Column(length: 100)]
     private ?string $title = null;
 
+    #[ORM\Column(length: 200)]
+    private ?string $menuRoute = null;
+
     #[ORM\Column(nullable:true)]
     private ?int $parentId = -1;
 
@@ -119,6 +122,26 @@ class Menu
     public function setParentId(?int $parentId):static
     {
         $this->parentId = $parentId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of menuRoute
+     */ 
+    public function getMenuRoute()
+    {
+        return $this->menuRoute;
+    }
+
+    /**
+     * Set the value of menuRoute
+     *
+     * @return  self
+     */ 
+    public function setMenuRoute($menuRoute)
+    {
+        $this->menuRoute = $menuRoute;
 
         return $this;
     }

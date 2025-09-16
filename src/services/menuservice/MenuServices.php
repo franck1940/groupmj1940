@@ -39,12 +39,14 @@ class MenuServices implements IMenuServices
             if (!$rootmenu) {
                 throw new Exception("createRootSubMenu: rootmenu empty");
             }
+            $menuRoute =$rootmenu->getMenuRoute()."/".str_replace(" ","_",$sbmenuTitle);
 
             $submenu = new Menu();
             $submenu->setParentId($rootmenu->getId());
             $submenu->setTitle($sbmenuTitle);
             $dt = date("Y-m-d");
             $submenu->setCreateDate(new DateTime($dt));
+            $submenu->setMenuRoute($menuRoute);
             $this->entitymanager->persist($submenu);
             $this->entitymanager->flush();
         } catch (Exception $ex) {
@@ -69,11 +71,13 @@ class MenuServices implements IMenuServices
             if (empty($submenu->getParentId())) {
                 throw new Exception("createSubSubMenu: submenu is root menu");
             }
+            $subMenuRoute=$submenu->getMenuRoute()."/". str_replace(" ","_",$sbsbmenuTitle);
 
             $sbsbmenu = new Menu();
             $sbsbmenu->setParentId($subId);
             $sbsbmenu->setTitle($sbsbmenuTitle);
             $dt = date("Y-m-d");
+            $sbsbmenu->setMenuRoute($subMenuRoute);
             $sbsbmenu->setCreateDate(new DateTime($dt));
             $this->entitymanager->persist($sbsbmenu);
             $this->entitymanager->flush();

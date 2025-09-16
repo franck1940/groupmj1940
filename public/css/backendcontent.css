@@ -196,6 +196,7 @@ a {
 #updatecontainer input[type="file"],
 #pagecontainer input[type="text"],
 #pagecontainer input[type="file"],
+#pagecontainer input[type="datetime-local"],
 #pagecontainer select {
   width: 70%;
   height: 10%;
@@ -254,7 +255,7 @@ a {
 
 #createHtmlTplContainer textarea,
 #pagecontainer textarea {
-  margin-left: 1%;
+  margin-left: 0%;
   font-size: 14px;
   padding: 12px 20px;
 }
@@ -374,7 +375,7 @@ tr:nth-child(odd) {}
 
 #divider {
   position: absolute;
-  margin-left: 40%;
+  margin-left: 45%;
   height: 100%;
   border-left: 2px solid #000;
   width: 0.5%;
@@ -399,7 +400,7 @@ tr:nth-child(odd) {}
 }
 
 #contentLft {
-  width: 40%;
+  width: 50%;
   height: 100%;
   border: 0px solid #2c0a0a;
   margin-left: 1%;
@@ -410,7 +411,7 @@ tr:nth-child(odd) {}
 
 #contentRgt {
   border: 0px solid #230808;
-  width: 50%;
+  width: 45%;
   height: 100%;
   float: right;
   overflow: hidden;
@@ -428,7 +429,7 @@ tr:nth-child(odd) {}
 
 #resetPasswordContainer select,
 #resetPasswordContainer input[type="submit"],
-#pagecontainer input[type="submit"] {
+#pagecontainer input[type="submit"]{
   width: 20%;
   height: 10%;
   padding: 12px 20px;

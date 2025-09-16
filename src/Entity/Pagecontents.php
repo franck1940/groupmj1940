@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PagecontentsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,7 +14,7 @@ class Pagecontents
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\Column(length: 2048 , nullable: true)]
+    #[ORM\Column(length: 2048, nullable: true)]
     private ?string $contentText = null;
 
     #[ORM\Column(length: 100, nullable: true)]
@@ -24,16 +23,18 @@ class Pagecontents
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $picture;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTime $createDate = null;
-
 
     #[ORM\ManyToOne(targetEntity: Menu::class, inversedBy: "pagecontents")]
     private ?Menu $menu = null;
 
     #[ORM\ManyToOne(targetEntity: Htmltemplates::class, inversedBy: "pagecontents")]
-  //  #[ORM\JoinColumn(name: 'htmlpage_id', referencedColumnName: 'id', nullable:true)]
+    //  #[ORM\JoinColumn(name: 'htmlpage_id', referencedColumnName: 'id', nullable:true)]
     private ?Htmltemplates $contentTemplate = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    private ?\DateTime $expiredDate = null;
 
     public function getId(): ?int
     {
@@ -52,7 +53,7 @@ class Pagecontents
         return $this;
     }
 
-    public function getPicture():?string
+    public function getPicture(): ?string
     {
         return $this->picture;
     }
@@ -119,8 +120,8 @@ class Pagecontents
 
     /**
      * Get the value of title
-     */ 
-    public function getTitle():?string
+     */
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -129,10 +130,32 @@ class Pagecontents
      * Set the value of title
      *
      * @return  self
-     */ 
-    public function setTitle(?string $title):static
+     */
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get the value of expiredDate
+     */ 
+    public function getExpiredDate()
+    {
+        return $this->expiredDate;
+    }
+
+    /**
+     * Set the value of expiredDate
+     *
+     * @return  self
+     */ 
+    public function setExpiredDate($expiredDate)
+    {
+        $this->expiredDate = $expiredDate;
 
         return $this;
     }

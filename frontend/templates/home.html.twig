@@ -1,17 +1,123 @@
 {% extends "@frontend/base.html.twig"%}
- {% block stylesheets %}
+ {% block styles %}
  <link rel="stylesheet" href="{{asset('css/root.css')}}">
+  <link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/frontend.css')}}">
+ {% endblock %}
+ {% block scripts %}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
+	
  {% endblock %}
 {% block image %}
-<div>
-  <!--<img src="{{ asset('public/images/tlogo.jpg') }}" alt="Logo" style="width:100%;height:100%;"/>-->
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    {# <div class="numbertext">1 / 3</div> #}
+    <img src="/public/images/arriere.jpg" style="width:100%; height:550px;">
+    {# <div class="text">Caption Text</div> #}
+  </div>
+
+  <div class="mySlides fade">
+    {# <div class="numbertext">2 / 3</div> #}
+    <img src="/public/images/grnjtraining.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Two</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">2 / 3</div> #}
+    <img src="/public/images/grnjcompany.jpg" style="width:100%;height:550px;">
+    {# <img src="/public/images/swdevgrnj.jpg" style="width:100%;height:550px;"> #}
+    {# <div class="text">Caption Two</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grpnjtravel.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grnjvente.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grnjfarming2.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grnjfarming.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grnjdeveloper.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grnjformation1.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+  <div class="mySlides fade">
+    {# <div class="numbertext">3 / 3</div> #}
+    <img src="/public/images/grnjformation2.jpg" style="width:100%;height:550px;">
+    {# <div class="text">Caption Three</div> #}
+  </div>
+
+  <!-- Next and previous buttons -->
+  {# <span class="prev" >&#10094;</span>
+  <span class="next" >&#10095;</span> #}
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot"  id="dot1"></span>
+  <span class="dot"  id="dot2"></span>
+  <span class="dot"  id="dot3"></span>
+  <span class="dot"  id="dot4"></span>
+  <span class="dot"  id="dot5"></span>
+  <span class="dot"  id="dot6"></span>
+  <span class="dot"  id="dot7"></span>
+  <span class="dot"  id="dot8"></span>
+  <span class="dot"  id="dot9"></span>
+   <span class="dot"  id="dot10"></span>
+  {# <span class="dot" onclick="currentSlide(8)" id="dot8"></span> #}
+
+
 </div>
 {% endblock %}
 {% block contents %}
-<div id="frtdcontents">
-{% block homeContents %}
-  
-{% endblock %}
-</div>
-  
+<div id="menuDashboard" class="frontendContainerDashboard">
+		
+		<a href='/group_nj_services'>
+			<div class='dashboard'>
+				<img src="/public/images/grnjservices.jpg">
+				 Services
+			</div>
+		</a>
+    <a href='/group_nj_services'>
+			<div class='dashboard'>
+				<img src="/public/images/ittraing.jpg">
+				 It training
+			</div>
+		</a>
+		{# <a href='/backendmanagement/menumanagement/creatertsbgui'>
+			<div class='dashboard'>
+				<img src="/public/images/menuEditImg.png">
+				create sub Menu of root menu
+			</div>
+		</a>
+		<a href='/backendmanagement/menumanagement/createsbsbmengui'>
+			<div class='dashboard'>
+				<img src="/public/images/menuEditImg.png">
+				create menu of root sub menu
+			</div>
+		</a>
+		<a href="/backendmanagement" style="color:#fff;margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back to main dashboard</a> #}
+
+	</div>
 {% endblock %}

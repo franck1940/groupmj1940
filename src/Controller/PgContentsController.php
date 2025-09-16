@@ -47,6 +47,7 @@ class PgContentsController extends AbstractController
         $pageTitle = $request->request->get("title");
         $image = $_FILES["picture"]["name"];
         $contents = $request->request->get("contenteditor");
+        $expireddate = $request->request->get("expireddate");
         $menuId = $request->request->get("allmenu");
         $pgctServices = new PageContentsServices($entityManager);
         $menuServices = new MenuServices($entityManager);
@@ -105,7 +106,9 @@ class PgContentsController extends AbstractController
             $pageContents->setMenu($menu);
             $pageContents->setTitle($pageTitle);
             $pageContents->setContentText($contents);
-            $pageContents->setCreateDate(new DateTime(date("Y-m-d")));
+            if ($expireddate)
+                $pageContents->setExpiredDate(new DateTime($expireddate));
+            $pageContents->setCreateDate(new DateTime(date("Y-m-d H:i:s")));
             $htmlTplateServices = new HtmlTemplateServices($entityManager);
             $htmltpl = ($pgTemplate) ? ((empty($action)) ? $htmlTplateServices->findHtmlTemplateById($pgTemplate) : $htmlTplateServices->findHtmlTemplateByName($pgTemplate)[0]) : null;
             $result = false;
@@ -165,7 +168,7 @@ class PgContentsController extends AbstractController
         //$menuServices = new MenuServices($entityManager);
         //$contents =[];
         $cts = $pgctServices->findAllContents();
-        $header = array("Menu title", "Content title", "Content text", "template", "picture");
+        $header = array("Menu title", "Content title", "Content text", "template", "picture", "Delete");
         //  foreach ($cts as $pgct) {
         //     $arr = array($pgct->getMenu()->getTitle(), $pgct->getTitle(),
 

@@ -37,9 +37,12 @@ class MenuManagementController extends AbstractController
         if ($menuTitle) {
             $menu = $menuServices->findMenuByTitle($menuTitle);
             if (!$menu) {
+                $routeMenu="/grpfd"."/".str_replace(" ","_",$menuTitle);
+
                 $menu = new Menu();
                 $menu->setTitle($menuTitle);
                 $dt = date("Y-m-d");
+                $menu->setMenuRoute($routeMenu);
                 $menu->setCreateDate(new DateTime($dt));
                 $rslt = $menuServices->createRootMenu($menu);
                 $rslt = true;
@@ -150,12 +153,7 @@ class MenuManagementController extends AbstractController
         $rootmenuId = $request->request->get("rootmenu");
 
         if ($submenuTitle) {
-            $menu = new Menu();
             $rtMenu = $menuServices->findMenuById($rootmenuId);
-            $menu->setTitle($submenuTitle);
-            $dt = date("Y-m-d");
-            $menu->setCreateDate(new DateTime($dt));
-
             $findByTitle = $menuServices->findMenuByTitle($submenuTitle);
             if (!$findByTitle)
                 $rslt = $menuServices->createRootSubMenu($rtMenu, $submenuTitle);

@@ -18,10 +18,10 @@ class UserHistoryOnline
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $person = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTime $startDate = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTime $checkoutDate = null;
 
     public function getId(): ?int
