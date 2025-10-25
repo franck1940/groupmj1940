@@ -1,32 +1,39 @@
 {% extends "@frontend/base.html.twig"%}
 {% block styles %}
-	<link rel="stylesheet" href="{{asset('css/root.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/fdservice.css')}}">
 	<link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}">
 {% endblock %}
-{% block scripts %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	 <script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
 
 {% endblock %}
 {% block image %}
-	<div class="slideshow-container">
-		<div
-			class="mySlides fade">
-			{# <div class="numbertext">1 / 3</div> #}
-			<img
-			src="/public/images/grnjservices.jpg" style="width:100%; height:550px;">
-		{# <div class="text">Caption Text</div> #}
+	<a href="/">
+		<div class="slideshow-container">
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">1 / 3</div> #}
+				<img
+				src="/public/images/grnjservices.jpg" class="backImageBox">
+			{# <div class="text">Caption Text</div> #}
+			</div>
 		</div>
-	</div>
+	</a>
 {% endblock %}
 {% block contents %}
-	<div style="border: 0px solid black; margin:auto; width:65%;">
+	<div style="border: 0px solid black; margin-left:0%; margin-right:0%; margin-bottom:0%; padding:12px 10px;">
 		{% for cts in contents %}
-			<div><h2>{{ cts.title}}</h2></div><br>
-			<div >{{ cts.contentText}}</div><br>
-    <div ><img src="/public/images/{{ cts.picture}}" style="width:20%;height:20%;">
-			</div><br>
+			<div class="services">
+				<div>
+					<h2>{{ cts.title}}</h2>
+				</div><br>
+				<div class="cts">{{ cts.contentText}}</div><br>
+				<div class="ctsimg"><img src="/public/images/{{ cts.picture}}">
+				</div><br>
+				<!--<hr style="border: 1px solid black; margin:30px 20px;">-->
 
-    <hr style="border: 1px solid black; margin:30px 20px;">
+			</div>
 		{% endfor %}
 
 	</div>

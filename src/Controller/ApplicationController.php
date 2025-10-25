@@ -12,7 +12,6 @@ class ApplicationController extends AbstractController
     public function number(): Response
     {
         $number = random_int(0, 100);
-
         //return $this->render('@frontend/home.html.twig',['value'=>$number]);
         return $this->render('@frontend/TextLftImgRgt.html.twig',['value'=>$number]);
         

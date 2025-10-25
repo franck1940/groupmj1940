@@ -1,123 +1,237 @@
 {% extends "@frontend/base.html.twig"%}
- {% block styles %}
- <link rel="stylesheet" href="{{asset('css/root.css')}}">
-  <link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}">
+{% block styles %}
+	<link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}">
 	<link rel="stylesheet" href="{{asset('public/css/frontend.css')}}">
- {% endblock %}
- {% block scripts %}
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
-	
- {% endblock %}
+	<link rel="stylesheet" href="{{asset('public/css/tooltip.css')}}">
+{% endblock %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
+
+{% endblock %}
 {% block image %}
-<!-- Slideshow container -->
-<div class="slideshow-container">
+	<!-- Slideshow container -->
+	<a href="/">
+		<div
+			class="slideshow-container">
 
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    {# <div class="numbertext">1 / 3</div> #}
-    <img src="/public/images/arriere.jpg" style="width:100%; height:550px;">
-    {# <div class="text">Caption Text</div> #}
-  </div>
+			<!-- Full-width images with number and caption text -->
 
-  <div class="mySlides fade">
-    {# <div class="numbertext">2 / 3</div> #}
-    <img src="/public/images/grnjtraining.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Two</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">2 / 3</div> #}
-    <img src="/public/images/grnjcompany.jpg" style="width:100%;height:550px;">
-    {# <img src="/public/images/swdevgrnj.jpg" style="width:100%;height:550px;"> #}
-    {# <div class="text">Caption Two</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grpnjtravel.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grnjvente.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grnjfarming2.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grnjfarming.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grnjdeveloper.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grnjformation1.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-  <div class="mySlides fade">
-    {# <div class="numbertext">3 / 3</div> #}
-    <img src="/public/images/grnjformation2.jpg" style="width:100%;height:550px;">
-    {# <div class="text">Caption Three</div> #}
-  </div>
-
-  <!-- Next and previous buttons -->
-  {# <span class="prev" >&#10094;</span>
-  <span class="next" >&#10095;</span> #}
-</div>
-<br>
-
-<!-- The dots/circles -->
-<div style="text-align:center">
-  <span class="dot"  id="dot1"></span>
-  <span class="dot"  id="dot2"></span>
-  <span class="dot"  id="dot3"></span>
-  <span class="dot"  id="dot4"></span>
-  <span class="dot"  id="dot5"></span>
-  <span class="dot"  id="dot6"></span>
-  <span class="dot"  id="dot7"></span>
-  <span class="dot"  id="dot8"></span>
-  <span class="dot"  id="dot9"></span>
-   <span class="dot"  id="dot10"></span>
-  {# <span class="dot" onclick="currentSlide(8)" id="dot8"></span> #}
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">1 / 3</div> #}
+				<img
+				src="/public/images/arriere.jpg" class="backImageBox">
+			{# <div class="text">Caption Text</div> #}
+			</div>
 
 
-</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">2 / 3</div> #}
+				<img
+				src="/public/images/sap.jpg" class="backImageBox">
+
+			{# <div class="text">Caption Two</div> #}
+			</div>
+			{# <div
+				class="mySlides fade">
+				<img src="/public/images/computermaintenance.jpg" class="backImageBox">
+
+			</div> #}
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/carpenterservice.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/plumbing.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/grnjfarming.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/computertraining.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/projectmanagement.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/softwareandhardwaretesting.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/computermaintenance.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/propertyconstruction.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/ai.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/computercloud.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/databasemaintenance.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/computernetwork.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/itarchitect.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/softwaredevelopment.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+			<div
+				class="mySlides fade">
+				{# <div class="numbertext">3 / 3</div> #}
+				<img
+				src="/public/images/teaminworld.jpg" class="backImageBox">
+			{# <div class="text">Caption Three</div> #}
+			</div>
+
+			<!-- Next and previous buttons -->
+			{# <span class="prev" >&#10094;</span>
+																  <span class="next" >&#10095;</span> #}
+		</div>
+	</a>
+	<br>
+
+	<!-- The dots/circles -->
+	<div style="text-align:center;">
+		<span class="dot" id="dot1"></span>
+		<span class="dot" id="dot2"></span>
+		<span class="dot" id="dot3"></span>
+		<span class="dot" id="dot4"></span>
+		<span class="dot" id="dot5"></span>
+		<span class="dot" id="dot6"></span>
+		<span class="dot" id="dot7"></span>
+		<span class="dot" id="dot8"></span>
+		<span class="dot" id="dot9"></span>
+		<span class="dot" id="dot10"></span>
+		<span class="dot" id="dot11"></span>
+		<span class="dot" id="dot12"></span>
+		<span class="dot" id="dot13"></span>
+		<span class="dot" id="dot14"></span>
+		<span class="dot" id="dot15"></span>
+		<span class="dot" id="dot16"></span>
+		<span class="dot" id="dot17"></span>
+		<span class="dot" id="dot18"></span>
+
+
+		{# <span class="dot" onclick="currentSlide(8)" id="dot8"></span> #}
+
+
+	</div>
 {% endblock %}
 {% block contents %}
-<div id="menuDashboard" class="frontendContainerDashboard">
-		
-		<a href='/group_nj_services'>
-			<div class='dashboard'>
-				<img src="/public/images/grnjservices.jpg">
-				 Services
-			</div>
-		</a>
-    <a href='/group_nj_services'>
-			<div class='dashboard'>
-				<img src="/public/images/ittraing.jpg">
-				 It training
-			</div>
-		</a>
+	<div id="menuDashboard" class="frontendContainerDashboard">
+		<h1>WELCOME TO GROUP NJ 1940
+		</h1>
+		<p>
+			We are a consulting group company , we offer our services in different sectors like agriculture, farming, 
+																		      information technologies, AI, aerospace, property construction, plumbing system installation and maintenance, electric system installation, Water drilling system , project management, system cloud, SAP, computer maintenance, software development and testing.
+			<br>Our main goal is to support and help our customers in their needs and projects with a higher level of consulting
+																		      on all deliveries.<br>
+			Just contact us by choosing the services meeting your needs. You can call or send us an email with a short description of your concerns and your contact data, and then we will get back to you.
+		</p>
+		{% for item in ctsWithMenus %}
+			{% if item.1|length > 0 %}
+				{% for x in (item.1) %}
+					<a href={{(item.0.menuRoute)? "" ~ item.0.menuRoute : '#'}}>
+						<div class='dashboard'>
+							<img src={{"/public/images/"~ x.picture}}>
+							<div class="tooltip">
+								{{ "Service: " ~ x.title}}
+								<span class="tooltiptext">{{ "Service: " ~ x.title}}</span>
+							</div>
+						</div>
+					</a>
+				{% endfor %}
+			{% endif %}
+
+		{% endfor %}
+		{# <a href='/services'>
+															<div class='dashboard'>
+																<img src="/public/images/grnjservices.jpg">
+																Services
+															</div>
+														</a>
+														<a href='/services'>
+															<div class='dashboard'>
+																<img src="/public/images/ittraing.jpg">
+																It training
+															</div>
+														</a> #}
 		{# <a href='/backendmanagement/menumanagement/creatertsbgui'>
-			<div class='dashboard'>
-				<img src="/public/images/menuEditImg.png">
-				create sub Menu of root menu
-			</div>
-		</a>
-		<a href='/backendmanagement/menumanagement/createsbsbmengui'>
-			<div class='dashboard'>
-				<img src="/public/images/menuEditImg.png">
-				create menu of root sub menu
-			</div>
-		</a>
-		<a href="/backendmanagement" style="color:#fff;margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back to main dashboard</a> #}
+																	<div class='dashboard'>
+																		<img src="/public/images/menuEditImg.png">
+																		create sub Menu of root menu
+																	</div>
+																</a>
+																<a href='/backendmanagement/menumanagement/createsbsbmengui'>
+																	<div class='dashboard'>
+																		<img src="/public/images/menuEditImg.png">
+																		create menu of root sub menu
+																	</div>
+																</a>
+																<a href="/backendmanagement" style="color:#fff;margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back to main dashboard</a> #}
 
 	</div>
 {% endblock %}

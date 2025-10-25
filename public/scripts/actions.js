@@ -99,14 +99,13 @@ function searchRight(selectCompId, url, fieldOdtitle, fieldOdAbbr, fieldOdDesc) 
     }
 }
 
-function deleteRight(rightId,rightTitle, url) {
-    if(confirm("Do you really want to delete this rights["+rightTitle+"] "))
-    {
-         doPostOneData(url, rightId, " deteleRight()").then(function (data) {
+function deleteRight(rightId, rightTitle, url) {
+    if (confirm("Do you really want to delete this rights[" + rightTitle + "] ")) {
+        doPostOneData(url, rightId, " deteleRight()").then(function (data) {
             console.log(data);
             alert(data);
             location.reload();
-         });
+        });
     }
 }
 
@@ -128,3 +127,14 @@ function getUserToBeUpdate() {
     }
 }
 
+function changeValidationMessage(id, message) {
+    alert("merci");
+    var element = document.getElementsByName(id);
+    var val = element.value;
+    var attr = element.getAttribute("name");
+    if (attr == "phone") {
+        if (!isNumeric(val) || val.length) {
+            elements.setCustomValidity(message);
+        }
+    }
+}

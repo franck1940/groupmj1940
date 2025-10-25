@@ -1,0 +1,21 @@
+{% extends "@frontend/groupnj_services.html.twig"%}
+{% block styles %}
+	<link rel="stylesheet" href="{{asset('css/root.css')}}">
+	{# <link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}"> #}
+	<link rel="stylesheet" href="{{asset('public/css/frontend.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/fdservice.css')}}">
+
+{% endblock %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/errorhandling.js') }}"></script>
+
+{% endblock %}
+{# {% block image %}{% endblock %} #}
+{% block contents %}
+	<div class="error">
+		<h1>
+			Error 404 page not found
+		</h1>
+	</div>
+{% endblock %}

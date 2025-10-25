@@ -1,0 +1,30 @@
+.services {
+    border: 2px ridge #fff;
+    margin-Bottom: 3%;
+     margin-top: 0%;
+    background-color: #fff;
+   border-radius: 10px;
+   /* object-fit: cover; */
+   font-size: 15px;
+   padding: 20px 20px;
+}
+.services h2{
+     margin-left: 1%;
+     color: #000;
+}
+
+.cts {
+    /* background-color: black; */
+    margin-left: 3%;
+    word-break: break-all;
+    margin-right: 4%;
+    color: #000;
+}
+
+.ctsimg img {
+    width: 20%;
+    height: 20%;
+    margin-left: 3%;
+    border: 2px ridge #fff;
+   object-fit: cover;
+}

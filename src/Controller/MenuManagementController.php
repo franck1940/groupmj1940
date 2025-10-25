@@ -37,7 +37,7 @@ class MenuManagementController extends AbstractController
         if ($menuTitle) {
             $menu = $menuServices->findMenuByTitle($menuTitle);
             if (!$menu) {
-                $routeMenu="/grpfd"."/".str_replace(" ","_",$menuTitle);
+                $routeMenu="/".str_replace(" ","_",strtolower($menuTitle));
 
                 $menu = new Menu();
                 $menu->setTitle($menuTitle);
@@ -236,6 +236,8 @@ class MenuManagementController extends AbstractController
         if ($meuId && trim($newTitle)) {
             $menu = $menuServices->findMenuById($meuId);
             $menu->setTitle(trim($newTitle));
+            if($menu->getMenuRoute())
+            $menu->setMenuRoute(strtolower($menu->getMenuRoute()));
             $entityManager->persist($menu);
             $entityManager->flush();
             $rslt = true;

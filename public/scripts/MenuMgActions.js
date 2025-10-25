@@ -240,3 +240,45 @@ function deleteMenu(url, mId, title, rspId) {
     }
 
 }
+
+$(document).ready(function () {
+    $("a").click(function () {
+        let id = $(this).attr("id");
+        var lenId = id.length;
+        var numberId = id.substring(lenId - 1, lenId);
+        var childrens = $("[id*=childMenu" + numberId + "]");
+        var childrens_br = $("[id*=childMenu_br" + numberId + "]");
+        $("#link" + numberId).addClass("parentMenu_a");
+        var isChildrenOpen = false;
+
+
+        $.each(childrens, function (index, value) {
+            var isVisible = $(value).is(':visible');
+            if (!isVisible && id.includes("link")) {
+                $(value).show();
+                $("#link" + numberId).addClass("parentMenu_a_plus");
+                isChildrenOpen = true;
+            }
+            if (isVisible && id.includes("link")) {
+                $("#link" + numberId).removeClass("parentMenu_a_plus");
+                $(value).hide();
+                isChildrenOpen = false;
+            }
+        });
+
+        $.each(childrens_br, function (index, value) {
+            var isVisible = $(value).is(':visible');
+            if (!isVisible && id.includes("link")) {
+                $(value).show();
+                $("#link" + numberId).addClass("parentMenu_a_plus");
+            }
+            if (isVisible && id.includes("link")) {
+                $(value).hide();
+                $("#link" + numberId).removeClass("parentMenu_a_plus");
+
+            }
+        });
+
+    });
+});
+

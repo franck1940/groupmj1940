@@ -14,6 +14,15 @@ $(function () {
     $("#dot8").click({ param: 8 }, currentSlide);
     $("#dot9").click({ param: 9 }, currentSlide);
     $("#dot10").click({ param: 10 }, currentSlide);
+    $("#dot10").click({ param: 11 }, currentSlide);
+    $("#dot10").click({ param: 12 }, currentSlide);
+    $("#dot10").click({ param: 13 }, currentSlide);
+    $("#dot10").click({ param: 14 }, currentSlide);
+    $("#dot10").click({ param: 15 }, currentSlide);
+    $("#dot10").click({ param: 16 }, currentSlide);
+    $("#dot10").click({ param: 17 }, currentSlide);
+    $("#dot10").click({ param: 18 }, currentSlide);
+
 
     function showSlides() {
         let i;
@@ -40,12 +49,6 @@ $(function () {
             isDotClicked = false;
         }
     }
-
-
-    // function plusSlides(event) {
-    //     var value = event.data.param;
-    //     showSlides(slideIndex += value);
-    // }
 
     function currentSlide(event) {
         let value = event.data.param;

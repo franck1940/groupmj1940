@@ -1,0 +1,45 @@
+{% extends "@frontend/groupnj_services.html.twig"%}
+{% block styles %}
+	<link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/frontend.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/fdservice.css')}}">
+{% endblock %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/contact.js') }}"></script>
+	
+{% endblock %}
+{# {% block image %}{% endblock %} #}
+{% block contents %}
+	<div class="fdcontact">
+		<h2>
+			Share your concerns
+		</h2><br>
+		<h4 style="{{cssResponse}}" id="formaction">{{response}}</h4>
+		<br><br>
+		<form method="post" action="savecontact">
+			<label for="name">
+				Name:</label><br>
+			<input type="text" name="name" id="name" required ><br><br>
+			<label for="email">
+				Email:</label><br>
+			<input type="email" name="email" id="email" required ><br><br>
+			<label for="phoneNumber">
+				Phone:</label><br>
+			<input type="tel" name="phone" id="phone" required oninvalid="changeValidationMessage('phone','nomber of phone is less or bigger than 12 digits')" pattern="[0-9]{12}"><br><br>
+
+			<label for="subject">
+				Subject:</label><br>
+			<input type="text" name="subject" id="subject" required><br><br>
+
+			<label for="description">
+				Description:</label><br>
+			<textarea name="desc" id="desc" required rows="10" cols="80" maxlength="512"></textarea><br><br>
+			<input type="hidden" name="sid" value="{{sid}}"/><br><br>
+
+			<input type="submit"/><br>
+		</form><br><br>
+
+	</div>
+{% endblock %}
