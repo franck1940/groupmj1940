@@ -241,10 +241,10 @@ function deleteMenu(url, mId, title, rspId) {
 
 }
 
-$(document).ready(function () {
+$(function () {
     $("a").click(function () {
         let id = $(this).attr("id");
-        var lenId = id.length;
+        var lenId =(id)? id.length:0;
         var numberId = id.substring(lenId - 1, lenId);
         var childrens = $("[id*=childMenu" + numberId + "]");
         var childrens_br = $("[id*=childMenu_br" + numberId + "]");

@@ -7,7 +7,7 @@ body {
 }
 .mySlides {
   display: none;
-  height: 800px;
+  height: 700px;
   width: 100%;
   border: 0px solid #c94848;
   position: relative;
@@ -21,7 +21,6 @@ img {
 .slideshow-container {
   max-height: 100%;
   max-width: 100%;
-  min-height: 50%;
   /* border: 5px solid rgb(31, 98, 126); */
   /* margin-bottom: 5%; */
 }

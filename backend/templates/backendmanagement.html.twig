@@ -89,8 +89,8 @@
 						<button class="subnavbtn">Employees activities<i class="fa fa-caret-down"></i>
 						</button>
 						<div class="subnav-content">
-							<a href="#">Insert project</a>
-							<a href="#">
+							<a href="/backendmanagement/employeesActivities/insertGui">Insert project</a>
+							<a href="/backendmanagement/employeesActivities/allprojects">
 								All Projects</a>
 							<a href="#">Create global message sharing</a>
 							<a href="#">My works</a>
@@ -164,7 +164,7 @@
 			</div>
 			<div id="contentContainerRgt">
 				<div style="border:1px solid #000; background-color:#fff; background-color:black; ">
-					<img src="/public/uploads/{{(app.user.users.picture)? app.user.users.picture:'tlogo.jpg'}}" width="70%" height="70px" style="margin-left:15%;border:1px solid #ff; background-color:#fff; border-radius:70%;"/>
+					<img src="/public/uploads/{{(app.user.users.picture)? app.user.users.picture:'tlogo.jpg'}}" width="70%" height="70px" style="margin-left:15%;border:1px solid #ff; background-color:#fff; border-radius:5%;"/>
 
 					<div style="border:0px ridge #fff; margin-top:0%; padding:12px 20px;word-break: break-all; border-radius:10%; color:#fff; font-size:10px;">
 						{{ app.user.users.firstname }},{{ app.user.users.lastname }}<br>

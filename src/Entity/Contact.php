@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
+use Doctrine\DBAL\Types\BlobType;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
@@ -22,7 +24,7 @@ class Contact
     #[ORM\Column(length: 20, nullable: false)]
     private ?string $phone = null;
 
-    #[ORM\Column(length: 512)]
+    #[ORM\Column(type: Types::BLOB)]
     private ?string $description = null;
 
     #[ORM\Column(length: 200)]

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Menu;
 use App\services\menuservice\MenuServices;
+use App\services\pgcontentservices\PageContentsServices;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,7 +38,7 @@ class MenuManagementController extends AbstractController
         if ($menuTitle) {
             $menu = $menuServices->findMenuByTitle($menuTitle);
             if (!$menu) {
-                $routeMenu="/".str_replace(" ","_",strtolower($menuTitle));
+                $routeMenu = "/" . str_replace(" ", "_", strtolower($menuTitle));
 
                 $menu = new Menu();
                 $menu->setTitle($menuTitle);
@@ -46,8 +47,8 @@ class MenuManagementController extends AbstractController
                 $menu->setCreateDate(new DateTime($dt));
                 $rslt = $menuServices->createRootMenu($menu);
                 $rslt = true;
-            }else{
-                 $response = "ERROR: aleready exist:[".$menuTitle."]";
+            } else {
+                $response = "ERROR: aleready exist:[" . $menuTitle . "]";
             }
         }
 
@@ -109,15 +110,22 @@ class MenuManagementController extends AbstractController
         $cssResponse = "color:red;";
         $rslt = false;
         $menuServices = new MenuServices($entityManager);
+        $contentservice = new PageContentsServices($entityManager);
         $mId = $request->request->get("id");
 
         if ($mId) {
             $m = $menuServices->findMenuById($mId);
             $sbM = $menuServices->findSbMenu($m->getId());
-            if ($sbM) {
+            $cts = $contentservice->findContentsByMenuId($m->getId());
+            if ($cts) {
+                foreach ($cts as $c) {
+                    $entityManager->remove($c);
+                }
+            }
+            if (!empty($sbM)) {
                 foreach ($sbM as $y) {
                     $tp = $menuServices->findSbMenu($y->getId());
-                    if ($tp) {
+                    if (!empty($tp)) {
                         foreach ($tp as $k) {
                             $entityManager->remove($k);
                         }
@@ -135,7 +143,7 @@ class MenuManagementController extends AbstractController
             $response = "Sub menu create successful";
         }
 
-        return new Response(($rslt) ? "successful" : "failed", 200, [
+        return new Response(($rslt) ? "successful": "failed", 200, [
             "cssResponse" =>  $cssResponse,
             "response" => $response
         ]);
@@ -236,8 +244,8 @@ class MenuManagementController extends AbstractController
         if ($meuId && trim($newTitle)) {
             $menu = $menuServices->findMenuById($meuId);
             $menu->setTitle(trim($newTitle));
-            if($menu->getMenuRoute())
-            $menu->setMenuRoute(strtolower($menu->getMenuRoute()));
+            if ($menu->getMenuRoute())
+                $menu->setMenuRoute(strtolower($menu->getMenuRoute()));
             $entityManager->persist($menu);
             $entityManager->flush();
             $rslt = true;

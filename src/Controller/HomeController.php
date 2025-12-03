@@ -55,6 +55,7 @@ class HomeController extends AbstractController
         $contents = $services[0]->getPagecontents();
 
         $rslt  = (new DataUtils($entityManager))->getStructuredMenus();
+        echo  is_resource($contents->get(0));
 
         return $this->render('@frontend/groupnj_services.html.twig', ["contents" => $contents, "allMenus" => $rslt]);
     }
@@ -94,7 +95,13 @@ class HomeController extends AbstractController
     #[Route(path: '/farming', name: "app_farming", methods: ["GET"])]
     public function groupNjService_farming(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('@frontend/farming.html.twig', ["allMenus" => (new DataUtils($entityManager))->getStructuredMenus()]);
+        $menuServices = new MenuServices($entityManager);
+        $services = $menuServices->findMenuByTitle("Farming");
+        $aboutnjfarmings = $services[0]->getPagecontents();
+        return $this->render('@frontend/farming.html.twig', [
+            "allMenus" => (new DataUtils($entityManager))->getStructuredMenus(),
+            "aboutnjfarmings" => $aboutnjfarmings
+        ]);
     }
     #[Route(path: '/contact', name: "app_contact", methods: ["GET"])]
     public function groupNjService_contact(EntityManagerInterface $entityManager, Request $request, SessionInterface $sessioninterface): Response

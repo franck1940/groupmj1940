@@ -39,6 +39,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\OneToMany(targetEntity: GlobalSharing::class, mappedBy: 'user')]
     private ?Collection $globalsharing = null;
 
+     #[ORM\OneToMany(targetEntity: Projects::class, mappedBy: 'user')]
+    private ?Collection $projects = null;
+
+
     /**
      * @var list<string> The user roles
      */
@@ -63,6 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
         $this->activities = new ArrayCollection();
         $this->userOnline = new ArrayCollection();
         $this->globalsharing = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -261,6 +266,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setGlobalsharing($globalsharing)
     {
         $this->globalsharing = $globalsharing;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of projects
+     */ 
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set the value of projects
+     *
+     * @return  self
+     */ 
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
 
         return $this;
     }

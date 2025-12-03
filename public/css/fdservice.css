@@ -1,30 +1,45 @@
 .services {
-    border: 2px ridge #fff;
-    margin-Bottom: 3%;
-     margin-top: 0%;
-    background-color: #fff;
-   border-radius: 10px;
-   /* object-fit: cover; */
-   font-size: 15px;
-   padding: 20px 20px;
+  border: 2px ridge #fff;
+  margin-bottom: 3%;
+  margin-top: 0%;
+  background-color: #fff;
+  border-radius: 10px;
+  /* object-fit: cover; */
+  font-size: 15px;
+  padding: 20px 20px;
+  text-shadow: 2px 2px 13px #000;
 }
-.services h2{
-     margin-left: 1%;
-     color: #000;
+.services h2 {
+  margin-left: 1%;
+  color: #000;
+  text-shadow: 2px 2px 13px #000;
 }
 
 .cts {
-    /* background-color: black; */
-    margin-left: 3%;
-    word-break: break-all;
-    margin-right: 4%;
-    color: #000;
+  /* background-color: black; */
+  margin-left: 3%;
+  word-break: break-all;
+  margin-right: 4%;
+  color: #000;
+  text-shadow: 2px 2px 13px #000;
 }
 
 .ctsimg img {
-    width: 20%;
-    height: 20%;
-    margin-left: 3%;
-    border: 2px ridge #fff;
-   object-fit: cover;
+  width: 20%;
+  height: 20%;
+  margin-left: 3%;
+  border: 2px ridge #fff;
+  object-fit: cover;
+}
+
+.fdfarming {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #000;
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 0;
+  text-shadow: 2px 2px 13px #000;
 }

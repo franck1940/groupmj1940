@@ -91,6 +91,7 @@ function doPostOneData(url, userId, functionName) {
         id: userId
     }, function (data, status) {
         console.log(functionName + "()=>status:" + status);
+        console.log("()=>Data==:" + data);
         return data;
     }).then(function (x) {
         return x;

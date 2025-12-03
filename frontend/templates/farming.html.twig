@@ -1,17 +1,41 @@
 {% extends "@frontend/groupnj_services.html.twig"%}
- {% block styles %}
+{% block styles %}
 	<link rel="stylesheet" href="{{asset('public/css/frontdSlider.css')}}">
 	<link rel="stylesheet" href="{{asset('public/css/frontend.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/fdservice.css')}}">
 {% endblock %}
 {% block scripts %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/frontdSlider.js') }}"></script>
 
 {% endblock %}
- {# {% block image %}{% endblock %} #}
- 
+{# {% block image %}{% endblock %} #}
+
 {% block contents %}
-<div>
- In progress
- </div>
+
+	<div class="fdfarming">
+		
+		<div class="details">
+			{% for item in aboutnjfarmings %}
+				<div class="details about">
+					<div>
+						<h2>{{ item.title}}</h2>
+					</div><br>
+					<div class="cts">{{ item.contentText}}</div><br>
+					<div class="ctsimg"><img src="/public/contentimages/{{ item.picture}}">
+					</div><br>
+
+				</div>
+			{% endfor %}
+
+		</div><br>
+
+		<div class="servicesContact">
+			<form method="post" action="farmingCommand">
+
+			</form>
+		</div>
+
+		 In Progress
+	</div>
 {% endblock %}

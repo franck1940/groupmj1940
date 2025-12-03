@@ -1,0 +1,63 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block scripts %}
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/employeesActivities.js') }}"></script>
+
+
+{% endblock %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+	<link rel="stylesheet" href="{{asset('public/css/employeesActivities.css')}}">
+
+{% endblock %}
+{% block backendcontentright %}
+	<div class="allprojects">
+
+		{% for index, item in allprojects %}
+        <div class="cts">
+        <div class="{{'cts' ~ index}}" style="display: {{ (updateproject == item.id)? 'none' : ''}};">
+				<h1>{{item.title}}</h1><br>
+			{{item.desc}}</p><br>
+			<h3>Create date:</h3><p>{{item.createDate}}</p><br>
+			<h3>Project start:</h3><p>{{item.startDate}}</p><br>
+			<h3>Project end:</h3><p>{{item.endDate}}</p><br>
+            <h3>Create by:</h3><p>{{item.user.users.firstname}}</p><br>
+            <img src='/public/images/pencil.ico' width='24px' height='24px' onclick="editProject('{{'updateCts' ~ index}}','{{'cts' ~ index}}')" style='cursor: pointer;'/>
+			<img src='/public/images/icons8-trash-24.png' width='24px' height='24px' onclick="deleteProject('{{item.id}}','deleteproject','{{item.title}}')" style='cursor: pointer;'/>
+            </div>
+            
+            <div style="display: {{(updateproject == item.id )? '': 'none' }};" id="{{'updateCts' ~ index}}">
+			<h4 style="{{cssResponse}}">{{response}}</h4>
+            <form action="/backendmanagement/employeesActivities/insertproject" method="post" id="insertproject" class="eplMgt">
+			<label for="existingProject">Project Id:</label><br>
+			<input name="existingProject" type="text" required maxlength="150" value="{{item.id}}" readonly/><br><br>
+			<input name="updateproject" type="hidden"  maxlength="150" value="{{item.id}}"/><br><br>
+
+			<label for="projectname">Project name:</label><br>
+			<input name="projectname" type="text" required maxlength="150" value="{{item.title}}"><br><br>
+			<label for="projectDescription">Project Description:</label><br>
+			<textarea name="projectDescription" id="{{'projectDescription' ~ index}}" rows="10" cols="70" style="height:400px; width:80%; max-height:70%; margin-right:5%;">{{item.description}} </textarea><br><br><br>
+             <script language="JavaScript" type="text/javascript"> 
+		        var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
+		         new RichTextEditor("{{'#projectDescription' ~ index }}", 
+		        {fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false })
+               // editor1.setHTMLCode("OK");
+		</script>
+			<label for="projectStartDate">create date:</label><br>
+			<input type="datetime-local" id="projectCreateDate" name="projectCreateDate" value="{{item.createDate}}" readonly /><br><br><br>
+			<label for="projectStartDate">Start date:</label><br>
+			<input type="datetime-local" id="projectStartDate" name="projectStartDate" value="{{item.startDate}}" /><br><br><br>
+			<label for="projectStartDate">Start date:</label><br>
+			<input type="datetime-local" id="projectEndDate" name="projectEndDate" value="{{item.endDate}}"/><br><br><br>
+			<input type="submit" value="Update project"/><br><br>
+		</form><br>
+		<p style='font-size:36px; color:#00008B; margin-left:20px;font-size:20px;cursor: pointer;'  onclick="cancelProjectForm('{{'updateCts' ~ index}}','{{'cts' ~ index}}')"> &#10229; Back</p><br><br>
+            </div>
+             </div>
+       
+       
+		{% endfor %}
+
+	</div>
+
+   
+{% endblock %}

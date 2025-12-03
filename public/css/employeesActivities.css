@@ -1,0 +1,56 @@
+.employeesProject {
+  margin-left: 3%;
+   margin-right: 10%;
+}
+
+.employeesProject h2 {
+  margin: 0%;
+}
+.employeesProject p {
+  margin: 0%;
+}
+
+.employeesProject form {
+  margin: 0%;
+}
+.allprojects, .allprojects form{
+   margin-left: 5%;
+   width: 100%;
+   height: inherit;
+}
+.updateCts{
+  display: none;
+}
+
+.cts {
+   border: 1px solid #000;
+   background-color: #fff;
+   width: 50%;
+   height: 50%;
+   margin-top: 2%;
+   padding: 2% 2%;
+   margin-bottom: 2%;
+}
+
+
+.employeesProject select,
+.employeesProject input[type="datetime-local"] {
+  border: 1px solid #000;
+  width: 30%;
+  height: 5%;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.employeesProject input[type="text"] {
+  border: 1px solid #000;
+  width: 78%;
+  height: 5%;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.employeesProject textarea {
+  border: 1px solid #000;
+  width: 80%;
+  height: 250px;
+  border-radius: 5px;
+}

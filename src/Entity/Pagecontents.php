@@ -14,8 +14,8 @@ class Pagecontents
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\Column(length: 2048, nullable: true)]
-    private ?string $contentText = null;
+    #[ORM\Column(nullable: true, type: types::BLOB)]
+    private  $contentText = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $title = null;
@@ -33,7 +33,7 @@ class Pagecontents
     //  #[ORM\JoinColumn(name: 'htmlpage_id', referencedColumnName: 'id', nullable:true)]
     private ?Htmltemplates $contentTemplate = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTime $expiredDate = null;
 
     public function getId(): ?int
@@ -43,12 +43,16 @@ class Pagecontents
 
     public function getContentText(): ?string
     {
-        return $this->contentText;
+        return stream_get_contents($this->contentText);
+       // return "";
     }
 
     public function setContentText(?string $contenttext): static
     {
-        $this->contentText = $contenttext;
+       // if (is_string($contenttext))
+            $this->contentText = $contenttext;
+        //else
+          //  $this->contentText = stream_get_contents($contenttext);
 
         return $this;
     }
@@ -91,7 +95,7 @@ class Pagecontents
      *
      * @return  self
      */
-    public function setContentTemplate(Htmltemplates $contentTemplate)
+    public function setContentTemplate(?Htmltemplates $contentTemplate)
     {
         $this->contentTemplate = $contentTemplate;
 
@@ -142,7 +146,7 @@ class Pagecontents
 
     /**
      * Get the value of expiredDate
-     */ 
+     */
     public function getExpiredDate()
     {
         return $this->expiredDate;
@@ -152,7 +156,7 @@ class Pagecontents
      * Set the value of expiredDate
      *
      * @return  self
-     */ 
+     */
     public function setExpiredDate($expiredDate)
     {
         $this->expiredDate = $expiredDate;

@@ -29,7 +29,7 @@
   margin: auto;
   float: right;
   border: 0px solid #131111;
-  width: 7%;
+  width: 10%;
   height: auto;
   margin-right: 5%;
   position: sticky;
@@ -268,7 +268,7 @@ a {
 }
 
 #contenteditor {
-  width: 70%;
+  width: 50%;
 }
 
 #createHtmlTplContainer {
@@ -374,18 +374,20 @@ tr:nth-child(odd) {}
 }
 
 #divider {
-  position: absolute;
-  margin-left: 45%;
-  height: 100%;
+  /* position: relative; */
+  height: 95%;
   border-left: 2px solid #000;
-  width: 0.5%;
+  float: left;
+  margin-left: 48%;
+ margin-bottom: 5%;
+ 
 
   /* background-color:#87CEFA ; */
   /* margin-bottom: 100%; */
   /* margin-top: 5%; */
   /* bottom: 15%; */
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #updatecontainer,
@@ -400,21 +402,26 @@ tr:nth-child(odd) {}
 }
 
 #contentLft {
-  width: 50%;
+  position: relative;
+  width: 45%;
   height: 100%;
   border: 0px solid #2c0a0a;
-  margin-left: 1%;
+  margin-left: 0%;
   /* margin: auto; */
   float: left;
   overflow: hidden;
+  padding: 2% 2%;
 }
 
 #contentRgt {
+  position: relative;
   border: 0px solid #230808;
-  width: 45%;
-  height: 100%;
-  float: right;
+  width: 50%;
+  height: inherit;
+  float: left;
   overflow: hidden;
+  margin-left: 0%;
+  /* padding: 2% 2%; */
 }
 
 #resetPasswordContainer {
@@ -454,7 +461,7 @@ tr:nth-child(odd) {}
   width: 85%;
   height: auto;
   padding: 2% 5%;
-  border: 2px ridge #000;
+  border: 1px ridge #fff;
   background-color: #fff;
   margin-bottom: 3%;
   font-size: 20px;

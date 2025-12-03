@@ -35,7 +35,20 @@
 
 			<label for="description">
 				Description:</label><br>
-			<textarea name="desc" id="desc" required rows="10" cols="80" maxlength="512"></textarea><br><br>
+			<textarea name="desc" id="desc" required rows="10" cols="80" maxlength="512" style="min-height:400px;max-height:400px; max-width:300px;"></textarea><br><br>
+			<script>
+			          var fontsNames="Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
+					//, maxHTMLLength: 1000
+					  var editor1 = new RichTextEditor("#desc", 
+					   {editorResizeMode: "none",fontNameItems: fontsNames, skin:"rounded-corner", maxWidthForMobile:300, allowScriptCode:false });
+						//editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
+						//editor1.fullScreen=true;
+						//editor1.execCommand("fullscreenexit",true);
+						//editor1.execCommand("Text","Type here");
+						//editor1.insertText("hello world");
+						
+			</script>
+			
 			<input type="hidden" name="sid" value="{{sid}}"/><br><br>
 
 			<input type="submit"/><br>

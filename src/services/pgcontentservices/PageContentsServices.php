@@ -71,28 +71,22 @@ class PageContentsServices implements IPageContentsServices
     public function findContentsByMenuId(int $menuId): array
     {
         $menu = $this->menuServices->findMenuById($menuId);
-        // $query = $this->entitymanager->createQueryBuilder('Pagecontents')
-        //     ->where('Pagecontents.menu = :param')
-        //     ->setParameter('param', $menu)
-        //     ->orderBy('p.arg', 'ASC')
-        //     ->getQuery()
-        //     ->getResult();
-     //  $result[] = $this->entitymanager->getRepository(Pagecontents::class)->findBy(["menu" => $menu]);
-       //$result[] = [$menu];
         return  $this->entitymanager->getRepository(Pagecontents::class)->findBy(["menu" => $menu]);
     }
 
     public function deleteContentsByMenuId(int $contentId): bool
     {
-        $tData[] = $this->findContentsByMenuId($contentId);
+        $tData = $this->findContentsByMenuId($contentId);
 
         if (!$tData) {
             throw new Exception('No product found for id ' . $contentId);
         }
 
         try {
+
             $this->entitymanager->beginTransaction();
-            foreach ($tData as $x) {
+
+            foreach($tData as $x) {
                 $this->entitymanager->remove($x);
             }
             $this->entitymanager->flush();

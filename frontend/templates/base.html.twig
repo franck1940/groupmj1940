@@ -10,13 +10,20 @@
 		{% block styles %}{% endblock %}
 		<link rel="icon" href="{{ asset('public/images/tlogo.ico') }}" type="image/x-icon" src=""/>
 		<link rel="stylesheet" href="/public/css/frontend.css"/>
+		 <link rel="stylesheet" href="/public/scripts/richtexteditor/rte_theme_default.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/MenuMgActions.js') }}"></script>
+		<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/camera.js') }}"></script>
+		<script language="JavaScript" type="text/javascript" src="/public/scripts/richtexteditor/rte.js"></script>
+		<script language="JavaScript" type="text/javascript" src='/public/scripts/richtexteditor/plugins/all_plugins.js'></script>
+
 	</head>
 	<body>
-		 <video autoplay muted loop id="myVideo" style="position: fixed;right: 0;bottom: 0; min-width: 100%; min-height: 100%;">
-			<source src="/public/images/video.mp4" type="video/mp4">
-		</video> 
+		 <video autoplay muted loop id="myVideo" style="position: fixed; right: 0;bottom: 0; min-width: 100%; min-height: 100%;">
+			<source src="/public/images/backgroundVideo4.mp4" type="video/mp4">
+		</video>  
+		 
+		
 		<div id="mainCtsContainer" class="mainCtsContainer">
 			<div id="mainCtsLeft" class="mainCtsLeft">
 
@@ -45,7 +52,7 @@
 				{% endfor %}
 
 			</div>
-			<div id="mainCtsImage"class="mainCtsImage"> {% block image %}{% endblock %}</div>
+			<div id="mainCtsImage"class="mainCtsImage">{% block image %}{% endblock %}</div>
 			<div class="mainCtsContent"> {% block contents %}{% endblock %}</div>
 			{# <div id="mainCtsCenter"> #}
 				{# <div id="mainCtsImage"> {% block image %}{% endblock %}
@@ -74,7 +81,6 @@
 											<span>
 												<a href=" {{(item.0.menuRoute)? item.0.menuRoute : '#' }}" class="footer_a">{{item.0.title}}</a>
 												<br><a style="color:white;">|</a>
-												<br><a style="color:white;">|</a>
 											</span><br>
 											{% for item2 in item.1  %}
 												<span>
@@ -93,7 +99,12 @@
 
 					{# </div> #}
 
-					<div id="mainCtsRight"><div style=" boder:1px solid #000; width:30%;" class="mainCtsRight">Advertising</div></div>
+					<div id="mainCtsRight"><div style=" boder:1px solid #000; width:30%;" class="mainCtsRight">Advertising
+					
+					{# <video autoplay muted loop id="cameraFeed" style="position: relative;right: 0;bottom: 0; min-width: 10%; min-height: 10%;">
+					</video> #}
+					
+					</div></div>
 				</div>
 			</body>
 		</html>
