@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
 			{% block title %}Welcome to GROUP NJ 1940
 			{% endblock %}
@@ -10,103 +10,109 @@
 		{% block styles %}{% endblock %}
 		<link rel="icon" href="{{ asset('public/images/tlogo.ico') }}" type="image/x-icon" src=""/>
 		<link rel="stylesheet" href="/public/css/frontend.css"/>
-		 <link rel="stylesheet" href="/public/scripts/richtexteditor/rte_theme_default.css" />
+		<link rel="stylesheet" href="/public/css/advertising.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/MenuMgActions.js') }}"></script>
 		<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/camera.js') }}"></script>
-		<script language="JavaScript" type="text/javascript" src="/public/scripts/richtexteditor/rte.js"></script>
-		<script language="JavaScript" type="text/javascript" src='/public/scripts/richtexteditor/plugins/all_plugins.js'></script>
-
 	</head>
 	<body>
-		 <video autoplay muted loop id="myVideo" style="position: fixed; right: 0;bottom: 0; min-width: 100%; min-height: 100%;">
-			<source src="/public/images/backgroundVideo4.mp4" type="video/mp4">
-		</video>  
-		 
-		
+		<video autoplay muted loop id="myVideo" style="position: fixed; right: 0;bottom: 0; min-width: 100%; min-height: 100%;">
+			<source src="/public/images/backgroundVideo3.mp4" type="video/mp4">
+		</video>
+
+
 		<div id="mainCtsContainer" class="mainCtsContainer">
 			<div id="mainCtsLeft" class="mainCtsLeft">
+				{% set index = 1 %}
 
 				{% for key, item in allMenus  %}
 
-					{% if item|length == 1 %}
-						<a href="{{(item.menuRoute)? item.menuRoute : '#'}}" class="childMenu_a_stl" id={{"childMenu"~key}}>{{item.title}}</a>
-						<br><br>
-					{% endif %}
-					{% if item|length >= 2 %}
-						<span>
-							<a href=" {{(item.0.menuRoute)? item.0.menuRoute : '#' }}" class="parentMenu_a" id={{"link"~key}}>{{item.0.title}}</a>
-							{# <br><a style="color:white;" class="childMenu_a" id={{"childMenu"~key}}>|</a>
-																			<br><a style="color:white;" class="childMenu_a" id={{"childMenu"~key}} >|</a> #}
-						</span><br>
-						{% for item2 in item.1  %}
-							<span>&nbsp;&nbsp;
-								<a href=" {{(item2.menuRoute)? item2.menuRoute : '#' }}" class="childMenu_a" id={{"childMenu"~key}}>
-									<span>{{item2.title}}</span>
-								</a>
-							</span><br class="childMenu_br" id={{"childMenu_br"~key}}>
+					{% set index = index + 1 %}
+
+					{% if (item.0.menuRoute =="#" or item.0.menuRoute is empty) and (item.1|length > 0)%}
+						<span>&nbsp;&nbsp;
+							<p class="parentMenu_a_p1" id={{"link_p1."~ index}}>
+								<span>{{item.0.title}}</span>
+							</p>
+						</span>
+
+						{% for x in item.1 %}
+
+							{% if  ((x.0).menuRoute =="#" or (x.0).menuRoute is empty) and (x.1 |length) > 0  %}
+
+								<span>&nbsp;&nbsp;
+									<p class="parentMenu_a_p2 childMenu_a_p2" name={{"link_p2."~ index}} id={{"childMenu_p1"~ index}}>
+										<span>{{(x.0).title}}</span>
+									</p>
+								</span><br class="childMenu_br_p2" id={{"childMenu_br_p2"~index}}>
+
+								{% for y in x.1 %}
+									<span>&nbsp;&nbsp;
+										<a href=" {{(y.menuRoute)? y.menuRoute : '#' }}" class="childMenu_a_p2" id={{"childMenu_p2" ~ index}}>
+											<span>{{y.title}}</span>
+										</a>
+									</span><br class="childMenu_br_p2" id={{"childMenu_br_p2"~ index}}>
+								{% endfor %}
+								<br>
+							{% else %}
+
+								<span>&nbsp;&nbsp;
+									<a href=" {{((x.0).menuRoute)? (x.0).menuRoute : '#' }}" class="childMenu_a_p1" id={{"childMenu_p1"~ index}}>
+										<span>{{(x.0).title}}</span>
+									</a>
+								</span><br class="childMenu_br_p1" id={{"childMenu_br_p1"~ index}}>
+							{% endif %}
 						{% endfor %}
-						<br>
+					<br>
+					{% endif %}
+					
+
+					{% if item|length  == 1  %}
+						<span>
+							<a href="{{(item.0.menuRoute)? item.0.menuRoute : '#'}}" class="childMenu_a_stl" id={{"childMenu"~index}}>{{item.0.title}}</a>
+						</span><br>
 					{% endif %}
 
 				{% endfor %}
 
 			</div>
-			<div id="mainCtsImage"class="mainCtsImage">{% block image %}{% endblock %}</div>
-			<div class="mainCtsContent"> {% block contents %}{% endblock %}</div>
-			{# <div id="mainCtsCenter"> #}
-				{# <div id="mainCtsImage"> {% block image %}{% endblock %}
+			<div id="mainCtsImage" class="mainCtsImage"> {% block image %}{% endblock %}
+				</div>
+				<div class="mainCtsContent"> {% block contents %}{% endblock %}
 					</div>
-					<div class="contentbody"> {% block contents %}{% endblock %}
-						</div> #}
+					{# <div id="mainCtsCenter"> #}
+					{# <div id="mainCtsImage"> {% block image %}{% endblock %}
+																																																			</div>
+																																																			<div class="contentbody"> {% block contents %}{% endblock %}
+																																																				</div> #}
 
-						<div class="fdfooter">
-							<div class="box">
-								<div class="footer_a">
-									Phone :+2370000000
-								</div>
-								<div class="footer_a">
-									Email :xxx@groupnj1940.com
-								</div>
-								{% for key, item in allMenus  %}
-
-									{% if item|length == 1 %}
-										<div>
-											<a href="{{(item.menuRoute)? item.menuRoute : '#'}}" class="footer_a">{{item.title}}</a>
-											<br><br>
-										</div>
-									{% endif %}
-									{% if item|length >= 2 %}
-										<div>
-											<span>
-												<a href=" {{(item.0.menuRoute)? item.0.menuRoute : '#' }}" class="footer_a">{{item.0.title}}</a>
-												<br><a style="color:white;">|</a>
-											</span><br>
-											{% for item2 in item.1  %}
-												<span>
-													<a href=" {{(item2.menuRoute)? item2.menuRoute : '#' }}">|__<span class="footer_a">{{item2.title}}</span>
-													</a>
-												</span><br>
-											{% endfor %}
-											<br>
-										</div>
-
-									{% endif %}
-
-								{% endfor %}
+					<div class="fdfooter">
+						<div class="box">
+							<div class="footer_a">
+								Phone :+4900000 /  +10000  /  +2370000000
 							</div>
+							<div class="footer_a">
+								Email :xxx@groupnj1940.com
+							</div>
+							
+
 						</div>
+					</div>
 
 					{# </div> #}
 
-					<div id="mainCtsRight"><div style=" boder:1px solid #000; width:30%;" class="mainCtsRight">Advertising
-					
-					{# <video autoplay muted loop id="cameraFeed" style="position: relative;right: 0;bottom: 0; min-width: 10%; min-height: 10%;">
-					</video> #}
-					
-					</div></div>
+					<div id="mainCtsRight">
+						<div style=" boder:1px solid #000; width:30%; font-size:30px; writing-mode: vertical-lr;" class="mainCtsRight blinking-text">
+						Page in construction  - will be oprational soon
+
+							{# <video autoplay muted loop id="cameraFeed" style="position: relative;right: 0;bottom: 0; min-width: 10%; min-height: 10%;">
+																																																																					</video> #}
+
+						</div>
+					</div>
 				</div>
 			</body>
 		</html>
-	</div>
-</body></html></div></body></html></body></html>
+	</body>
+</html></div></body></html></div></body></html></body></html>

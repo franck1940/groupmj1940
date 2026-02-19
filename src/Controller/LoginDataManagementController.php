@@ -254,7 +254,7 @@ class LoginDataManagementController extends AbstractController
             ->to($email)
             ->subject('Welcome to group nj 1940!');
             
-        $host= $request->server->get('HTTP_HOST').'/login';
+        $host="https://www.".$request->server->get('HTTP_HOST').'/login';
 
         if ($email && $password) {
             $existEmail = $userLoginServices->findUserByEmail($email);
@@ -266,7 +266,7 @@ class LoginDataManagementController extends AbstractController
                 $existEmail->setTotpSecret(null);
                 $rslt = $userLoginServices->insertUser($existEmail);
                 $user = $existEmail->getUsers();
-                $sendEmailMessage->text("Welcome - {$user->getFirstName()}! - your password has been successful reset , clicks on the following to login: http://$host  ");
+                $sendEmailMessage->text("Welcome - {$user->getFirstName()}! - your password has been successful reset , clicks on the following to login: $host  ");
                 $mailer->send($sendEmailMessage);
                 if ($rslt) {
                     $cssResponse = "color:green;";

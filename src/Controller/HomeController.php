@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\services\contactservice\ContactServices;
 use App\services\menuservice\MenuServices;
 use App\services\pgcontentservices\PageContentsServices;
+use App\services\routeManagements\RouteMenuContent;
 use App\utils\DataUtils;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,6 +33,45 @@ class HomeController extends AbstractController
     {
         return $this->redirectToRoute('app_home');
     }
+    #[Route(path: '/srvacts/{value}', methods: ["GET"])]
+    public function showServiceActivity(string $value, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $contentOfMenu = [];
+        $menuServices = new MenuServices($entityManager);
+        $contentServices = new PageContentsServices($entityManager);
+        $routMenucontent = new RouteMenuContent($menuServices, $contentServices);
+
+        if (str_contains(strtoupper($value), "CONTACT")) {
+            return $this->redirectToRoute("app_contact");
+        }
+
+        if (str_contains(strtoupper($value), "LOGIN")) {
+            return $this->redirectToRoute("app_login");
+        }
+
+        $contentOfMenu = $routMenucontent->getAllContentOfMenu($value);
+        $temp = [];
+        foreach ($contentOfMenu as $item) {
+            if (!$routMenucontent->isContentExpirated($item->getId())) {
+                array_push($temp, $item);
+            }
+        }
+        $contentOfMenu = $temp;
+        // $services = $menuServices->findMenuByTitle("Farming");
+        //$aboutnjfarmings = $services[0]->getPagecontents();
+        return $this->render('@frontend/srvacts.html.twig', [
+            "title" => $value,
+            "contents" => $contentOfMenu,
+            "allMenus" => (new DataUtils($entityManager))->getStructuredMenus(),
+        ]);
+    }
+
+    #[Route(path: '/srvacts', methods: ["GET"])]
+    public function srvactsToHome(): Response
+    {
+        return $this->redirectToRoute('app_home');
+    }
+
 
 
     // #[Route(path: '/grpfd/{routmenu}')]

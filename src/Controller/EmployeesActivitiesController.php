@@ -7,7 +7,6 @@ use App\services\projectservice\Projectservices;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Config\Builder\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EmployeesActivitiesController extends AbstractController
 {
     #[Route(path: "/backendmanagement/employeesActivities/insertGui", name: 'app_insertProjectGui')]
-    public function ShowInsertCompanyProjectGui(EntityManagerInterface $entityManager,  Request $request)
+    public function ShowInsertCompanyProjectGui(EntityManagerInterface $entityManager,  Request $request): Response
     {
         $createDate = date("Y-m-d H:i:s");
         $projectServices = new Projectservices($entityManager);
@@ -35,7 +34,7 @@ class EmployeesActivitiesController extends AbstractController
     }
 
     #[Route(path: "/backendmanagement/employeesActivities/insertproject", methods: ["POST"], name: 'app_insertAproject')]
-    public function insertCompanyProjects(EntityManagerInterface $entityManager,  Request $request)
+    public function insertCompanyProjects(EntityManagerInterface $entityManager,  Request $request): Response
     {
 
         $projectServices = new Projectservices($entityManager);
@@ -106,42 +105,78 @@ class EmployeesActivitiesController extends AbstractController
             $response = "Insert project [successfull]";
             $cssResponse = "color:green;";
         }
+        $page = new Response();
+        if ($insertProject)
+            $page = $this->redirectToRoute('app_insertProjectGui', ["response" => $response, "cssResponse" => $cssResponse]);
 
-        if($insertProject)
-        return $this->redirectToRoute('app_insertProjectGui', ["response" => $response, "cssResponse" => $cssResponse]);
-
-       if($updateProject)
-        return $this->redirectToRoute('app_allprojects', ["response" => $response, "cssResponse" => $cssResponse, "updateproject"=>$updateProject]);
-
+        if ($updateProject)
+            $page = $this->redirectToRoute('app_projectdetail', ["response" => $response, "cssResponse" => $cssResponse, "updateproject" => $updateProject]);
+        return  $page;
     }
 
     #[Route(path: "/backendmanagement/employeesActivities/allprojects", name: 'app_allprojects')]
-    public function showAllProjects(EntityManagerInterface $entityManager,Request $request)
+    public function showAllProjects(EntityManagerInterface $entityManager, Request $request): Response
     {
         $projectServices = new Projectservices($entityManager);
         $existingProject = $projectServices->findAllProjects();
-         $updateProject = $request->get("updateproject");
-         $response = $request->get("response");
+        $updateProject = $request->get("updateproject");
+        $response = $request->get("response");
         $cssResponse = $request->get("cssResponse");
         return $this->render('@backend/allProject.html.twig', [
-            "value" => "List all projects",
+            "value" => "List of all projects",
             "allprojects" => $existingProject,
-            "updateproject"=> ($updateProject)? $updateProject: "no",
+            "updateproject" => ($updateProject) ? $updateProject : "no",
             "response" => $response,
             "cssResponse" => $cssResponse
         ]);
     }
 
-    #[Route(path: "/backendmanagement/employeesActivities/deleteproject",methods:["POST"], name: 'deleteproject')]
-    public function deleteProjects(EntityManagerInterface $entityManager,Request $request): Response
+    #[Route(path: "/backendmanagement/employeesActivities/deleteproject", methods: ["POST"], name: 'deleteproject')]
+    public function deleteProjects(EntityManagerInterface $entityManager, Request $request): Response
     {
-         $id = $request->request->get("id");
+        $id = $request->request->get("id");
         $projectServices = new Projectservices($entityManager);
 
-         $results = $projectServices ->deleteById($id);
-       
-        return new Response(($results)?"successful":"failed",200,[]);
+        $results = $projectServices->deleteById($id);
+
+        return new Response(($results) ? "successful" : "failed", 200, []);
     }
 
+    #[Route(path: "/backendmanagement/employeesActivities/details", name: "app_projectdetail", methods: ["GET"])]
+    public function showProjectDetails(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $projectServices = new Projectservices($entityManager);
+        $id = $request->get("prjd");
+        $updateProject = $request->get("updateproject");
+        $_project = ($id) ? $projectServices->findProjectByPid($id) : $projectServices->findProjectByPid($updateProject);
+        $response = $request->get("response");
+        $cssResponse = $request->get("cssResponse");
+        return $this->render('@backend/projectDetail.html.twig', [
+            "value" => "Project Details",
+            "item" => $_project,
+            "updateproject" => ($updateProject) ? $updateProject : "no",
+            "response" => $response,
+            "cssResponse" => $cssResponse
+        ]);
+    }
 
+    
+    #[Route(path: "/backendmanagement/employeesActivities/getProjectInfos", methods: ["POST"], name: 'getProjectInfos')]
+    public function getProjectInfo(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $arr = [];
+        $id = $request->request->get("id");
+        $projectServices = new Projectservices($entityManager);
+        $results = $projectServices->findProjectByPid($id);
+
+          array_push($arr, array(
+            "ProjectTitle" => $results->getTitle(),
+            "Description" => $results ->getDescription(),
+            "CreateDate" => $results->getCreatedate(),
+            "StartDate"  => $results->getStartDate(),
+            "EndDate" => $results->getEndDate()
+          ));
+           $arrTojson = json_encode($arr);
+        return new Response($arrTojson, 200, []);
+    }
 }

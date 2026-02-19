@@ -1,6 +1,8 @@
 {% extends '@backend/backendmanagement.html.twig' %}
 {% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/employeesActivities.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/utils.js') }}"></script>
 
 
 {% endblock %}
@@ -10,54 +12,73 @@
 
 {% endblock %}
 {% block backendcontentright %}
-	<div class="allprojects">
 
-		{% for index, item in allprojects %}
-        <div class="cts">
-        <div class="{{'cts' ~ index}}" style="display: {{ (updateproject == item.id)? 'none' : ''}};">
-				<h1>{{item.title}}</h1><br>
-			{{item.desc}}</p><br>
-			<h3>Create date:</h3><p>{{item.createDate}}</p><br>
-			<h3>Project start:</h3><p>{{item.startDate}}</p><br>
-			<h3>Project end:</h3><p>{{item.endDate}}</p><br>
-            <h3>Create by:</h3><p>{{item.user.users.firstname}}</p><br>
-            <img src='/public/images/pencil.ico' width='24px' height='24px' onclick="editProject('{{'updateCts' ~ index}}','{{'cts' ~ index}}')" style='cursor: pointer;'/>
-			<img src='/public/images/icons8-trash-24.png' width='24px' height='24px' onclick="deleteProject('{{item.id}}','deleteproject','{{item.title}}')" style='cursor: pointer;'/>
-            </div>
-            
-            <div style="display: {{(updateproject == item.id )? '': 'none' }};" id="{{'updateCts' ~ index}}">
-			<h4 style="{{cssResponse}}">{{response}}</h4>
-            <form action="/backendmanagement/employeesActivities/insertproject" method="post" id="insertproject" class="eplMgt">
-			<label for="existingProject">Project Id:</label><br>
-			<input name="existingProject" type="text" required maxlength="150" value="{{item.id}}" readonly/><br><br>
-			<input name="updateproject" type="hidden"  maxlength="150" value="{{item.id}}"/><br><br>
+	<div class="tableData">
+		<h2>{{value}}</h2>
+		<div class="tableFilters">
+			
+				<label for="title">Title:</label>
+				<input id="title" placeholder="Search for title.." onkeyup="projectTableFilter('allProjectTable')"/>
+				<spacer type=horizontal size=50>
+				<label for="createDate">Create date:</label>
+				<input id="ctDate" placeholder="Search for create date.." onkeyup="projectTableFilter('allProjectTable')"/>
+				<spacer type=horizontal size=50>
+				<label for="startDate">Start date:</label>
+				<input id="stDate" placeholder="Search for start date.." onkeyup="projectTableFilter('allProjectTable')"/>
+				<br><br>
+				<label for="endDate">End date:</label>
+				<input id="edDate" placeholder="Search for end date.." onkeyup="projectTableFilter('allProjectTable')"/>
+				<spacer type=horizontal size=50>
+				<label for="createBy">Create by:</label>
+				<input id="createBy" placeholder="Search for create by.." onkeyup="projectTableFilter('allProjectTable')"/>
+				<br><br>
+		</div>
+		<br><br><br><br>
+		<form action="app_projectdetail">
+			<table id="allProjectTable">
+				<thead>
+					
+						<th>Number</th>
+						<th>
+							Project title</th>
+						<th>
+							Create date</th>
+						<th>
+							Start date</th>
+						<th>
+							End date</th>
+						<th>
+							Create by</th>
+						<th>
+							Show details</th>
+				</thead>
+				<tbody>
+					{% for index, item in allprojects %}
+						<tr>
+							<td>
+								{{index + 1 }}</td>
+							<td>{{item.title}}</td>
+							<td>
+								{{item.createDate}}</td>
+							<td>
+								{{item.startDate}}</td>
+							<td>
+								{{item.endDate}}</td>
+							<td>{{item.user.users.firstname}}</td>
+							<td>
+								<button type="button">
+									<a href="{{ 'details?prjd=' ~ item.id}}">
+										Show Details
+									</a>
+								</button>
+							</td>
+						</tr>
 
-			<label for="projectname">Project name:</label><br>
-			<input name="projectname" type="text" required maxlength="150" value="{{item.title}}"><br><br>
-			<label for="projectDescription">Project Description:</label><br>
-			<textarea name="projectDescription" id="{{'projectDescription' ~ index}}" rows="10" cols="70" style="height:400px; width:80%; max-height:70%; margin-right:5%;">{{item.description}} </textarea><br><br><br>
-             <script language="JavaScript" type="text/javascript"> 
-		        var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
-		         new RichTextEditor("{{'#projectDescription' ~ index }}", 
-		        {fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false })
-               // editor1.setHTMLCode("OK");
-		</script>
-			<label for="projectStartDate">create date:</label><br>
-			<input type="datetime-local" id="projectCreateDate" name="projectCreateDate" value="{{item.createDate}}" readonly /><br><br><br>
-			<label for="projectStartDate">Start date:</label><br>
-			<input type="datetime-local" id="projectStartDate" name="projectStartDate" value="{{item.startDate}}" /><br><br><br>
-			<label for="projectStartDate">Start date:</label><br>
-			<input type="datetime-local" id="projectEndDate" name="projectEndDate" value="{{item.endDate}}"/><br><br><br>
-			<input type="submit" value="Update project"/><br><br>
-		</form><br>
-		<p style='font-size:36px; color:#00008B; margin-left:20px;font-size:20px;cursor: pointer;'  onclick="cancelProjectForm('{{'updateCts' ~ index}}','{{'cts' ~ index}}')"> &#10229; Back</p><br><br>
-            </div>
-             </div>
-       
-       
-		{% endfor %}
-
+					{% endfor %}
+				</tbody>
+			</table>
+		</form>
 	</div>
 
-   
+
 {% endblock %}

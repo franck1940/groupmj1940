@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use function PHPUnit\Framework\isNull;
+
 class PgContentsController extends AbstractController
 {
     #[Route(path: "/backendmanagement/pagecontentmanagement/pgcontentGui", name: "pgcontentGui")]
@@ -26,12 +28,42 @@ class PgContentsController extends AbstractController
         $menuServices = new MenuServices($entityManager);
         $htmlTplServices = new HtmlTemplateServices($entityManager);
         $allmenus = $menuServices->findAllMenus();
+        $allNotRootMenus = [];
+        foreach ($allmenus as $item) {
+            $submenus = $menuServices->findSbMenu($item->getId());
+            if ($submenus) {
+                foreach ($submenus as $sItem) {
+                    $isElementFound = false;
+                    $ssbmenus = $menuServices->findSbMenu($sItem->getId());
+                    foreach ($ssbmenus as $ssItem) {
+                        array_push($allNotRootMenus, $ssItem);
+                        $isElementFound = true;
+                    }
+                    if (!$isElementFound) {
+                        $isContains = false;
+                        foreach ($allNotRootMenus as $p) {
+                            if ($p->getId() == $sItem->getId()) {
+                                $isContains = true;
+                                break;
+                            }
+                        }
+                        if (!$isContains)
+                            array_push($allNotRootMenus, $sItem);
+                    }
+                }
+            } else {
+                if (($item->getParentId() == -1 || empty($item->getParentId())) && !str_contains($item->getTitle(), "Login")) {
+                    array_push($allNotRootMenus, $item);
+                }
+            }
+        }
+
         $alltemplates = $htmlTplServices->findAllHtmlTemplate();
         return $this->render('@backend/createPageContents.html.twig', [
             "value" => "Create contents",
             "cssResponse" => $cssResponse,
             "response" => $response,
-            "allmenus" => $allmenus,
+            "allmenus" => $allNotRootMenus,
             "selected" => $selecetMenu,
             "allTemplates" => $alltemplates
 
@@ -72,11 +104,11 @@ class PgContentsController extends AbstractController
         if (isset($_FILES["picture"]["name"]) && $image) {
             $target_file = $target_dir . basename($_FILES["picture"]["name"]);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $checkPictutre = getimagesize($_FILES["picture"]["tmp_name"]);
-            if (!$checkPictutre) {
-                $response = $response . "[" . "File is an image - " . $checkPictutre["mime"] . "].";
-                $isContentsFilled = false;
-            }
+            // $checkPictutre = getimagesize($_FILES["picture"]["tmp_name"]);
+            // if (!$checkPictutre) {
+            //     $response = $response . "[" . "File is an image - " . $checkPictutre["mime"] . "].";
+            //     $isContentsFilled = false;
+            // }
             if (file_exists($target_file)) {
                 $response = $response . "[Sorry, file already exists.]";
                 //  $isContentsFilled = true;
@@ -154,6 +186,7 @@ class PgContentsController extends AbstractController
                     "contentText" => $value->getContentText(),
                     "picture" => $value->getPicture(),
                     "createDate" => $value->getCreateDate(),
+                    "expiredDate" => $value->getExpiredDate(),
                     "templates" => array("id" => $html->getId(), "templateName" => $html->getTemplateName())
                 ));
             }
@@ -165,14 +198,9 @@ class PgContentsController extends AbstractController
     public function showAllContents(EntityManagerInterface $entityManager)
     {
         $pgctServices = new PageContentsServices($entityManager);
-        //$menuServices = new MenuServices($entityManager);
-        //$contents =[];
-        $cts = $pgctServices->findAllContents();
-        $header = array("Menu title", "Content title", "Content text", "template", "picture", "Delete");
-        //  foreach ($cts as $pgct) {
-        //     $arr = array($pgct->getMenu()->getTitle(), $pgct->getTitle(),
 
-        //  }
+        $cts = $pgctServices->findAllContents();
+        $header = array("Menu title", "Content title", "Content text", "Template","Create date","Expired date", "picture", "Delete");
         return $this->render('@backend/allPageContents.html.twig', ["value" => "All contents", "headers" => $header, "contents" => $cts]);
     }
 

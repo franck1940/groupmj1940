@@ -10,6 +10,6 @@ interface IMenuServices{
     public function findSbMenu(int $id):array;
     public function deleteMenu(int $menuId):bool;
     public function findAllMenus():array;
-    public function findMenuByTitle(string $title);
+    public function findMenuByTitle(string $title):array;
 }
 ?>

@@ -8,16 +8,16 @@
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/pgContents.js') }}"></script>
-	
+
 {% endblock %}
 {% block backendcontentright %}
 
 	<div id="pagecontainer">
+		<h2>
+			{{ value }}
+		</h2>
+		<h4 style="{{cssResponse}}">{{response}}</h4>
 		<div id="contentLft">
-			<h2>
-				{{ value }}
-			</h2>
-			<h4 style="{{cssResponse}}">{{response}}</h4>
 			<form action="/backendmanagement/pagecontentmanagement/insertPgContent" method="POST" enctype="multipart/form-data">
 				<label for="menuContent">Root name:</label><br>
 				<select name="allmenu" id="allmenu" onchange="showContentsOfMenu('allmenu','contentOfaMenu','contentDetails')">
@@ -34,45 +34,38 @@
 					{% endfor %}
 				</select><br><br>
 				<label for="texttitle">Title:</label><br>
-				<input type="text" id="pagetitle" name="title"/><br>
-				<label for="picture">Picture:</label><br>
-				<input type="file" id="picture" name="picture"/><br>
+				<input type="text" id="pagetitle" name="title"/><br><br>
+				<label for="picture">Picture:</label>
+				<input type="file" id="picture" name="picture"/><br><br>
 				<label for="contenteditor">Description:</label><br>
-				<textarea name="contenteditor" id="contenteditor" rows="10" cols="50" style="height:400px; max-width:40%; width:40%; max-height:70%; margin-right:10%;"></textarea><br><br>
-				
+				<textarea name="contenteditor" id="contenteditor" rows="10" cols="70" style="height:400px; max-width:90%; max-height:40%; margin-right:10%;"></textarea><br><br>
 				<label for="expireddate">Expired date:</label><br>
 				<input type="datetime-local" id="expireddate" name="expireddate"/><br><br>
 				<input type="submit" value="Create content"/><br><br>
 			</form><br><br><br>
-    		<a href="/backendmanagement/pagecontentmanagement" style="margin-left:15px; text-decoration: none; font-size:20px"> &#10229; Back to content dashboard</a>
+			<a href="/backendmanagement/pagecontentmanagement" style="margin-left:15px; text-decoration: none; font-size:20px">
+				&#10229; Back to content dashboard</a>
 
 		</div><br>
 		<div id="divider"><br></div>
 		<div id="contentRgt">
 			<div id="contentTitle">
-				Content details of menu
+				Contents details overview 
 			</div>
 			<div id="contentDetails">
 				<script>
-				// var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
-				// 	var editor1 = new RichTextEditor("#contenteditor2", 
-				// 	{fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false });
-					showContentsOfMenu('allmenu', 'contentOfaMenu', 'contentDetails');
+				showContentsOfMenu('allmenu', 'contentOfaMenu', 'contentDetails');
 				</script>
 			</div>
 		</div>
 	</div>
 
-<script>
-				   
-	var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
-	//, maxHTMLLength: 1000
-	var editor1 = new RichTextEditor("#contenteditor", 
-		{fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false });
-		//editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
-	
-	// var editor1 = new RichTextEditor("#contenteditor2", 
-	// 	{fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false });
+	<script>// var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
+// //, maxHTMLLength: 1000
+// var editor1 = new RichTextEditor("#contenteditor",
+// {fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false });
+// //editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
 
-</script>
-{% endblock %}
+// var editor1 = new RichTextEditor("#contenteditor2",
+// {fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false });
+</script>{% endblock %}

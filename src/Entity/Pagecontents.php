@@ -14,8 +14,8 @@ class Pagecontents
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\Column(nullable: true, type: types::BLOB)]
-    private  $contentText = null;
+    #[ORM\Column(length: 1024, nullable: true)]
+    private ?string $contentText = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $title = null;
@@ -43,17 +43,13 @@ class Pagecontents
 
     public function getContentText(): ?string
     {
-        return stream_get_contents($this->contentText);
-       // return "";
+        return $this->contentText;
     }
 
     public function setContentText(?string $contenttext): static
     {
-       // if (is_string($contenttext))
-            $this->contentText = $contenttext;
-        //else
-          //  $this->contentText = stream_get_contents($contenttext);
 
+        $this->contentText = $contenttext;
         return $this;
     }
 
@@ -72,6 +68,10 @@ class Pagecontents
     public function getCreateDate(): ?\DateTime
     {
         return $this->createDate;
+    }
+    public function getCreateDateTostring()
+    {
+        return ($this->createDate)? $this->createDate->format('Y-m-d H:i:s'):"";
     }
 
     public function setCreateDate(\DateTime $createDate): static
@@ -151,6 +151,11 @@ class Pagecontents
     {
         return $this->expiredDate;
     }
+    public function getExpiredDateToString()
+    {
+        return ( $this->expiredDate)? $this->expiredDate->format('Y-m-d H:i:s'):"";
+    }
+
 
     /**
      * Set the value of expiredDate

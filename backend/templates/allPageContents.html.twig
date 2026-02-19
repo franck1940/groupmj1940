@@ -1,11 +1,30 @@
 {% extends '@backend/backendmanagement.html.twig' %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/utils.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/pgContents.js') }}"></script>
+
+{% endblock %}
 {% block backendcontentright %}
-	<div id="allusers">
+	<div id="alluserss" class="tableData">
 		<h2>
 			{{ value }}
 		</h2>
 		{# <form action="/backendmanagement/logindatamanagement/all" id="allLogins" method="POST"> #}
-		<table>
+		<div class="tableFilters">
+			<label for="menuTitle"> Menu title: </label>
+			<input name="menuTitle" onkeyup="contentTableFilter('allContentTable')"/>
+			<spacer type=horizontal size=50>
+			<label for="contentTitle"> Content title: </label>
+			<input name="contentTitle" onkeyup="contentTableFilter('allContentTable')"/>
+			<spacer type=horizontal size=50>
+			<label for="contentText"> Content text: </label>
+			<input name="contentText" onkeyup="contentTableFilter('allContentTable')"/>
+			
+			<br><br>
+		</div><br><br><br><br>
+		<table id="allContentTable">
 
 			<thead>
 				{% for head in headers %}
@@ -34,10 +53,16 @@
 							{{cts.contentTemplate.templateName}}
 						</td>
 						<td>
+							{{cts.createDateToString}}
+						</td>
+						<td>
+							{{cts.expiredDateToString}}
+						</td>
+						<td>
 							<img src="{{ asset('public/contentimages/' ~ cts.picture )}}" width="40px" height="40px"/>
 						</td>
 						<td>
-							<p onclick="deleteContent('deleteuser','{{cts.id}}','{{cts.id}}')" style="cursor: pointer;"/>
+							<p onclick="deleteContent('{{cts.id}}','deleteContent','{{cts.menu.title}}')" style="cursor: pointer;"/>
 							<img src="{{ asset('public/images/icons8-trash-24.png') }}" width="24px" height="24px" style="cursor: pointer;"/>
 
 						</td>

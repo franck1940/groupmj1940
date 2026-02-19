@@ -1,0 +1,109 @@
+{% extends '@backend/backendmanagement.html.twig' %}
+{% block scripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/employeesActivities.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/utils.js') }}"></script>
+
+
+{% endblock %}
+{% block style %}
+	<link rel="stylesheet" href="{{asset('public/css/backendcontent.css')}}">
+
+
+{% endblock %}
+{% block backendcontentright %}
+
+	<div class="tableData">
+	<h2>{{value}}</h2>
+	<div class="tableFilters">
+
+		<spacer type="horizontal" size="50">
+		<label for="firstname">Firstname:</label>
+		<input id="firstname" placeholder="Search for firstname.." onkeyup="orderTableFilter('allOrderTable')"/>
+
+		<spacer type="horizontal" size="50">
+		<label for="lastname">Lastname:</label>
+		<input id="lastname" placeholder="Search for lastname.." onkeyup="orderTableFilter('allOrderTable')"/>
+		
+		<label for="servicename">Service name:</label>
+		<input id="servicename" placeholder="Search for service name.." onkeyup="orderTableFilter('allOrderTable')"/>
+		<br><br>
+		<spacer type="horizontal" size="50">
+		<label for="Email">Email:</label>
+		<input id="email" placeholder="Search for e-mail.." onkeyup="orderTableFilter('allOrderTable')"/>
+        
+        <label for="PhoneNumber">Phone number:</label>
+		<input id="phoneNumber" placeholder="Search for phone number.." onkeyup="orderTableFilter('allOrderTable')"/>
+
+        <label for="state">State:</label>
+		<input id="state" placeholder="Search for state.." onkeyup="orderTableFilter('allOrderTable')"/>
+		<br><br>
+        <label for="amount">Amount:</label>
+		<input id="amount" placeholder="Search for amount.." onkeyup="orderTableFilter('allOrderTable')"/>
+
+        <label for="deliveryaddress">Delivery address:</label>
+		<input id="deliveryAddress" placeholder="Search for delivery address.." onkeyup="orderTableFilter('allOrderTable')"/>
+
+        <label for="orderDate">Order date:</label>
+		<input id="orderDate" placeholder="Search for order date.." onkeyup="orderTableFilter('allOrderTable')"/>
+
+        <label for="DeliveryDate">Delivery date:</label>
+		<input id="deliveryDate" placeholder="Search for delivery date.." onkeyup="orderTableFilter('allOrderTable')"/>
+		<br><br>
+		</div>
+		<br><br><br><br>
+		<form action="app_orderDetail">
+					<table id="allOrderTable">
+						<thead>
+							<th>Number</th>
+							<th>
+								First name</th>
+							<th>
+								Last name</th>
+							<th>
+								Service name</th>
+							<th>
+								Email</th>
+							<th>
+								Phone number</th>
+							<th>
+								State</th>
+                            <th>
+								Amount</th>
+                            <th>
+								Delivery address</th>
+							<th>
+								Order date</th>
+							<th>
+								Delivery date</th>
+						</thead>
+						<tbody>
+							{% for index, item in allOrders %}
+								<tr>
+									<td>
+										{{index + 1 }}</td>
+									<td>{{item.firstname}}</td>
+                                    <td>{{item.lastname}}</td>
+									<td>{{item.servicename}}</td>
+                                    <td>{{item.email}}</td>
+									<td>{{item.phoneNumber}}</td>
+                                    <td>{{item.state}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.deliveryAddress}}</td>
+									<td>{{item.deliveryDate}}</td>
+									<td>{{item.orderDate}}</td>
+									<td>
+										<button type="button">
+											<a href="{{ 'details?prjd=' ~ item.id}}">
+												Show Details
+											</a>
+										</button>
+									</td>
+								</tr>
+
+							{% endfor %}
+						</tbody>
+					</table>
+				</form>
+			</div>
+		{% endblock %}

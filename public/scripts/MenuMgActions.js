@@ -242,42 +242,142 @@ function deleteMenu(url, mId, title, rspId) {
 }
 
 $(function () {
-    $("a").click(function () {
+    $("p").click(function () {
         let id = $(this).attr("id");
-        var lenId =(id)? id.length:0;
-        var numberId = id.substring(lenId - 1, lenId);
-        var childrens = $("[id*=childMenu" + numberId + "]");
-        var childrens_br = $("[id*=childMenu_br" + numberId + "]");
-        $("#link" + numberId).addClass("parentMenu_a");
-        var isChildrenOpen = false;
+        let name = $(this).attr("name");
+        // var lenId = (id) ? id.length : 0;
+
+        var isIdContainsP2 = (name != null) && (id.includes("_p2") || name.includes("_p2"));
+
+        var numberIdP1 = -1, numberIdP2 = -1;
+
+        var arr = id.split(".");
+
+        if (isIdContainsP2) {
+            numberIdP2 = (name.split("."))[1];
+        } else {
+            numberIdP1 = arr[1];
+        }
+
+        var childrensP1 = $("[id*=childMenu_p1" + numberIdP1 + "]");
+        var childrensP2 = $("[id*=childMenu_p2" + numberIdP2 + "]");
+
+        var childrens_br_p1 = $("[id*=childMenu_br_p1" + numberIdP1 + "]");
+        var childrens_br_p2 = $("[id*=childMenu_br_p2" + numberIdP2 + "]");
+
+        $("#link_p1." + numberIdP1).addClass("parentMenu_a_p1");
+
+        $(".link_p2." + numberIdP2).addClass("parentMenu_a_p2");
+
+        if (!isIdContainsP2) {
+            childrensP2 = $("[id*=childMenu_p2" + numberIdP1 + "]");
+            childrens_br_p2 = $("[id*=childMenu_br_p2" + numberIdP1 + "]");
+            // alert(childrensP2.length);
+            $.each(childrensP1, function (index, value) {
+
+                var isVisible = $(value).is(':visible');
+                var isDisplayNone = false;
+
+                if (!isVisible) {
+                    //$(value).show();
+                    $(value).css("display", "inline");
+                    $("[id='" + id + "']").addClass("parentMenu_a_plus");
+                    // $(".link_p2." + numberIdP1).addClass("parentMenu_a_plus");
+                }
+                if (isVisible) {
+                    $("[id='" + id + "']").removeClass("parentMenu_a_plus");
+                    // $(".link_p2." + numberIdP1).removeClass("parentMenu_a_plus");
+                    $(value).css("display", "none");
+                    isDisplayNone = true;
+                }
+
+            });
 
 
-        $.each(childrens, function (index, value) {
-            var isVisible = $(value).is(':visible');
-            if (!isVisible && id.includes("link")) {
-                $(value).show();
-                $("#link" + numberId).addClass("parentMenu_a_plus");
-                isChildrenOpen = true;
-            }
-            if (isVisible && id.includes("link")) {
-                $("#link" + numberId).removeClass("parentMenu_a_plus");
-                $(value).hide();
-                isChildrenOpen = false;
-            }
-        });
+            $.each(childrens_br_p1, function (index, value) {
 
-        $.each(childrens_br, function (index, value) {
-            var isVisible = $(value).is(':visible');
-            if (!isVisible && id.includes("link")) {
-                $(value).show();
-                $("#link" + numberId).addClass("parentMenu_a_plus");
-            }
-            if (isVisible && id.includes("link")) {
-                $(value).hide();
-                $("#link" + numberId).removeClass("parentMenu_a_plus");
+                var isVisible = $(value).is(':visible');
 
+                if (!isVisible && id.includes("link_p1.")) {
+                    $(value).css("display", "block");
+                    //$(value).show();
+                    $("[id='" + id + "']").addClass("parentMenu_a_plus");
+                    // $("#link_p2." + numberIdP1).addClass("parentMenu_a_plus");
+                }
+                if (isVisible && id.includes("link_p1.")) {
+                    // $(value).hide();
+                    $(value).css("display", "none");
+                    $("[id='" + id + "']").removeClass("parentMenu_a_plus");
+                    //$("#link_p2." + numberIdP1).removeClass("parentMenu_a_plus");
+
+                }
+            });
+
+            if (childrensP2.length > 0) {
+                $(".link_p2." + numberIdP2).addClass("parentMenu_a_p2");
+                name = "link_p2." + numberIdP1;
             }
-        });
+
+            $.each(childrensP2, function (index, value) {
+                var isVisible = $(value).is(':visible');
+
+                if (isVisible) {
+                    // $("#link_p1" + numberId).removeClass("parentMenu_a_plus");
+                    $("[name='" + name + "']").removeClass("parentMenu_a_plus");
+                    // $(value).hide();
+                    $(value).css("display", "none");
+
+                }
+            });
+
+            $.each(childrens_br_p2, function (index, value) {
+                var isVisible = $(value).is(':visible');
+                if (isVisible && name.includes("link_p2.")) {
+                    $("[name='" + name + "']").removeClass("parentMenu_a_plus");
+                    //$(value).hide();
+                    $(value).css("display", "none");
+                }
+            });
+
+        } else {
+
+            $.each(childrensP2, function (index, value) {
+
+                var isVisible = $(value).is(':visible');
+                if (!isVisible && name.includes("link_p2.")) {
+                    // $(value).show();
+                    $(value).css("display", "inline");
+                    //$("#link_P1" + numberId).addClass("parentMenu_a_plus");
+                    $("[name='" + name + "']").addClass("parentMenu_a_plus");
+                }
+
+                if (isVisible) {
+                    // $("#link_p1" + numberId).removeClass("parentMenu_a_plus");
+                    $("[name='" + name + "']").removeClass("parentMenu_a_plus");
+                    // $(value).hide();
+                    $(value).css("display", "none");
+
+                }
+            });
+
+            $.each(childrens_br_p2, function (index, value) {
+                var isVisible = $(value).is(':visible');
+                if (!isVisible && name.includes("link_p2.")) {
+                    $("[name='" + name + "']").addClass("parentMenu_a_plus");
+                    // $(value).show();
+                    $(value).css("display", "inline");
+
+                }
+                if (isVisible && name.includes("link_p2.")) {
+                    $("[name='" + name + "']").removeClass("parentMenu_a_plus");
+                    //$(value).hide();
+                    $(value).css("display", "none");
+
+
+                }
+            });
+
+        }
 
     });
 });

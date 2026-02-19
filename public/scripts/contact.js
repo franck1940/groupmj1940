@@ -9,7 +9,7 @@ function changeValidationMessage(elementName, message) {
     var val = element.value;
     var attr = element.getAttribute("name");
     if (attr == "phone") {
-        if (!isNumeric(val) || val.length == 0 || val.length < 12) {
+        if (!isNumeric(val) || val.length == 0) {
             element.setCustomValidity(message);
         }
     }

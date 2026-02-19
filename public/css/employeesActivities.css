@@ -13,11 +13,74 @@
 .employeesProject form {
   margin: 0%;
 }
-.allprojects, .allprojects form{
+.allprojects {
    margin-left: 5%;
    width: 100%;
    height: inherit;
+   font-size: 20px;
 }
+.allprojects th{
+  border: 1px solid black;
+  box-sizing: content-box;
+  width: 10%;
+  padding: 1% 1%;
+  background-color: antiquewhite;
+  border-collapse: collapse;
+  /* word-break: break-all; */
+
+}
+
+.filterProject{
+  border: 2px solid antiquewhite;
+  padding: 1% 1%;
+
+  width: auto;
+  height: 40%;
+   background-color: antiquewhite;
+  /* background-color: white; */
+  /* color: white; */
+   margin-right: 10%;
+}
+.filterProject input
+{
+  width: 15%;
+  height:3%;
+
+}
+/* .allprojects  td{
+  border: 1px solid black;
+  width: auto;
+  box-sizing: content-box;
+   padding: 1% 1%;
+ 
+}
+
+.allprojects table{
+  border: 1px solid black;
+  margin-bottom: 5%;
+   border-collapse: collapse;
+  margin-right: 10%;
+  box-sizing: content-box;
+  text-align: left;
+  border: 0px solid red;
+}
+
+
+tbody{
+   height: 100px;
+   overflow-y: auto;
+  border: 2px ridge black;
+}
+thead{
+  border: 2px ridge black;
+}
+.allprojects tr {
+  background-color: #fff;
+}
+
+.allprojects tr:hover {
+  background-color: #ddd;
+} */
 .updateCts{
   display: none;
 }

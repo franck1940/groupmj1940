@@ -16,10 +16,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class BackendController extends AbstractController
 {
     //#[Route("/login")]
-    public function showLoginPage(): Response
-    {
-        return $this->render('@backend/login.html.twig', ["value" => "Welcome to - GROUP NJ -"]);
-    }
+    // public function showLoginPage(): Response
+    // {
+    //     return $this->render('@backend/login.html.twig', ["value" => "Welcome to - GROUP NJ -"]);
+    // }
 
     #[Route(path: "/backendmanagement", name: 'app_backendmanagement')]
     public function showBackendManagement(EntityManagerInterface $entityManager, LoggerInterface $logger): Response

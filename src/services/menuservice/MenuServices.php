@@ -39,7 +39,7 @@ class MenuServices implements IMenuServices
             if (!$rootmenu) {
                 throw new Exception("createRootSubMenu: rootmenu empty");
             }
-            $menuRoute =$rootmenu->getMenuRoute()."/".str_replace(" ","_",$sbmenuTitle);
+            $menuRoute =$rootmenu->getMenuRoute()."/"."srvacts/".str_replace(" ","_",$sbmenuTitle);
 
             $submenu = new Menu();
             $submenu->setParentId($rootmenu->getId());
@@ -71,7 +71,7 @@ class MenuServices implements IMenuServices
             if (empty($submenu->getParentId())) {
                 throw new Exception("createSubSubMenu: submenu is root menu");
             }
-            $subMenuRoute=$submenu->getMenuRoute()."/". str_replace(" ","_",$sbsbmenuTitle);
+            $subMenuRoute=$submenu->getMenuRoute()."/"."srvacts/". str_replace(" ","_",$sbsbmenuTitle);
 
             $sbsbmenu = new Menu();
             $sbsbmenu->setParentId($subId);
@@ -110,7 +110,7 @@ class MenuServices implements IMenuServices
     {
         return $this->entitymanager->getRepository(Menu::class)->findBy(["parentId" => $sbId]);
     }
-    public function findMenuByTitle(string $title){
+    public function findMenuByTitle(string $title):array{
          return $this->entitymanager->getRepository(Menu::class)->findBy(["title" => $title]);
     }
 
@@ -120,4 +120,5 @@ class MenuServices implements IMenuServices
         //$contentService = new Conten
         return false;
     }
+
 }

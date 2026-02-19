@@ -24,10 +24,10 @@
 			<input type="text" name="name" id="name" required ><br><br>
 			<label for="email">
 				Email:</label><br>
-			<input type="email" name="email" id="email" required ><br><br>
+			<input type="email" name="email" id="email" required placeholder="sample@test.de"><br><br>
 			<label for="phoneNumber">
 				Phone:</label><br>
-			<input type="tel" name="phone" id="phone" required oninvalid="changeValidationMessage('phone','nomber of phone is less or bigger than 12 digits')" pattern="[0-9]{12}"><br><br>
+			<input type="tel" name="phone" id="phone" required pattern="[0-9]*" placeholder="012345679"><br><br>
 
 			<label for="subject">
 				Subject:</label><br>
@@ -35,19 +35,8 @@
 
 			<label for="description">
 				Description:</label><br>
-			<textarea name="desc" id="desc" required rows="10" cols="80" maxlength="512" style="min-height:400px;max-height:400px; max-width:300px;"></textarea><br><br>
-			<script>
-			          var fontsNames="Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
-					//, maxHTMLLength: 1000
-					  var editor1 = new RichTextEditor("#desc", 
-					   {editorResizeMode: "none",fontNameItems: fontsNames, skin:"rounded-corner", maxWidthForMobile:300, allowScriptCode:false });
-						//editor1.setHTMLCode("Use inline HTML or setHTMLCode to init the default content.");
-						//editor1.fullScreen=true;
-						//editor1.execCommand("fullscreenexit",true);
-						//editor1.execCommand("Text","Type here");
-						//editor1.insertText("hello world");
-						
-			</script>
+			<textarea name="desc" id="desc" required rows="10" cols="150" maxlength="512"></textarea><br><br>
+		
 			
 			<input type="hidden" name="sid" value="{{sid}}"/><br><br>
 

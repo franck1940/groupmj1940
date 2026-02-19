@@ -3,12 +3,36 @@
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/actions.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/UserActions.js') }}"></script>
+	<script language="JavaScript" type="text/javascript" src="{{ asset('public/scripts/utils.js') }}"></script>
+
 {% endblock %}
 {% block backendcontentright %}
-	<div id="allusers">
+	<div id="alluserss" class="tableData">
 		<h2>
 			{{ value }}
 		</h2>
+		<div class="tableFilters">
+			<label for="firstname"> Fist name: </label>
+			<input name="firstname" onkeyup="usersTableFilter('allUserTable')"/>
+			<spacer type=horizontal size=50>
+			<label for="lastname"> Last name: </label>
+			<input name="lastname" onkeyup="usersTableFilter('allUserTable')"/>
+			<spacer type=horizontal size=50>
+			<label for="email"> Email: </label>
+			<input name="email" onkeyup="usersTableFilter('allUserTable')"/>
+			<br><br>
+			<label for="phoneNumber"> Phone number: </label>
+			<input name="phoneNumber" onkeyup="usersTableFilter('allUserTable')"/>
+			<spacer type=horizontal size=50>
+			<label for="streetName">Street name: </label>
+			<input name="streetName" onkeyup="usersTableFilter('allUserTable')"/>
+			<spacer type=horizontal size=50>
+			<label for="houseNumber">House number: </label>
+			<input name="houseNumber" onkeyup="usersTableFilter('allUserTable')"/>
+			<br><br>
+			
+			<br>
+		</div><br><br>
 		<form action="/backendmanagement/usermanagement/delete" id="checkallusers" method="POST">
 			<table id="allUserTable">
 

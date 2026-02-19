@@ -21,16 +21,16 @@ class Projects
     #[ORM\Column(length: 200)]
     private ?string $title = null;
 
-    #[ORM\Column(nullable: true, type: types::BLOB)]
-    private  $description = null;
+    #[ORM\Column(nullable: true, length: 5024)]
+    private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTime $createdate = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTime $startDate = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTime $endDate = null;
     
     private ?string $value = null;
@@ -66,17 +66,9 @@ class Projects
 
     public function getDescription(): ?string
     {
-       //$str = stream_get_contents($this->description);
-        return $this->value;
+        return $this->description;
     }
 
-    public function getDesc(): ?string
-    {
-        $y = stream_get_contents($this->description);
-        echo $y;
-        $this->value = $y;
-         return "";
-    }
 
     public function setDescription($description): static
     {

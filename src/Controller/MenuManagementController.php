@@ -38,7 +38,9 @@ class MenuManagementController extends AbstractController
         if ($menuTitle) {
             $menu = $menuServices->findMenuByTitle($menuTitle);
             if (!$menu) {
-                $routeMenu = "/" . str_replace(" ", "_", strtolower($menuTitle));
+                //$routeMenu = "/" . str_replace(" ", "_", strtolower($menuTitle));
+                $routeMenu = "#";
+
 
                 $menu = new Menu();
                 $menu->setTitle($menuTitle);
@@ -143,7 +145,7 @@ class MenuManagementController extends AbstractController
             $response = "Sub menu create successful";
         }
 
-        return new Response(($rslt) ? "successful": "failed", 200, [
+        return new Response(($rslt) ? "successful" : "failed", 200, [
             "cssResponse" =>  $cssResponse,
             "response" => $response
         ]);
@@ -237,15 +239,23 @@ class MenuManagementController extends AbstractController
         $newTitle = $request->request->get("title");
         $menuServices = new MenuServices($entityManager);
         $rslt = false;
-
         $response = "ERROR: Update menu failed!";
         $cssResponse = "color:red;";
-
+        
         if ($meuId && trim($newTitle)) {
             $menu = $menuServices->findMenuById($meuId);
             $menu->setTitle(trim($newTitle));
-            if ($menu->getMenuRoute())
-                $menu->setMenuRoute(strtolower($menu->getMenuRoute()));
+            $sbMenu = $menuServices->findSbMenu($menu->getId());
+            $rtMenu = $menu->getMenuRoute();
+            if (!$rtMenu || (!str_contains($rtMenu, "#")) || count($sbMenu) == 0) {
+                $routeMenu = "/"."srvacts/" . str_replace(" ", "_", strtolower($newTitle));
+                $menu->setMenuRoute(strtolower($routeMenu));
+            }
+            
+            if (count($sbMenu) > 0) {
+                $menu->setMenuRoute("#");
+            }
+
             $entityManager->persist($menu);
             $entityManager->flush();
             $rslt = true;

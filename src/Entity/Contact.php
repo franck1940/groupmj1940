@@ -24,7 +24,7 @@ class Contact
     #[ORM\Column(length: 20, nullable: false)]
     private ?string $phone = null;
 
-    #[ORM\Column(type: Types::BLOB)]
+    #[ORM\Column(length: 1024)]
     private ?string $description = null;
 
     #[ORM\Column(length: 200)]

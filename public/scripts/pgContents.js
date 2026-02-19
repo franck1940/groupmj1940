@@ -19,12 +19,6 @@ function showContentsOfMenu(menuId, url, displayContainer) {
                     titleUpImgMiddelTextDown(displayContainer, index, 'insertPgContent', val);
 
             });
-            //   $("#"+displayContainer).append('<script> var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
-	        //  + 'var editor1 = new RichTextEditor("#contenteditor2", {fontNameItems: fontsNames, editorResizeMode:"none", skin:"rounded-corner", enableObjectResizing: false }); </script>');
-	          
-            //  eval($("#"+displayContainer).find("script"));
-            // eval($(this).find("script").text());
-
         }
         );
 
@@ -50,13 +44,13 @@ function imgRghtTextLft(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='text' name='title' value='" + json.title + "'> <br>");
     $("#fCtUpdate" + index).append("<input type='hidden' name='action' value='" + json.id + "'>");
     $("#fCtUpdate" + index).append("<label for='contenteditor'>Content Desc.</label><br>");
-    $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor"+index+"' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;'>" + json.contentText + "</textarea><br>");
+    $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;'>" + json.contentText + "</textarea><br>");
    
     			   
-	 eval( $("#fCtUpdate" + index).append('<script> var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
+	//  eval( $("#fCtUpdate" + index).append('<script> var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
 	
-	         + 'var editor'+index+' = new RichTextEditor("#contenteditor'+index+'", {fontNameItems: fontsNames, editorResizeMode:"none", skin:"rounded-corner", enableObjectResizing: false }); </script>')
-	         .find("script"));
+	//          + 'var editor'+index+' = new RichTextEditor("#contenteditor'+index+'", {fontNameItems: fontsNames, editorResizeMode:"none", skin:"rounded-corner", enableObjectResizing: false }); </script>')
+	//          .find("script"));
    
     $("#fCtUpdate" + index).append("<label for='picture'>Picture:</label><br>");
     $("#fCtUpdate" + index).append("<input type='file' id='picture' name='picture'/><br><br></br>");
@@ -87,14 +81,14 @@ function textUpImgDown(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='text' name='title' value='" + json.title + "'> <br>");
     $("#fCtUpdate" + index).append("<input type='hidden' name='action' value='" + json.id + "'>");
     $("#fCtUpdate" + index).append("<label for='contenteditor'>Content Desc.</label><br>");
-    $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor"+index+"' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;'>" + json.contentText + "</textarea><br>");
+    $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;'>" + json.contentText + "</textarea><br>");
    
    
 				   
-	  eval($("#fCtUpdate" + index).append('<script>  var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
+	//   eval($("#fCtUpdate" + index).append('<script>  var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
 	
-	 + 'var editor'+index+' = new RichTextEditor("#contenteditor'+index+'", {fontNameItems: fontsNames, editorResizeMode:"none", skin:"rounded-corner", enableObjectResizing: false }); </script>')
-	  .find("script"));
+	//  + 'var editor'+index+' = new RichTextEditor("#contenteditor'+index+'", {fontNameItems: fontsNames, editorResizeMode:"none", skin:"rounded-corner", enableObjectResizing: false }); </script>')
+	//   .find("script"));
    
     
     $("#fCtUpdate" + index).append("<label for='picture'>Picture:</label><br>");
@@ -127,14 +121,8 @@ function titleUpImgMiddelTextDown(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='text' name='title' value='" + json.title + "'> <br>");
     $("#fCtUpdate" + index).append("<input type='hidden' name='action' value='" + json.id + "'>");
     $("#fCtUpdate" + index).append("<label for='contenteditor'>Content Desc.</label><br>");
-    $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor"+index+"' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;' >" + json.contentText + "</textarea><br>");
+    $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;' >" + json.contentText + "</textarea><br>");
    			   
-	 eval($("#fCtUpdate" + index).append('<script> fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
-	
-	 + 'var editor'+index+' = new RichTextEditor("#contenteditor'+index+'", {fontNameItems: fontsNames, editorResizeMode:"none", skin:"rounded-corner", enableObjectResizing: false }); </script>')
-	
-    .find("script"));
-   
      $("#fCtUpdate" + index).append("<label for='picture'>Picture:</label><br>");
     $("#fCtUpdate" + index).append("<input type='file' id='picture' name='picture'/><br><br></br>");
     $("#fCtUpdate" + index).append("<input type='submit' value='Update content'/><br><br>");

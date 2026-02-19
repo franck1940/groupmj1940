@@ -20,7 +20,7 @@
 		<h4 style="{{cssResponse}}">{{response}}</h4>
 		<form action="/backendmanagement/employeesActivities/insertproject" method="post" id="insertproject" class="eplMgt">
 			<label for="existingProject">Existing project:</label><br>
-			<select name="existingProject" id="existingProject" onchange="" disabled>
+			<select name="existingProject" id="existingProject" onchange="loadProjectInfos('existingProject','projectTitle', 'projectDescription', 'projectCreateDate','projectStartDate', 'projectEndDate','getProjectInfos' )" disabled>
 				<option value=""></option>
 				{% for item in allprojects %}
 					<option value="{{item.id}}" {{ (item.id == selected)?'selected':'' }}>{{item.title}}</option>
@@ -28,21 +28,16 @@
 			</select>  <input type="checkbox" id="makeProjectUpdate" name="MakeProjectUpdate" value="MakeProjectUpdate" onchange="makeUpdate('existingProject','makeProjectUpdate')"><label for="MakeProjectUpdate"> Do an update</label><br><br><br>
 			<input name="insertproject" type="hidden" value="i"/>
 			<label for="projectname">Project name:</label><br>
-			<input name="projectname" type="text" required maxlength="150"><br><br>
+			<input name="projectname" id="projectTitle" type="text" required maxlength="150"><br><br>
 			<label for="projectDescription">Project Description:</label><br>
 			<textarea name="projectDescription" id="projectDescription" rows="10" cols="70" style="height:400px; width:80%; max-height:70%; margin-right:5%;"></textarea><br><br><br>
 			<label for="projectStartDate">create date:</label><br>
 			<input type="datetime-local" id="projectCreateDate" name="projectCreateDate" value="{{createDate}}" readonly /><br><br><br>
 			<label for="projectStartDate">Start date:</label><br>
 			<input type="datetime-local" id="projectStartDate" name="projectStartDate"/><br><br><br>
-			<label for="projectStartDate">Start date:</label><br>
+			<label for="projectStartDate">Enddate:</label><br>
 			<input type="datetime-local" id="projectEndDate" name="projectEndDate"/><br><br><br>
-			<input type="submit" value="Update project"/><br><br>
+			<input type="submit" value="Send project"/><br><br>
 		</form>
 	</div>
-	<script language="JavaScript" type="text/javascript"> 
-		var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
-		var editor1 = new RichTextEditor("#projectDescription", 
-		{fontNameItems: fontsNames, editorResizeMode:'none', skin:"rounded-corner", enableObjectResizing: false });
-		</script>
 {% endblock %}
