@@ -16,6 +16,7 @@
   margin: auto;
   position: relative;
   overflow: hidden;
+  display: block;
 }
 
 #contentContainerLft {
@@ -319,34 +320,36 @@ a {
     border-collapse: collapse;
 }
 .tableData th {
-  border: 0px solid black;
-  
+  border: 2px solid bisque;
+
   width: 260px;
   padding: 1% 1%;
   background-color: antiquewhite;
   border-collapse: collapse;
   /* word-break: break-all; */
   /* height: 50px; */
-  
+  color:darkblue;
+
 }
 
 .tableData tr:hover {
-  z-index: 100;
-  transform: scale(1.1);
-  -ms-transform: scale(1.1); /* IE 9 */
-  -moz-transform: scale(1.1); /* Firefox */
-  -webkit-transform: scale(1.1); /* Safari and Chrome */
-  -o-transform: scale(1.1); /* Opera */
+  z-index: 30;
+  border: 1px ridge #7a7474;
+  transform: scale(1.0);
+  -ms-transform: scale(1.0); /* IE 9 */
+  -moz-transform: scale(1.0); /* Firefox */
+  -webkit-transform: scale(1.0); /* Safari and Chrome */
+  -o-transform: scale(1.0); /* Opera */
 }
 
 .tableData table {
-  border: 2px solid black;
+  border: 1px solid #7a7474;
   margin-bottom: 5%;
   border-collapse: collapse;
   margin-right: 10%;
   background-color: #fff;
   /* box-sizing: content-box; */
-  
+
   /* border: 0px solid red; */
   display: block;
 }
@@ -362,7 +365,7 @@ tbody {
 
 thead {
   display: block;
- 
+
   border: 0px ridge black;
   height: 50px;
 }
@@ -541,19 +544,20 @@ tr:nth-child(odd) {
 }
 
 .dashboard {
-  float: left;
   margin: 2%;
   padding: 2% 2%;
   border: 1px solid #000;
   width: 20%;
-  height: 100px;
+  height: 50%;
   background-color: #fff;
-  font-size: 20px;
+  word-wrap: break-word;
+  /* overflow: auto; */
+  display: inline-block;
 }
 
 .dashboard img {
-  width: 70px;
-  height: 70px;
+  width: 30px;
+  height: 30px;
 }
 
 .containerDashboard h2 {
@@ -563,6 +567,7 @@ tr:nth-child(odd) {
   display: inline-block;
   width: 80%;
   height: auto;
+  /* border: 2px solid #000; */
 }
 
 .tableFilters{

@@ -19,7 +19,7 @@ class OrdersController extends AbstractController
         return   $this->render('@backend/allOrders.html.twig', ["value" => "Client orders", "allOrders" => $allOrder]);
     }
 
-     #[Route(path: "/backendmanagement/ordermanagement/serveiceOrderForm", name: "allorders")]
+     #[Route(path: "/backendmanagement/ordermanagement/serveiceOrderForm", name: "serveiceOrderForm")]
     public function handlingServiceOrders(EntityManagerInterface $entityManager): Response
     {
         $orderService = new OrderServices($entityManager);

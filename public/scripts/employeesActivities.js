@@ -54,7 +54,9 @@ function deleteProject(projectId, url, projectTitle) {
         doPostOneData(url, projectId, "deleteProject()").then(function (data) {
             console.log(data);
             alert("Delete content:[" + data + "]");
-            location.reload();
+            location.href="allprojects";
+            //backendmanagement/employeesActivities/allprojects
+           // location.reload();
         });
     }
 }

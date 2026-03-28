@@ -10,6 +10,13 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        # default:
+        #         # by default, the feature allows 5 login attempts per minute
+        #         #login_throttling: ~
+
+        #         # configuring the maximum login attempts (per minute)
+        #         login_throttling:
+        #                 max_attempts: 10
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false

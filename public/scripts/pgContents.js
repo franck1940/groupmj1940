@@ -45,6 +45,16 @@ function imgRghtTextLft(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='hidden' name='action' value='" + json.id + "'>");
     $("#fCtUpdate" + index).append("<label for='contenteditor'>Content Desc.</label><br>");
     $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;'>" + json.contentText + "</textarea><br>");
+    
+    var d =(json.expiredDate)? json.expiredDate.date:"";
+    var arr = (d.length > 0)? d.split("."):"";
+    var expiredDate = (json.expiredDate)?arr[0]:"";
+    $("#fCtUpdate" + index).append("<label for='title'>Expired date</label><br>");
+    $("#fCtUpdate" + index).append("<input type='datetime-local' name='expireddate' value='" +  expiredDate + "'> <br>");
+
+
+	//			<input type="datetime-local" id="expireddate" name="expireddate"/><br><br>
+    
    
     			   
 	//  eval( $("#fCtUpdate" + index).append('<script> var fontsNames = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica,Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";'
@@ -82,6 +92,12 @@ function textUpImgDown(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='hidden' name='action' value='" + json.id + "'>");
     $("#fCtUpdate" + index).append("<label for='contenteditor'>Content Desc.</label><br>");
     $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;'>" + json.contentText + "</textarea><br>");
+    
+    var d =(json.expiredDate)? json.expiredDate.date:"";
+    var arr = (d.length > 0)? d.split("."):"";
+    var expiredDate = (json.expiredDate)? arr[0]:"";
+    $("#fCtUpdate" + index).append("<label for='title'>Expired date</label><br>");
+    $("#fCtUpdate" + index).append("<input type='datetime-local' name='expireddate' value='" +  expiredDate + "'> <br>");
    
    
 				   
@@ -122,8 +138,13 @@ function titleUpImgMiddelTextDown(baseContainerId, index, url, json) {
     $("#fCtUpdate" + index).append("<input type='hidden' name='action' value='" + json.id + "'>");
     $("#fCtUpdate" + index).append("<label for='contenteditor'>Content Desc.</label><br>");
     $("#fCtUpdate" + index).append("<textarea name='contenteditor' id='contenteditor' rows='10' cols='50' style='height:400px; width:40%; max-height:70%; margin-right:10%;' >" + json.contentText + "</textarea><br>");
+    var d =(json.expiredDate)? json.expiredDate.date:"";
+    var arr = (d.length > 0)? d.split("."):"";
+    var expiredDate = (json.expiredDate)?arr[0]:"";
+    $("#fCtUpdate" + index).append("<label for='title'>Expired date</label><br>");
+    $("#fCtUpdate" + index).append("<input type='datetime-local' name='expireddate' value='" +  expiredDate + "'> <br>");
    			   
-     $("#fCtUpdate" + index).append("<label for='picture'>Picture:</label><br>");
+    $("#fCtUpdate" + index).append("<label for='picture'>Picture:</label><br>");
     $("#fCtUpdate" + index).append("<input type='file' id='picture' name='picture'/><br><br></br>");
     $("#fCtUpdate" + index).append("<input type='submit' value='Update content'/><br><br>");
     $("#fCtUpdate" + index).append("<p style='font-size:36px; color:#00008B; margin-left:20px;font-size:20px;cursor: pointer;'  onclick=cancelFom('fCtUpdate" + index + "','divEl" + index + "','ctViewMonitoring" + index + "')> &#10229; Back</p><br><br>");
